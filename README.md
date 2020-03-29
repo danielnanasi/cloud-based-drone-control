@@ -33,5 +33,5 @@ docs/thesis.pdf
 KANBAN--->
 
 ### Első cluster ötlet:
-![Alt text](first.jpg?raw=true "Kubernetes drone controll cluster v0.1")
+![Alt text](first.png?raw=true "Kubernetes drone controll cluster v0.1")
 lehetséges queue: kafka? rabbitMQ? activeMQ?
