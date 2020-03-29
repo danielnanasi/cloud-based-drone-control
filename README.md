@@ -1,9 +1,8 @@
 Felhő alapú dróntervezés
 ----
-Dipterv 1 - 2020 tavasz
-Nánási Dániel
-[Dokumentáció](docs/thesis.pdf)
--------
+## Dipterv 1 - 2020 tavasz
+#### Nánási Dániel
+#### [Dokumentáció](docs/thesis.pdf)
 ### Ütemezés:
 ![created by readme-kanban-board](./kanban.png)
 <!---KANBAN
