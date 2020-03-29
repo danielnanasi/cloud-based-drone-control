@@ -1,0 +1,15 @@
+This is BibTeX, Version 0.99dThe top-level auxiliary file: thesis.aux
+The style file: huplain.bst
+A level-1 auxiliary file: content/introduction.aux
+A level-1 auxiliary file: content/latex-tools.aux
+A level-1 auxiliary file: content/thesis-format.aux
+A level-1 auxiliary file: content/template-usage.aux
+A level-1 auxiliary file: content/acknowledgement.aux
+A level-1 auxiliary file: content/appendices.aux
+Database file #1: bib/mybib.bib
+Warning--entry type for "KissPhD" isn't style-file defined
+--line 40 of file bib/mybib.bib
+Warning--entry type for "Jeney" isn't style-file defined
+--line 79 of file bib/mybib.bib
+Warning--empty journal in Candy86
+(There were 3 warnings)
