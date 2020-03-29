@@ -3,15 +3,18 @@
 ## Nánási Dániel
 ![created by readme-kanban-board](./kanban.png)
 <!---KANBAN
-# To Do
-- Eat healthy food
-- Exercise regularly
-- Learn sign language
+# TODO this semester
+- Plan the cluster
+- Get known the drone controll methods
+- Find out what is dockerizable
+
+# TODO next
+- Setup Kubernetes Cluster
 
 # In Progress
-- Drink too much
+- Write introduction
+- Read about controlling from a cluster
+- Choose methods to try
 
 # Done
-- Regret my decisions
-- Age too quickly
 KANBAN--->
