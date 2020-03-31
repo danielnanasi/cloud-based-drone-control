@@ -31,6 +31,6 @@ Felhő alapú dróntervezés
 KANBAN--->
 
 ### Első cluster ötlet:
-lehetséges queue: kafka? rabbitMQ? activeMQ?
+queue opciók: kafka, rabbitMQ, activeMQ, redis
 ![Alt text](first.png?raw=true "Kubernetes drone controll cluster v0.1")
 
