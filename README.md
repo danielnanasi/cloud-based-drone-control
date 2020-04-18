@@ -38,7 +38,7 @@ containers waits data on:
 
 
 ## Useful materials I used for learning
-Docker Tutorial course: https://www.youtube.com/watch?v=fqMOX6JJhGo
-Docker Compose tutorial: https://www.youtube.com/watch?v=Qw9zlE3t8Ko
-Kubernetes course: https://www.youtube.com/watch?v=Mi3Lx7yk3Hg
-ROS in 5 munutes: https://www.youtube.com/watch?v=pCBwos89fI0
+- Docker Tutorial course: https://www.youtube.com/watch?v=fqMOX6JJhGo
+- Docker Compose tutorial: https://www.youtube.com/watch?v=Qw9zlE3t8Ko
+- Kubernetes course: https://www.youtube.com/watch?v=Mi3Lx7yk3Hg
+- ROS in 5 munutes: https://www.youtube.com/watch?v=pCBwos89fI0
