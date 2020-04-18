@@ -3,7 +3,7 @@ Cloud based drone control
 Dipterv 1 - 2020 tavasz
 Nánási Dániel
 -------
-#### [Docomentation (coming soon)](docs/thesis.pdf)
+### [Docomentation (coming soon)](docs/thesis.pdf)
 
 ### [Meeting logs](meetlogs.txt)
 
@@ -31,7 +31,7 @@ https://hub.docker.com/r/bmehsnlab/aruco_detect_image_v2
 ![Alt text](dontainer_communication.PNG?raw=true "Containers communications")
 source: Welcome to R&D Innovation Days Budapest (presentation)
 
-containers waits data on:
+### containers waits data on:
 - video_stream_opencv: (mantisvideo.launch) "rtsp://192.168.42.1:554/live"
 - aruco detect: localhost:11311
 - control ?
