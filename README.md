@@ -28,7 +28,7 @@ Queue options: kafka? rabbitMQ? activeMQ?
 https://hub.docker.com/r/bmehsnlab/aruco_detect_image_v2
 
 ## Containers communication
-![Alt text](container_communication.png?raw=true "Containers communications")
+![Alt text](dontainer_communication.PNG?raw=true "Containers communications")
 source: Welcome to R&D Innovation Days Budapest (presentation)
 
 containers waits data on:
