@@ -9,16 +9,22 @@ Nánási Dániel
 
 ## Task planning
 ### TODO next semester
-### TODO this semester
-- [ ] Read about 5G solutions  
-### TODO asap
-- [ ] Docker compose --> Kubernetes yaml  
-### In progress
-- [ ] Write introduction  
-- [ ] Working docker compose for 1 drone  
+### TODO this semester  
+- [ ] Working docker compose for 1 drone
+- [ ] Docker compose --> Kubernetes yaml
+### In progress  
+- [ ] Docker Compose  
 ### DONE
 - [x] Init git  
-- [x] Get image  
+- [x] Get image
+- [x] Test out image
+
+### Write to docs
+- [ ] Introduction
+- [ ] Docker
+- [ ] Unix X windows
+- [ ] 5G solutions
+- [ ] MavRos
 
 ## First cluster idea
 ![Alt text](first.png?raw=true "Kubernetes drone controll cluster v0.1")
@@ -42,3 +48,4 @@ source: Welcome to R&D Innovation Days Budapest (presentation)
 - Docker Compose tutorial: https://www.youtube.com/watch?v=Qw9zlE3t8Ko
 - Kubernetes course: https://www.youtube.com/watch?v=Mi3Lx7yk3Hg
 - ROS in 5 munutes: https://www.youtube.com/watch?v=pCBwos89fI0
+- Mantis Q documentation: https://us.yuneec.com/files/downloads/mantis-q/Mantis%20Q_USER%20MANUAL_V1.0_20180921.pdf
