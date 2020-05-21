@@ -1,1 +1,4 @@
 \select@language {magyar} \contentsline {chapter}{\numberline {1}Bevezetés}{2}{chapter.1}%
+\select@language {magyar} \contentsline {section}{\numberline {1.1}Előzmények}{2}{section.1.1}%
+\select@language {magyar} \contentsline {section}{\numberline {1.2}A feladat célja}{2}{section.1.2}%
+\select@language {magyar} \contentsline {section}{\numberline {1.3}Feladat indokoltsága}{2}{section.1.3}%
