@@ -24,7 +24,7 @@
 \newcommand{\vikcim}{Felhő alapú drónvezérlés} % Cím
 \newcommand{\viktanszek}{\bmetmit} % Tanszék
 \newcommand{\vikdoktipus}{\msc} % Dokumentum típusa (\bsc vagy \msc)
-\newcommand{\vikmunkatipusat}{szakdolgozatot} % a "hallgató nyilatkozat" részhez: szakdolgozatot vagy diplomatervet
+\newcommand{\vikmunkatipusat}{diplomatervet} % a "hallgató nyilatkozat" részhez: szakdolgozatot vagy diplomatervet
 
 \input{include/tdk-variables}
 \newcommand{\szerzoMeta}{\vikszerzoVezeteknev{} \vikszerzoKeresztnev} % egy szerző esetén
@@ -36,6 +36,9 @@
 \input{include/thesis-hu}
 \input{include/preamble}
 
+% saját beállítások
+\input{include/danistuff}
+
 %--------------------------------------------------------------------------------------
 % Table of contents and the main text
 %--------------------------------------------------------------------------------------
@@ -43,8 +46,10 @@
 
 \pagenumbering{gobble}
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\include{include/guideline}
+%\include{include/guideline}
 %\include{include/project}
+%feladatkiírás, majd az eredeti aláírtat kell hozzáfűzni
+%\includepdf[pages=-,pagecommand={},width=\linewidth]{include/project.pdf}
 
 \selectthesislanguage
 
@@ -58,15 +63,16 @@
 
 % Declaration and Abstract
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-%\include{include/declaration} %TODO Hallgatói nyilatkozat -- TDK és OTDK esetén törlendő!
-%\include{content/abstract}    %TODO Összefoglaló -- TDK és OTDK esetén nem kötelező
-
+%\include{include/declaration}
+%\include{content/abstract}
 
 % The main part of the thesis
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \pagenumbering{arabic}
-%\include{sections/introduction}
-
+%\input{sections/introduction}
+%\input{sections/cloud}
+\input{sections/robot}
+%\input{sections/vm-tests}
 
 % Acknowledgements
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -78,11 +84,10 @@
 %\listoffigures\addcontentsline{toc}{chapter}{\listfigurename}
 %\listoftables\addcontentsline{toc}{chapter}{\listtablename}
 
-
 % Bibliography
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-%\addcontentsline{toc}{chapter}{\bibname}
-%\bibliography{bib/mybib}
+\addcontentsline{toc}{chapter}{\bibname}
+\bibliography{bib/mybib}
 
 
 % Appendix

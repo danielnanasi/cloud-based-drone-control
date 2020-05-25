@@ -93,35 +93,24 @@
 \def\bibInSelf#1{In u\H{o}: }
 \csname bibOverride\endcsname
 
-\bibitem{industry40}
-{Aethon}:
-\bibNewBlock Industry 4.0 components (2020. május 23.).
-\bibNewBlock \url{https://aethon.com/mobile-robots-and-industry4-0/}.
+\bibitem{robtel}
+Juhász Ádám:
+\bibNewBlock Robotvezérlés telekommunikációs eszközökkel, 2008.
 
-\bibitem{super-bowl}
-{Frank Tobe}:
-\bibNewBlock Lady gaga, 300 intel drones, and the super bowl (2020. május
-  23.).
+\bibitem{mavlink}
+{Mavlink}:
+\bibNewBlock Mavlink developer guide (2020. május 25.).
+\bibNewBlock \url{https://mavlink.io/en/}.
+
+\bibitem{roswiki}
+{ROS}:
+\bibNewBlock Wiki (2020. május 25.).
+\bibNewBlock \url{http://wiki.ros.org/}.
+
+\bibitem{mantisq}
+{Yuneec}:
+\bibNewBlock Mantis q (2020. május 25.).
 \bibNewBlock
-  \url{https://www.therobotreport.com/lady-gaga-300-intel-drones-and-the-super-bowl/}.
-
-\bibitem{ProjecPlan}
-{Free Management Books}:
-\bibNewBlock Project excecution process (2020. május 23.).
-\bibNewBlock
-  \url{http://www.free-management-ebooks.com/faqpm/processes-04.htm}.
-
-\bibitem{super-bowl-pic}
-{Jacob Brogen}:
-\bibNewBlock How intel lit up the super bowl with drones—and why (2020.
-  május 23.).
-\bibNewBlock
-  \url{https://slate.com/technology/2017/02/how-the-intel-drones-at-the-lady-gaga-super-bowl-halftime-show-worked.html}.
-
-\bibitem{drone-delivery}
-{Verband für umbemannte Luftfahrt}:
-\bibNewBlock Amazon’s new delivery drone has ‘fail-safe logic (2020. május
-  23.).
-\bibNewBlock \url{https://www.uavdach.org/?p=1294813}.
+  \url{https://www.yuneec.com/en_GB/camera-drones/mantis-q/overview.html}.
 
 \end{thebibliography}
