@@ -26,7 +26,7 @@
   \bibEarlyBegin
 \else \let\bibEarlyEnd\relax \fi
 
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 \frenchspacing
 \makeatletter
 \global\def\bibIE@lowc{%
@@ -93,19 +93,89 @@
 \def\bibInSelf#1{In u\H{o}: }
 \csname bibOverride\endcsname
 
+\bibitem{industry40}
+{Aethon}:
+\bibNewBlock Industry 4.0 components (2020. május 23.).
+\bibNewBlock \url{https://aethon.com/mobile-robots-and-industry4-0/}.
+
 \bibitem{robtel}
 Juhász Ádám:
 \bibNewBlock Robotvezérlés telekommunikációs eszközökkel, 2008.
+
+\bibitem{compose}
+{Docker docs}:
+\bibNewBlock Overview of docker compose (2020. május 24.).
+\bibNewBlock \url{https://docs.docker.com/compose/}.
+
+\bibitem{concert}
+{Frank Tobe}:
+\bibNewBlock Lady gaga, 300 intel drones, and the super bowl (2020. május
+  23.).
+\bibNewBlock
+  \url{https://www.therobotreport.com/lady-gaga-300-intel-drones-and-the-super-bowl/}.
+
+\bibitem{ProjecPlan}
+{Free Management Books}:
+\bibNewBlock Project excecution process (2020. május 23.).
+\bibNewBlock
+  \url{http://www.free-management-ebooks.com/faqpm/processes-04.htm}.
+
+\bibitem{super-bowl-pic}
+{Jacob Brogen}:
+\bibNewBlock How intel lit up the super bowl with drones—and why (2020.
+  május 23.).
+\bibNewBlock
+  \url{https://slate.com/technology/2017/02/how-the-intel-drones-at-the-lady-gaga-super-bowl-halftime-show-worked.html}.
+
+\bibitem{multi-vehicle}
+{Jaeyoung Lim}:
+\bibNewBlock Multi-vehicle drone simulation in gazebo (2020. május 27.).
+\bibNewBlock
+  \url{https://auterion.com/multi-vehicle-drone-simulation-in-gazebo/}.
+
+\bibitem{kube-arch}
+{Kubernetes}:
+\bibNewBlock Concepts underlying the cloud controller manager (2020. május
+  25.).
+\bibNewBlock
+  \url{https://v1-17.docs.kubernetes.io/docs/concepts/architecture/cloud-controller/}.
+
+\bibitem{toki}
+Dr.~Györfi László\bibAnd 0Győri Sándor\bibAnd 2Dr.~Pintér Márta:
+\bibNewBlock {\em Tömegkiszolgálás}.
+\bibNewBlock 2002, Műegyetemi Kiadó.
 
 \bibitem{mavlink}
 {Mavlink}:
 \bibNewBlock Mavlink developer guide (2020. május 25.).
 \bibNewBlock \url{https://mavlink.io/en/}.
 
+\bibitem{docker-swarm}
+{Mohamed Fawzy}:
+\bibNewBlock Create cluster using docker swarm (2020. május 24.).
+\bibNewBlock
+  \url{https://medium.com/tech-tajawal/create-cluster-using-docker-swarm-94d7b2a10c43}.
+
+\bibitem{px4dev}
+{PX4}:
+\bibNewBlock Ros with gazebo simulation (2020. május 26.).
+\bibNewBlock \url{https://dev.px4.io/v1.9.0/en/simulation/}.
+
+\bibitem{px4}
+{PX4 developers}:
+\bibNewBlock Open source autopilot (2020. május 26.).
+\bibNewBlock \url{https://px4.io/}.
+
 \bibitem{roswiki}
 {ROS}:
 \bibNewBlock Wiki (2020. május 25.).
 \bibNewBlock \url{http://wiki.ros.org/}.
+
+\bibitem{drone-delivery}
+{Verband für umbemannte Luftfahrt}:
+\bibNewBlock Amazon’s new delivery drone has ‘fail-safe logic (2020. május
+  23.).
+\bibNewBlock \url{https://www.uavdach.org/?p=1294813}.
 
 \bibitem{mantisq}
 {Yuneec}:

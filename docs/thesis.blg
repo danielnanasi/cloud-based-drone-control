@@ -3,6 +3,24 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: thesis.aux
 Reallocating 'name_of_file' (item size: 1) to 8 items.
 The style file: huplain.bst
+Reallocating 'name_of_file' (item size: 1) to 22 items.
+I couldn't open auxiliary file include/titlepage.aux
+---line 22 of file thesis.aux
+ : \@input{include/titlepage.aux
+ :                              }
+I'm skipping whatever remains of this command
+Reallocating 'name_of_file' (item size: 1) to 24 items.
+I couldn't open auxiliary file include/declaration.aux
+---line 25 of file thesis.aux
+ : \@input{include/declaration.aux
+ :                                }
+I'm skipping whatever remains of this command
+Reallocating 'name_of_file' (item size: 1) to 21 items.
+I couldn't open auxiliary file content/abstract.aux
+---line 27 of file thesis.aux
+ : \@input{content/abstract.aux
+ :                             }
+I'm skipping whatever remains of this command
 Reallocating 'name_of_file' (item size: 1) to 10 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
@@ -18,45 +36,45 @@ Reallocating 'singl_function' (item size: 4) to 100 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
-You've used 4 entries,
+You've used 16 entries,
             4991 wiz_defined-function locations,
-            1134 strings with 11760 characters,
-and the built_in function-call counts, 5918 in all, are:
-= -- 1009
-> -- 28
+            1187 strings with 13518 characters,
+and the built_in function-call counts, 30175 in all, are:
+= -- 5615
+> -- 123
 < -- 0
-+ -- 375
-- -- 19
-* -- 135
-:= -- 296
-add.period$ -- 7
-call.type$ -- 4
-change.case$ -- 16
++ -- 2128
+- -- 84
+* -- 384
+:= -- 1176
+add.period$ -- 31
+call.type$ -- 16
+change.case$ -- 65
 chr.to.int$ -- 0
-cite$ -- 4
-duplicate$ -- 812
-empty$ -- 177
-format.name$ -- 8
-if$ -- 1202
+cite$ -- 16
+duplicate$ -- 4520
+empty$ -- 710
+format.name$ -- 36
+if$ -- 6398
 int.to.chr$ -- 0
-int.to.str$ -- 4
-missing$ -- 0
-newline$ -- 115
-num.names$ -- 8
-pop$ -- 214
+int.to.str$ -- 16
+missing$ -- 3
+newline$ -- 175
+num.names$ -- 32
+pop$ -- 1164
 preamble$ -- 1
-purify$ -- 12
+purify$ -- 50
 quote$ -- 22
-skip$ -- 69
+skip$ -- 274
 stack$ -- 0
-substring$ -- 608
-swap$ -- 584
+substring$ -- 3371
+swap$ -- 3282
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 20
+type$ -- 78
 warning$ -- 0
-while$ -- 36
-width$ -- 5
-write$ -- 128
-(There was 1 warning)
+while$ -- 150
+width$ -- 18
+write$ -- 237
+(There were 3 error messages)

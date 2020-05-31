@@ -43,36 +43,38 @@
 % Table of contents and the main text
 %--------------------------------------------------------------------------------------
 \begin{document}
+\pagenumbering{arabic}
+%\pagenumbering{gobble}
 
-\pagenumbering{gobble}
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 %\include{include/guideline}
 %\include{include/project}
 %feladatkiírás, majd az eredeti aláírtat kell hozzáfűzni
-%\includepdf[pages=-,pagecommand={},width=\linewidth]{include/project.pdf}
+\includepdf[pages=-,pagecommand={},width=\linewidth]{include/project.pdf}
 
 \selectthesislanguage
 
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-%\include{include/titlepage}		   % Szakdolgozat/Diplomaterv címlap
+\include{include/titlepage}		   % Szakdolgozat/Diplomaterv címlap
 
 % Table of Contents
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-%\tableofcontents\vfill
-
+\tableofcontents\vfill
 
 % Declaration and Abstract
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-%\include{include/declaration}
-%\include{content/abstract}
+\include{include/declaration}
+\include{content/abstract}
 
 % The main part of the thesis
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\pagenumbering{arabic}
-%\input{sections/introduction}
-%\input{sections/cloud}
+%\pagenumbering{arabic}
+\input{sections/introduction}
+\input{sections/cloud}
 \input{sections/robot}
-%\input{sections/vm-tests}
+\input{sections/vm-tests}
+\input{section/tomegkiszolgalas}
+\input{section/summary}
 
 % Acknowledgements
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -81,8 +83,9 @@
 
 % List of Figures, Tables
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-%\listoffigures\addcontentsline{toc}{chapter}{\listfigurename}
+\listoffigures\addcontentsline{toc}{chapter}{\listfigurename}
 %\listoftables\addcontentsline{toc}{chapter}{\listtablename}
+\lstlistoflistings\addcontentsline{toc}{chapter}{\lstlistlistingname}
 
 % Bibliography
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

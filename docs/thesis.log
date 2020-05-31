@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (MiKTeX 2.9.7440 64-bit) (preloaded format=xelatex 2020.5.19)  26 MAY 2020 00:07
+This is XeTeX, Version 3.14159265-2.6-0.999992 (MiKTeX 2.9.7440 64-bit) (preloaded format=xelatex 2020.5.19)  31 MAY 2020 22:42
 entering extended mode
 **./thesis.tex
 (thesis.tex
@@ -703,7 +703,8 @@ LaTeX Font Info:    Trying to load font information for U+psy on input line 64.
 (C:\Users\nanas\AppData\Roaming\MiKTeX\2.9\tex/latex/psnfss\upsy.fd
 File: upsy.fd 2001/06/04 font definitions for U/psy.
 )))
-(thesis.aux)
+(thesis.aux (include/titlepage.aux) (include/declaration.aux)
+(content/abstract.aux))
 \openout1 = `thesis.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 45.
@@ -834,53 +835,260 @@ Package pdflscape Info: Auto-detected driver: dvipdfm (xetex) on input line 98.
 ("C:\Program Files\MiKTeX 2.9\tex/latex/base\report.cls"
 LaTeX Info: Redefining \cal on input line 577.
 LaTeX Info: Redefining \mit on input line 578.
-) (sections/robot.tex
-1. fejezet.
-File: figures/mantisq.jpg Graphic file (type bmp)
-<figures/mantisq.jpg>
-[1
+)
+File: include/project.pdf Graphic file (type pdf)
+<use include/project.pdf>
+File: include/project.pdf Graphic file (type pdf)
+<use include/project.pdf>
+File: include/project.pdf Graphic file (type pdf)
+<use include/project.pdf, page 1>
+File: include/project.pdf Graphic file (type pdf)
+<use include/project.pdf, page 1>
+File: include/project.pdf Graphic file (type pdf)
+<use include/project.pdf, page 1>
+File: include/project.pdf Graphic file (type pdf)
+<use include/project.pdf, page 1>
+File: include/project.pdf Graphic file (type pdf)
+<use include/project.pdf, page 1>
+ [1
 
 
+]
+\openout2 = `include/titlepage.aux'.
 
-]) (thesis.bbl [2]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 103
-.
+
+(include/titlepage.tex
+Package hyperref Info: Option `pageanchor' set `false' on input line 1.
+File: figures/bme_logo.pdf Graphic file (type pdf)
+<use figures/bme_logo.pdf>
+LaTeX Font Info:    Trying to load font information for U+msa on input line 20.
+
  ("C:\Program Files\MiKTeX 2.9\tex/latex/amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 103
-.
-("C:\Program Files\MiKTeX 2.9\tex/latex/amsfonts\umsb.fd"
+LaTeX Font Info:    Trying to load font information for U+msb on input line 20.
+
+ ("C:\Program Files\MiKTeX 2.9\tex/latex/amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-Underfull \hbox (badness 10000) in paragraph at lines 111--115
+) [1
+
+]
+Package hyperref Info: Option `pageanchor' set `false' on input line 32.
+) (thesis.toc
+[1
+
+
+])
+\tf@toc=\write4
+\openout4 = `thesis.toc'.
+
+ [2]
+\openout2 = `include/declaration.aux'.
+
+ (include/declaration.tex [3
+
+])
+\openout2 = `content/abstract.aux'.
+
+ (content/abstract.tex [4
+
+
+
+
+]
+\c@romanPage=\count317
+) [5
+
+]
+(sections/introduction.tex
+1. fejezet.
+File: figures/plan_excecute_monitor.png Graphic file (type bmp)
+<figures/plan_excecute_monitor.png>
+[6
+
+
+]
+File: figures/industry40.png Graphic file (type bmp)
+<figures/industry40.png>
+ [7]
+File: figures/aws-drone-delivery.jpg Graphic file (type bmp)
+<figures/aws-drone-delivery.jpg>
+ [8]
+File: figures/super_bowl.png Graphic file (type bmp)
+<figures/super_bowl.png>
+ [9]) (sections/cloud.tex [10]
+2. fejezet.
+[11
+
+]
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
+nput line 36.
+ [12]
+File: figures/swarm.png Graphic file (type bmp)
+<figures/swarm.png>
+ [13]
+File: figures/kube_arch.png Graphic file (type bmp)
+<figures/kube_arch.png>
+ [14]
+File: figures/docker_swarm.png Graphic file (type bmp)
+<figures/docker_swarm.png>
+
+Overfull \hbox (42.68044pt too wide) in paragraph at lines 126--129
+[]$[]$| 
+ []
+
+File: figures/mesos.png Graphic file (type bmp)
+<figures/mesos.png>
+
+Overfull \hbox (42.68044pt too wide) in paragraph at lines 130--133
+[]$[]$| 
+ []
+
+File: figures/kubernetes.png Graphic file (type bmp)
+<figures/kubernetes.png>
+
+Overfull \hbox (42.68044pt too wide) in paragraph at lines 134--138
+[]$[]$| 
+ []
+
+
+Overfull \hbox (19.54721pt too wide) in paragraph at lines 121--148
+[][] 
+ []
+
+) (sections/robot.tex [15] [16]
+3. fejezet.
+File: figures/mantisq.jpg Graphic file (type bmp)
+<figures/mantisq.jpg>
+[17
+
+]
+File: figures/px4_sitl_overview.png Graphic file (type bmp)
+<figures/px4_sitl_overview.png>
+File: figures/sitl_optical_flow.png Graphic file (type bmp)
+<figures/sitl_optical_flow.png>
+ [18] [19]
+File: figures/egyuttes.png Graphic file (type bmp)
+<figures/egyuttes.png>
+) (sections/vm-tests.tex [20] [21]
+4. fejezet.
+File: figures/local.png Graphic file (type bmp)
+<figures/local.png>
+File: figures/multi-control.png Graphic file (type bmp)
+<figures/multi-control.png>
+) (section/tomegkiszolgalas.tex [22
+
+] [23]
+5. fejezet.
+File: figures/qos.png Graphic file (type bmp)
+<figures/qos.png>
+[24
+
+]) (section/summary.tex [25]) [26
+
+] (thesis.lof)
+\tf@lof=\write5
+\openout5 = `thesis.lof'.
+
+ [27
+
+] (thesis.lol)
+\tf@lol=\write6
+\openout6 = `thesis.lol'.
+
+
+(thesis.bbl [28
+
+]
+Underfull \hbox (badness 3323) in paragraph at lines 97--100
+[]\TU/lmr/m/n/10.95 Aethon: Industry 4.0 components (2020. május 23.). [][]$[][
+][][][] [] [] [] [][][][][][] [] [][][] []
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 111--116
+[]\TU/lmr/m/n/10.95 Frank Tobe: Lady gaga, 300 intel drones, and the su-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 111--116
+\TU/lmr/m/n/10.95 per bowl (2020. május 23.). [][]$[][][][][] [] [] [] [][][] [
+] [][][][][][][][][][][][][][] [] [][][] []
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 124--129
+[]\TU/lmr/m/n/10.95 Jacob Brogen: How intel lit up the super bowl with drones—a
+nd
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 124--129
+\TU/lmr/m/n/10.95 why (2020. május 23.). [][]$[][][][][] [] [] [] [][][][][] []
+ [][][] [] [][][][][][][][][][] [] [][][][] [] [][] []
+ []
+
+
+Overfull \hbox (4.13425pt too wide) in paragraph at lines 124--129
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+[][] []
+ []
+
+
+Underfull \hbox (badness 1762) in paragraph at lines 137--142
+[]\TU/lmr/m/n/10.95 Kubernetes: Concepts underlying the cloud controller manage
+r (2020. május
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 137--142
+\TU/lmr/m/n/10.95 25.). [][]$[][][][][] [] [] [] [][][][][][] [] [][][][] [] []
+[][][][][][][][][] [] [][] [] [][][][] [] [][][][][][][][] [] [][][][][][][][][
+][][][] []
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 154--158
+[]\TU/lmr/m/n/10.95 Mohamed Fawzy: Create cluster using docker swarm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 154--158
+\TU/lmr/m/n/10.95 (2020. május 24.). [][]$[][][][][] [] [] [] [][][][][][] [] [
+][][] [] [][][][][][][][][][][][][] []
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 181--185
 []\TU/lmr/m/n/10.95 Yuneec: Mantis q (2020. május 25.). [][]$[][][][][] [] [] [
 ] [][][] [] [][][][][][] [] [][][] [] [][] [] [][] []
  []
 
 )
-\tf@thm=\write4
-\openout4 = `thesis.thm'.
+\tf@thm=\write7
+\openout7 = `thesis.thm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 98.
- [3
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 101.
+ [29
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 98.
- (thesis.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 98.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 98.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 101.
+ (thesis.aux (include/titlepage.aux) (include/declaration.aux)
+(content/abstract.aux))
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 101.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 101.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: F7DBCC7B98FC500C7EC1657748E7FB65;1374.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 98.
+(rerunfilecheck)             Checksum: E47DB33E7D90BA450514DAA090FCAE00;6056.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 101.
  ) 
 Here is how much of TeX's memory you used:
- 17908 strings out of 414083
- 315668 string characters out of 2898444
- 656748 words of memory out of 3000000
- 35310 multiletter control sequences out of 15000+200000
- 538132 words of font info for 57 fonts, out of 3000000 for 9000
+ 18186 strings out of 414083
+ 320862 string characters out of 2898444
+ 715394 words of memory out of 3000000
+ 35517 multiletter control sequences out of 15000+200000
+ 538172 words of font info for 62 fonts, out of 3000000 for 9000
  1352 hyphenation exceptions out of 8191
- 47i,6n,51p,655b,392s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 47i,18n,51p,1499b,1002s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on thesis.pdf (3 pages).
+Output written on thesis.pdf (31 pages).
