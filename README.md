@@ -1,47 +1,37 @@
 Cloud based drone control
 ----
-Dipterv 1 - 2020 tavasz
+Diplomaterv 2020
 Nánási Dániel
 -------
-### [Docomentation (coming soon)](docs/thesis.pdf)
-
-### [Meeting logs](meetlogs.txt)
-
-## Task planning
-### TODO next semester
-### TODO this semester  
-- [ ] Working docker compose for 1 drone
-- [ ] Docker compose --> Kubernetes yaml
-### In progress  
-- [ ] Docker Compose  
-### DONE
-- [x] Init git  
-- [x] Get image
-- [x] Test out image
-
-### Write to docs
-- [ ] Introduction
-- [ ] Docker
-- [ ] Unix X windows
-- [ ] 5G solutions
-- [ ] MavRos
-
-## First cluster idea
-![Alt text](first.png?raw=true "Kubernetes drone controll cluster v0.1")
-Queue options: kafka? rabbitMQ? activeMQ?
-
-## Docker image
-https://hub.docker.com/r/bmehsnlab/aruco_detect_image_v2
+### [Dipterv doksi](docs/thesis.pdf)
 
 ## Containers communication
 ![Alt text](dontainer_communication.PNG?raw=true "Containers communications")
 source: Welcome to R&D Innovation Days Budapest (presentation)
 
-### containers waits data on:
-- video_stream_opencv: (mantisvideo.launch) "rtsp://192.168.42.1:554/live"
-- aruco detect: localhost:11311
-- control ?
+## Requiments
+First install Multipass
+```
+sudo apt install multipass
+```
+The drone-control-2 must be in the same directory with this repo.
 
+## Deploy K3S on Multipass VMs
+After configure the vms in config.sh
+```
+vi config.sh
+# ...
+```
+After run the script
+```
+bash deploy-kubernetes-on-ubuntu.sh
+```
+
+## Deploy drone control service on K3S cluster
+Then deploy the drone control containers too 
+```
+deploy-service-on-kubernetes.sh
+```
 
 ## Useful materials I used for learning
 - Docker Tutorial course: https://www.youtube.com/watch?v=fqMOX6JJhGo
