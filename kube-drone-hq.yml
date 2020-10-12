@@ -37,10 +37,12 @@ spec:
     spec:
       containers:
       - name: aruco
-        image: 127.0.0.1:5000/vke_aruco
+        image: nanasidnl/drone_control:aruco
       - name: px4sim
-        image: 127.0.0.1:5000/vke_px4sim
+        image: nanasidnl/drone_control:px4sim
       - name: commander
-        image: 127.0.0.1:5000/vke_commander
+        image: nanasidnl/drone_control:commander
       - name: roscore
-        image: 127.0.0.1:5000/vke_roscore
+        image: nanasidnl/drone_control:roscore
+      imagePullSecrets:
+      - name: regcred
