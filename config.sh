@@ -17,12 +17,12 @@ vms=$master" "$slaves
 # master vm config
 master_cpus=2
 master_mem="2048M"
-master_disk="30G"
+master_disk="25G"
 
 # slaves vm config
 slaves_cpus=2
 slaves_mem="2048M"
-slaves_disk="10G"
+slaves_disk="25G"
 
 # -------------------------------------
 # DRONE HQ DEPLOYER ON K3S CONFIG
