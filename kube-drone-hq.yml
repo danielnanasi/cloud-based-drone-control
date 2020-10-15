@@ -3,14 +3,14 @@ kind: Deployment
 metadata:
   name: drone-hq
 spec:
+  replicas: 1
   selector:
     matchLabels:
-      run: drone-hq
-  replicas: 1
+      app: drone-hq
   template:
     metadata:
       labels:
-        run: drone-hq
+        app: drone-hq
     spec:
       containers:
       - name: roscore
@@ -20,14 +20,23 @@ spec:
       - name: commander
         image: nanasidnl/drone_control:commander
         ports: 
-        - name: dashboard
-          containerPort: 11311
-          protocol: TCP
+        - containerPort: 11311
       - name: px4sim
         image: nanasidnl/drone_control:px4sim
         ports: 
-          - name: gazebo
-            containerPort: 10001
-            protocol: TCP
+        - containerPort: 10001
       imagePullSecrets:
-      - name: regcred
+        - name: regcred
+---
+apiVersion: apps/v1
+kind: Service
+metadata:
+  name: drone-hq
+spec:
+  ports:
+  - port: 80
+    targetPort: 11311
+    name: dashboard
+  - port: 8080
+    targetPort: 10001
+    name: gazebo
