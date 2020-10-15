@@ -1,26 +1,3 @@
-# SERVICE
-apiVersion: v1
-kind: Service
-metadata:
-  name: drone-hq
-  labels:
-    run: drone-hq
-spec:
-  type: NodePort
-  ports:
-  - port: 80
-    targetPort: 11311
-    protocol: TCP
-    name: dashboard
-  - port: 8080
-    targetPort: 10001
-    protocol: TCP
-    name: gazebo
-  selector:
-    run: drone-hq
-
-# DEPLOYMENT
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -36,13 +13,21 @@ spec:
         run: drone-hq
     spec:
       containers:
-      - name: aruco
-        image: nanasidnl/drone_control:aruco
-      - name: px4sim
-        image: nanasidnl/drone_control:px4sim
-      - name: commander
-        image: nanasidnl/drone_control:commander
       - name: roscore
         image: nanasidnl/drone_control:roscore
+      - name: aruco
+        image: nanasidnl/drone_control:aruco
+      - name: commander
+        image: nanasidnl/drone_control:commander
+        ports: 
+        - name: dashboard
+          containerPort: 11311
+          protocol: TCP
+      - name: px4sim
+        image: nanasidnl/drone_control:px4sim
+        ports: 
+          - name: gazebo
+            containerPort: 10001
+            protocol: TCP
       imagePullSecrets:
       - name: regcred
