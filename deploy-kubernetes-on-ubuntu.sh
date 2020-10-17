@@ -38,7 +38,7 @@ echo
 echo "UPDATE VMS"
 for vm in $vms; do
     multipass exec $vm -- sudo apt-get update
-    multipass exec $vm -- sudo apt-get upgrade -y
+    #multipass exec $vm -- sudo apt-get upgrade -y
 done
 
 echo

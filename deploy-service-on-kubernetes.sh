@@ -19,10 +19,15 @@ echo "CREATE DOCKER REGISTRY SECRET FOR KUBERNETES"
 multipass exec ${master} -- kubectl create secret docker-registry regcred --docker-server=${docker_server} --docker-username=${docker_username} --docker-password=${docker_password} --docker-email=${docker_email}
 
 echo
-echo "DEPLOY CONTAINERS AS A KUBERNETES SERVICE"
+echo "DEPLOY SERVICE ON KUBERNETES"
 multipass exec ${master} -- sudo kubectl apply -f ${service_dir}/kube-drone-hq.yml
+sleep 30
 
 echo
 echo "PODS LIST: "
-sleep 30
-multipass exec ${master} -- kubectl get pods --all-namespaces
+multipass exec ${master} -- kubectl get pods --all-namespaces -o wide
+sleep 10
+
+echo
+echo "SERVICE: "
+multipass exec ${master} -- kubectl get services -o wide
