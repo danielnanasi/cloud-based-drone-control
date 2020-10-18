@@ -1,101 +1,42 @@
-# apiVersion: v1
-# kind: Service
-# metadata:
-#   name: drone-hq
-#   labels:
-#     app: drone-hq
-# spec:
-#   ports:
-#   - port: 80
-#     name: commander
-#   - port: 10000
-#     name: px4sim
-#   selector:
-#     app: drone-hq
-# ---
-apiVersion: v1
-kind: Pod
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: roscore
-  labels:
-    name: drone-hq
+  name: drone-hq
 spec:
-  hostname: roscore
-  containers:
-  - image: nanasidnl/drone_control:roscore
-    name: roscore
-    ports: 
-    - containerPort: 11311
-  imagePullSecrets:
-  - name: regcred
+  replicas: 1
+  selector:
+    matchLabels:
+      app: drone-hq
+  template:
+    metadata:
+      labels:
+        app: drone-hq
+    spec:
+      containers:
+      - name: roscore
+        image: nanasidnl/drone_control:roscore
+      - name: aruco
+        image: nanasidnl/drone_control:aruco
+      - name: commander
+        image: nanasidnl/drone_control:commander
+        ports: 
+        - containerPort: 11311
+      - name: px4sim
+        image: nanasidnl/drone_control:px4sim
+        ports: 
+        - containerPort: 10001
+      imagePullSecrets:
+        - name: regcred
 ---
-apiVersion: v1
-kind: Pod
+apiVersion: apps/v1
+kind: Service
 metadata:
-  name: aruco
-  labels:
-    name: drone-hq
+  name: drone-hq
 spec:
-  hostname: aruco
-  containers:
-  - image: nanasidnl/drone_control:aruco
-    name: aruco
-    env:
-    - name: ROS_MASTER_URI
-      value: "http://roscore:11311"
-    - name: ARUCO_LAUNCH
-      value: "sim"
-  imagePullSecrets:
-  - name: regcred
----
-apiVersion: v1
-kind: Pod
-metadata:
-  name: commander
-  labels:
-    name: drone-hq
-spec:
-  hostname: commander
-  containers:
-  - image: nanasidnl/drone_control:commander
-    name: commander
-    ports: 
-    - containerPort: 80
-    env:
-    - name: ROS_MASTER_URI
-      value: "http://roscore:11311"
-    - name: FCU_URL
-      value: "udp://@px4sim:14580"
-  imagePullSecrets:
-  - name: regcred
----
-apiVersion: v1
-kind: Pod
-metadata:
-  name: px4sim
-  labels:
-    name: drone-hq
-spec:
-  hostname: px4sim
-  containers:
-  - image: nanasidnl/drone_control:px4sim
-    name: px4sim
-    ports: 
-    - containerPort: 10000
-    env:
-    - name: ROS_MASTER_URI
-      value: "http://roscore:11311"
-  imagePullSecrets:
-  - name: regcred
----
-# ---
-# apiVersion: v1
-# kind: Endpoints
-# metadata:
-#   name: drone-hq
-# subsets:
-#   - addresses:
-#       - ip: 10.56.88.198
-#     ports:
-#       - port: 80
-        
+  ports:
+  - port: 80
+    targetPort: 11311
+    name: dashboard
+  - port: 8080
+    targetPort: 10001
+    name: gazebo
