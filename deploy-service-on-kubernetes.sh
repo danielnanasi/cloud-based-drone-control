@@ -20,6 +20,8 @@ multipass exec ${master} -- kubectl create secret docker-registry regcred --dock
 
 echo
 echo "DEPLOY SERVICE ON KUBERNETES"
+MASTER_IP=$(multipass list | grep $master | grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b")
+multipass exec ${master} -- MASTER_IP=${MASTER_IP}
 multipass exec ${master} -- sudo kubectl apply -f ${service_dir}/kube-drone-hq.yml
 sleep 30
 

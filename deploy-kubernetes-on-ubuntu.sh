@@ -67,3 +67,11 @@ echo
 multipass list
 echo
 multipass exec $master kubectl get nodes
+
+echo
+echo "APPLY LOADBALANCER"
+multipass exec $master -- sudo kubectl apply -f /var/lib/rancher/k3s/server/manifests/traefik.yaml
+
+echo
+echo "PODS"
+multipass exec $master -- kubectl get pods --all-namespaces
