@@ -32,11 +32,12 @@ spec:
         - name: ROS_MASTER_URI
           value: "http://localhost:11311"
         - name: FCU_URL
-          value: "udp://@px4sim:14580"
+          value: "udp://:14580@"
       - name: px4sim
         image: nanasidnl/drone_control:px4sim
         ports: 
         - containerPort: 10000
+        - containerPort: 14580
         env:
         - name: ROS_MASTER_URI
           value: "http://localhost:11311"

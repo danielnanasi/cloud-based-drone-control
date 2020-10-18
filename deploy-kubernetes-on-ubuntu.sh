@@ -63,6 +63,7 @@ done
 
 echo
 echo "SCRIPT IS DONE, HERE IS THE CLUSTER INFORMATION: "
+
 echo
 multipass list
 echo
