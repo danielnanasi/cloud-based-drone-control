@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: drone-hq
+  name: drone-$(DRONE_IDENTIFIER)
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: drone-hq
+      app: drone-$(DRONE_IDENTIFIER)
   template:
     metadata:
       labels:
-        app: drone-hq
+        app: drone-$(DRONE_IDENTIFIER)
     spec:
       containers:
       - name: roscore
@@ -21,7 +21,7 @@ spec:
         image: nanasidnl/drone_control:aruco
         env:
           - name: ROS_MASTER_URI
-            value: "http://localhost:11311"
+            value: "http://localhost:$(MAVLINK_PORT)"
           - name: ARUCO_LAUNCH
             value: "sim"
       - name: commander
@@ -30,41 +30,26 @@ spec:
         - containerPort: 80
         env:
         - name: ROS_MASTER_URI
-          value: "http://localhost:11311"
+          value: "http://localhost:$(MAVLINK_PORT)"
         - name: FCU_URL
-          value: "udp://:14580@"
-      - name: px4sim
-        image: nanasidnl/drone_control:px4sim
-        ports: 
-        - containerPort: 10000
-        - containerPort: 14580
-        env:
-        - name: ROS_MASTER_URI
-          value: "http://localhost:11311"
+          value: "udp://@$(DRONE_IP):$(FCU_PORT)"
       imagePullSecrets:
-        - name: regcred
+      - name: regcred
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: drone-hq
+  name: drone-$(DRONE_IDENTIFIER)
 spec:
-  type: NodePort
   ports:
   - port: 80
-    nodePort: 30080
     name: dashboard
-  - port: 10000
-    nodePort: 30000
-    name: gazebo
   - port: 11311
-    nodePort: 31311
     name: roscore
   selector:
-    app: drone-hq
+    app: drone-$(DRONE_IDENTIFIER)
   type: LoadBalancer
 status:
   loadBalancer:
     ingress:
-      - ip: ${MASTER_IP}
-  
+      - ip: $(MASTER_IP)
