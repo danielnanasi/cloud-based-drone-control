@@ -1,9 +1,5 @@
 #!/bin/bash
 
-if [ ! -z $1 ] && [ $1 == 'kill' ]; then
-    multipass exec ${master} -- kubectl delete svc --all
-    multipass exec ${master} -- kubectl delete deployment --all
-fi
 
 cd "$(dirname "$0")"
 source config.sh
@@ -14,6 +10,13 @@ cd ${service_dir}/..
 work_dir=$(pwd)
 cd $service_dir
 drone_control_dir=${work_dir}/${drone_control_dir_name}
+
+
+if [ ! -z $1 ] && [ $1 == 'kill' ]; then
+    multipass exec ${master} -- kubectl delete svc --all
+    multipass exec ${master} -- kubectl delete deployment --all
+    exit
+fi
 
 echo "OPERATIONS ON KUBERNETES MASTER: "
 echo "MOUNT WORKING DIRECTORY"
@@ -29,24 +32,27 @@ MASTER_IP=$(multipass list | grep $master | grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1
 for i in $(seq 1 ${NUMBER_OF_DRONES}); do
 
     echo 
-    echo "DRONE-"$i
+    echo "DRONE-"$i"-COMMANDER"
     echo "-------------------------------------------------"
 
     DASHBOARD_PORT=$((i-1+DASHBOARD_START_PORT))
     MAVLINK_PORT=$((i-1+MAVLINK_START_PORT))
     FCU_PORT=$((i-1+FCU_START_PORT))
 
-    multipass exec ${master} -- env MASTER_IP=${MASTER_IP} | tail -n 1
-    multipass exec ${master} -- env DRONE_IP=${DRONE_IP} | tail -n 1
-    multipass exec ${master} -- env DRONE_IDENTIFIER=${i} | tail -n 1
-    multipass exec ${master} -- env DASHBOARD_PORT=${DASHBOARD_PORT} | tail -n 1
-    multipass exec ${master} -- env MAVLINK_PORT=${MAVLINK_PORT} | tail -n 1
-    multipass exec ${master} -- env FCU_PORT=${FCU_PORT} | tail -n 1
+    DOCKER_IP=$(docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker ps -q -f name=drone-$i))
+    cp kube-drone-hq.yml kube-drone-hq-$i.yml
 
-    multipass exec ${master} -- sudo kubectl apply -f ${service_dir}/kube-drone-hq.yml
+    sed -i 's/$(MASTER_IP)/'${MASTER_IP}'/g' kube-drone-hq-$i.yml
+    sed -i 's/$(DRONE_IP)/'${DRONE_IP}'/g' kube-drone-hq-$i.yml
+    sed -i 's/$(DRONE_IDENTIFIER)/'${i}'/g' kube-drone-hq-$i.yml
+    sed -i 's/$(DASHBOARD_PORT)/'${DASHBOARD_PORT}'/g' kube-drone-hq-$i.yml
+    sed -i 's/$(MAVLINK_PORT)/'${MAVLINK_PORT}'/g' kube-drone-hq-$i.yml
+    sed -i 's/$(FCU_PORT)/'${FCU_PORT}'/g' kube-drone-hq-$i.yml
 
+    multipass exec ${master} -- sudo kubectl apply -f ${service_dir}/kube-drone-hq-$i.yml
 
-    sleep 10
+    sleep 30
+    rm kube-drone-hq-$i.yml
 done
 
 echo
