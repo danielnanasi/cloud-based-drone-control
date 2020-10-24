@@ -1,71 +1,71 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: drone-$(DRONE_IDENTIFIER)
+  name: drone-2
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: drone-$(DRONE_IDENTIFIER)
+      app: drone-2
   template:
     metadata:
       labels:
-        app: drone-$(DRONE_IDENTIFIER)
+        app: drone-2
     spec:
       containers:
       - name: roscore
         image: nanasidnl/drone_control:roscore
         ports:
-        - containerPort: $(MAVLINK_PORT)
+        - containerPort: 11311
       - name: aruco
         image: nanasidnl/drone_control:aruco
         env:
           - name: ROS_MASTER_URI
-            value: "http://localhost:$(MAVLINK_PORT)"
+            value: "http://localhost:11311"
           - name: ARUCO_LAUNCH
             value: "sim"
       - name: commander
         image: nanasidnl/drone_control:commander
         ports: 
-        - containerPort: $(COMMANDER_PORT)
+        - containerPort: 80
         env:
         - name: ROS_MASTER_URI
-          value: "http://localhost:$(MAVLINK_PORT)"
+          value: "http://localhost:11311"
         - name: FCU_URL
-          value: "udp://@$(DRONE_IP):$(FCU_PORT)"
+          value: "udp://@:14581"
       imagePullSecrets:
       - name: regcred
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: drone-$(DRONE_IDENTIFIER)-roscore
+  name: drone-2-roscore
 spec:
   ports:
-  - port: $(MAVLINK_PORT)
-    nodePort: $(MAVLINK_NODE_PORT)
+  - port: 11311
+    nodePort: 31312
     name: roscore
   selector:
-    app: drone-$(DRONE_IDENTIFIER)
+    app: drone-2
   type: LoadBalancer
 status:
   loadBalancer:
     ingress:
-      - ip: $(MASTER_IP)
+      - ip: 10.253.192.163
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: drone-$(DRONE_IDENTIFIER)-commander
+  name: drone-2-commander
 spec:
   ports:
-  - port: $(COMMANDER_PORT)
-    nodePort: $(COMMANDER_NODE_PORT)
+  - port: 80
+    nodePort: 30081
     name: dashboard
   selector:
-    app: drone-$(DRONE_IDENTIFIER)
+    app: drone-2
   type: LoadBalancer
 status:
   loadBalancer:
     ingress:
-      - ip: $(MASTER_IP)
+      - ip: 10.253.192.163

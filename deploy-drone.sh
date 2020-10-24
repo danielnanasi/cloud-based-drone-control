@@ -22,16 +22,14 @@ for i in $(seq 1 ${NUMBER_OF_DRONES}); do
     echo 
     echo "DRONE-"$i":"
 
-    DASHBOARD_PORT=$((i-1+DASHBOARD_START_PORT))
-    MAVLINK_PORT=$((i-1+MAVLINK_START_PORT))
+    SIMULATION_PORT=$((i-1+SIMULATION_START_PORT))
+    MAVLINK_NODE_PORT=$((i-1+MAVLINK_START_NODE_PORT))
     FCU_PORT=$((i-1+FCU_START_PORT))
 
-    opts="--name drone-$i --env ROS_MASTER_URI=http//${MASTER_IP}:${MAVLINK_PORT} -p ${DASHBOARD_PORT}:10000 -p ${FCU_PORT}:14580"
+    echo "docker run--name drone-$i -e ROS_MASTER_URI=http://${MASTER_IP}:${MAVLINK_NODE_PORT} -p ${SIMULATION_PORT}:10000 -p ${FCU_PORT}:14580 -d nanasidnl/drone_control:px4sim"
+    docker run --name drone-$i -e ROS_MASTER_URI="http://${MASTER_IP}:${MAVLINK_NODE_PORT}" -p ${SIMULATION_PORT}:10000 -p ${FCU_PORT}:14580 -d nanasidnl/drone_control:px4sim
 
-    echo "docker run $opts -d nanasidnl/drone_control:px4sim"
-    docker run $opts -d nanasidnl/drone_control:px4sim
-
-    sleep 10
+    sleep 1
 done
 
 echo
