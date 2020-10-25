@@ -40,7 +40,7 @@ for i in $(seq 1 ${NUMBER_OF_DRONES}); do
     FCU_PORT=$((i-1+FCU_START_PORT))
     COMMANDER_NODE_PORT=$((i-1+COMMANDER_START_NODE_PORT))
 
-    DOCKER_IP=$(docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker ps -q -f name=drone-$i))
+    DRONE_IP=$(docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker ps -q -f name=drone-$i))
     cp kube-drone-hq.yml kube-drone-hq-$i.yml
 
     sed -i 's/$(MASTER_IP)/'${MASTER_IP}'/g' kube-drone-hq-$i.yml

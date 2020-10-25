@@ -26,8 +26,8 @@ for i in $(seq 1 ${NUMBER_OF_DRONES}); do
     MAVLINK_NODE_PORT=$((i-1+MAVLINK_START_NODE_PORT))
     FCU_PORT=$((i-1+FCU_START_PORT))
 
-    echo "docker run--name drone-$i -e ROS_MASTER_URI=http://${MASTER_IP}:${MAVLINK_NODE_PORT} -p ${SIMULATION_PORT}:10000 -p ${FCU_PORT}:14580 -d nanasidnl/drone_control:px4sim"
-    docker run --name drone-$i -e ROS_MASTER_URI="http://${MASTER_IP}:${MAVLINK_NODE_PORT}" -p ${SIMULATION_PORT}:10000 -p ${FCU_PORT}:14580 -d nanasidnl/drone_control:px4sim
+    echo "docker run--name drone-$i -e ROS_MASTER_URI=http://${MASTER_IP}:${MAVLINK_NODE_PORT} -e ROS_IP=${MASTER_IP} -p ${SIMULATION_PORT}:10000 -p ${FCU_PORT}:14580/udp -d nanasidnl/drone_control:px4sim"
+    docker run --name drone-$i -e ROS_MASTER_URI="http://${MASTER_IP}:${MAVLINK_NODE_PORT}" -e ROS_IP=${MASTER_IP} -p ${SIMULATION_PORT}:10000 -p ${FCU_PORT}:14580/udp -d nanasidnl/drone_control:px4sim
 
     sleep 1
 done
