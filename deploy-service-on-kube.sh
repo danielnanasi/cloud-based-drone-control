@@ -13,8 +13,10 @@ drone_control_dir=${work_dir}/${drone_control_dir_name}
 
 
 if [ ! -z $1 ] && [ $1 == 'kill' ]; then
-    multipass exec ${master} -- kubectl delete svc --all
-    multipass exec ${master} -- kubectl delete deployment --all
+    for i in $(seq 1 $NUMBER_OF_DRONES); do
+        multipass exec $master -- kubectl delete -f ${service_dir}/kube-drone-hq-$i.yml
+        rm kube-drone-hq-$i.yml
+    done
     exit
 fi
 
@@ -56,7 +58,6 @@ for i in $(seq 1 ${NUMBER_OF_DRONES}); do
     multipass exec ${master} -- sudo kubectl apply -f ${service_dir}/kube-drone-hq-$i.yml
 
     sleep 1
-    #rm kube-drone-hq-$i.yml
 done
 
 echo

@@ -17,11 +17,16 @@ spec:
         image: nanasidnl/drone_control:roscore
         ports:
         - containerPort: $(MAVLINK_PORT)
+        env:
+          - name: MASTER_IP
+            value: "$(MASTER_IP)"
+          - name: MAVLINK_PORT
+            value: "$(MAVLINK_NODE_PORT)"
       - name: aruco
         image: nanasidnl/drone_control:aruco
         env:
           - name: ROS_MASTER_URI
-            value: "http://localhost:$(MAVLINK_PORT)"
+            value: "http://$(MASTER_IP):$(MAVLINK_NODE_PORT)"
           - name: ARUCO_LAUNCH
             value: "sim"
       - name: commander
@@ -30,7 +35,7 @@ spec:
         - containerPort: $(COMMANDER_PORT)
         env:
         - name: ROS_MASTER_URI
-          value: "http://localhost:$(MAVLINK_PORT)"
+          value: "http://$(MASTER_IP):$(MAVLINK_NODE_PORT)"
         - name: FCU_URL
           value: "udp://@$(DRONE_IP):$(FCU_PORT)"
       imagePullSecrets:
