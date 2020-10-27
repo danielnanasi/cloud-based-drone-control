@@ -12,57 +12,25 @@ spec:
       labels:
         app: drone-$(DRONE_IDENTIFIER)
     spec:
-      hostname: dronehq
       containers:
-      - name: roscore
-        image: nanasidnl/drone_control:roscore
-        ports:
-        - containerPort: $(MAVLINK_PORT)
-        env:
-          - name: MASTER_IP
-            value: "$(MASTER_IP)"
-          - name: MAVLINK_NODE_PORT
-            value: "$(MAVLINK_NODE_PORT)"
-          - name: MAVLINK_PORT
-            value: "$(MAVLINK_PORT)"
-        imagePullPolicy: Always
       - name: aruco
         image: nanasidnl/drone_control:aruco
         env:
           - name: ROS_MASTER_URI
-            value: "http://$(MASTER_IP):$(MAVLINK_NODE_PORT)"
+            value: "http://$(ROSCORE_IP):11311"
           - name: ARUCO_LAUNCH
             value: "sim"
-        imagePullPolicy: Always
       - name: commander
         image: nanasidnl/drone_control:commander
         ports: 
         - containerPort: $(COMMANDER_PORT)
         env:
         - name: ROS_MASTER_URI
-          value: "http://$(MASTER_IP):$(MAVLINK_NODE_PORT)"
+          value: "http://$(ROSCORE_IP):11311"
         - name: FCU_URL
-          value: "udp://@$(DRONE_IP):$(FCU_PORT)"
-        imagePullPolicy: Always
+          value: "udp://@$(DRONE_IP):$(FCU_PORT)/"
       imagePullSecrets:
       - name: regcred
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: drone-$(DRONE_IDENTIFIER)-roscore
-spec:
-  ports:
-  - port: $(MAVLINK_PORT)
-    nodePort: $(MAVLINK_NODE_PORT)
-    name: roscore
-  selector:
-    app: drone-$(DRONE_IDENTIFIER)
-  type: LoadBalancer
-status:
-  loadBalancer:
-    ingress:
-      - ip: $(MASTER_IP)
 ---
 apiVersion: v1
 kind: Service

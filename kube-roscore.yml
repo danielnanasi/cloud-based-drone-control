@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: roscore
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: roscore
+  template:
+    metadata:
+      labels:
+        app: roscore
+    spec:
+      nodeSelector:
+        kubernetes.io/hostname: $(ROSCORE_NODE)
+      hostname: roscore
+      containers:
+      - name: roscore
+        image: px4io/px4-dev-ros-melodic
+        env:
+          - name: ROS_MASTER_URI
+            value: http://$(ROSCORE_IP):11311
+          - name: ROS_IP
+            value: $(ROSCORE_IP)
+        args:
+          - roscore
+      nodeSelector: 
+      hostNetwork: true
