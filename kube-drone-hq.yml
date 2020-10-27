@@ -12,6 +12,7 @@ spec:
       labels:
         app: drone-$(DRONE_IDENTIFIER)
     spec:
+      hostname: dronehq
       containers:
       - name: roscore
         image: nanasidnl/drone_control:roscore
@@ -20,8 +21,11 @@ spec:
         env:
           - name: MASTER_IP
             value: "$(MASTER_IP)"
-          - name: MAVLINK_PORT
+          - name: MAVLINK_NODE_PORT
             value: "$(MAVLINK_NODE_PORT)"
+          - name: MAVLINK_PORT
+            value: "$(MAVLINK_PORT)"
+        imagePullPolicy: Always
       - name: aruco
         image: nanasidnl/drone_control:aruco
         env:
@@ -29,6 +33,7 @@ spec:
             value: "http://$(MASTER_IP):$(MAVLINK_NODE_PORT)"
           - name: ARUCO_LAUNCH
             value: "sim"
+        imagePullPolicy: Always
       - name: commander
         image: nanasidnl/drone_control:commander
         ports: 
@@ -38,6 +43,7 @@ spec:
           value: "http://$(MASTER_IP):$(MAVLINK_NODE_PORT)"
         - name: FCU_URL
           value: "udp://@$(DRONE_IP):$(FCU_PORT)"
+        imagePullPolicy: Always
       imagePullSecrets:
       - name: regcred
 ---
