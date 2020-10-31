@@ -13,11 +13,11 @@ spec:
         app: roscore
     spec:
       nodeSelector:
-        kubernetes.io/hostname: $(ROSCORE_NODE)
+        dedicated: roscore
       hostname: roscore
       containers:
       - name: roscore
-        image: px4io/px4-dev-ros-melodic
+        image: alpineros/alpine-ros:noetic-ros-core 
         env:
           - name: ROS_MASTER_URI
             value: http://$(ROSCORE_IP):11311

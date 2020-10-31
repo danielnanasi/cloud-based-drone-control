@@ -28,7 +28,7 @@ spec:
         - name: ROS_MASTER_URI
           value: "http://$(ROSCORE_IP):11311"
         - name: FCU_URL
-          value: "udp://@$(DRONE_IP):$(FCU_PORT)/"
+          value: "udp://$(DRONE_IP):$(FCU_PORT)/"
       imagePullSecrets:
       - name: regcred
 ---

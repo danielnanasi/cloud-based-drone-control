@@ -14,13 +14,6 @@ drone_control_dir=${work_dir}/${drone_control_dir_name}
 echo "LOGGING IN INTO DOCKER"
 docker login
 
-echo
-echo "BUILD PUSH AND PURGE CONTAINERS"
-echo "roscore"
-docker build ${drone_control_dir}/vke_roscore/. -t nanasidnl/drone_control:roscore
-docker push nanasidnl/drone_control:roscore
-exit
-
 echo "aruco"
 docker build ${drone_control_dir}/vke_aruco/. -t nanasidnl/drone_control:aruco
 docker push nanasidnl/drone_control:aruco
