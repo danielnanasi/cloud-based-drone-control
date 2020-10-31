@@ -1,28 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: roscore
+  name: roscore-$(DRONE_IDENTIFIER)
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: roscore
+      app: roscore-$(DRONE_IDENTIFIER)
   template:
     metadata:
       labels:
-        app: roscore
+        app: roscore-$(DRONE_IDENTIFIER)
     spec:
       nodeSelector:
-        dedicated: roscore
-      hostname: roscore
+        dedicated: roscore-$(DRONE_IDENTIFIER)
+      hostname: roscore-$(DRONE_IDENTIFIER)
       containers:
-      - name: roscore
-        image: alpineros/alpine-ros:noetic-ros-core 
+      - name: roscore-$(DRONE_IDENTIFIER)
+        image: nanasidnl/drone_control:roscore
         env:
           - name: ROS_MASTER_URI
-            value: http://$(ROSCORE_IP):11311
+            value: http://$(ROSCORE_IP):$(MAVLINK_PORT)
           - name: ROS_IP
             value: $(ROSCORE_IP)
+          - name: MAVLINK_PORT
+            value: $(MAVLINK_PORT)
         args:
           - roscore
       nodeSelector: 

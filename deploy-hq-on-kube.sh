@@ -41,6 +41,7 @@ for i in $(seq 1 ${NUMBER_OF_DRONES}); do
     DASHBOARD_PORT=$((i-1+DASHBOARD_START_PORT))
     FCU_PORT=$((i-1+FCU_START_PORT))
     COMMANDER_NODE_PORT=$((i-1+COMMANDER_START_NODE_PORT))
+    MAVLINK_PORT=$((i-1+MAVLINK_START_PORT))
 
     DRONE_IP=$(docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker ps -q -f name=drone-$i))
     cp kube-drone-hq.yml kube-drone-hq-$i.yml
@@ -50,6 +51,7 @@ for i in $(seq 1 ${NUMBER_OF_DRONES}); do
     sed -i 's/$(DRONE_IDENTIFIER)/'${i}'/g' kube-drone-hq-$i.yml
     sed -i 's/$(SIMULATION_START_PORT)/'${SIMULATION_START_PORT}'/g' kube-drone-hq-$i.yml
     sed -i 's/$(ROSCORE_IP)/'${ROSCORE_IP}'/g' kube-drone-hq-$i.yml
+    sed -i 's/$(MAVLINK_PORT)/'${MAVLINK_PORT}'/g' kube-drone-hq-$i.yml
     sed -i 's/$(FCU_PORT)/'${FCU_PORT}'/g' kube-drone-hq-$i.yml
     sed -i 's/$(COMMANDER_PORT)/'${COMMANDER_PORT}'/g' kube-drone-hq-$i.yml
     sed -i 's/$(COMMANDER_NODE_PORT)/'${COMMANDER_NODE_PORT}'/g' kube-drone-hq-$i.yml

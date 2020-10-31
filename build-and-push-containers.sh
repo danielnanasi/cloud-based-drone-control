@@ -21,6 +21,10 @@ docker push nanasidnl/drone_control:aruco
 echo "commander"
 docker build ${drone_control_dir}/vke_commander/. -t nanasidnl/drone_control:commander
 docker push nanasidnl/drone_control:commander
+
+echo "roscore"
+docker build ${drone_control_dir}/vke_roscore/. -t nanasidnl/drone_control:roscore
+docker push nanasidnl/drone_control:roscore
 docker image rm -f $(docker image ls -q)
 
 echo "px4sim"
