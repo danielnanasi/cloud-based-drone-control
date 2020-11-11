@@ -40,8 +40,6 @@ for i in $(seq 1 ${NUMBER_OF_DRONES}); do
     echo "ROSCORE-"$i
     echo "-------------------------------------------------"
     cp kube-roscore.yml kube-roscore-$i.yml
-    sed -i 's/$(ROSCORE_IP)/'${ROSCORE_IP}'/g' kube-roscore-$i.yml
-    sed -i 's/$(ROSCORE_NODE)/'${ROSCORE_NODE}'/g' kube-roscore-$i.yml
     sed -i 's/$(MAVLINK_PORT)/'${MAVLINK_PORT}'/g' kube-roscore-$i.yml
     sed -i 's/$(DRONE_IDENTIFIER)/'${i}'/g' kube-roscore-$i.yml
     multipass exec ${master} -- sudo kubectl apply -f ${service_dir}/kube-roscore-$i.yml

@@ -17,15 +17,14 @@ spec:
       hostname: roscore-$(DRONE_IDENTIFIER)
       containers:
       - name: roscore-$(DRONE_IDENTIFIER)
-        image: nanasidnl/drone_control:roscore
+        image: alpineros/alpine-ros:noetic-ros-core 
         env:
-          - name: ROS_MASTER_URI
-            value: http://$(ROSCORE_IP):$(MAVLINK_PORT)
           - name: ROS_IP
-            value: $(ROSCORE_IP)
-          - name: MAVLINK_PORT
-            value: $(MAVLINK_PORT)
-        args:
-          - roscore
+            valueFrom:
+              fieldRef:
+                fieldPath: status.podIP
+          - name: ROS_MASTER_URI
+            value: "http://$(ROS_IP):$(MAVLINK_PORT)"
+        args: ["roscore", "-p", "$(MAVLINK_PORT)"]
       nodeSelector: 
       hostNetwork: true
