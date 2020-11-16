@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd "$(dirname "$0")"
-source config.sh
+source ../config/configUp.sh
 
 # FIRST INSTALL MULTIPASS 
 # sudo apt-get update

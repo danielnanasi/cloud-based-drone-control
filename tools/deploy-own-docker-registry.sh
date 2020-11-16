@@ -1,12 +1,6 @@
 #!/bin/bash
 cd "$(dirname "$0")"
-
-service_dir=$(pwd)
-source config.sh
-cd ${tools_dir}/../..
-work_dir=$(pwd)
-cd $tools_dir
-drone_control_dir=${work_dir}/${drone_control_dir_name}
+source ../config/configUp.sh
 
 echo
 echo "INSTALL DOCKER"

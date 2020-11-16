@@ -25,12 +25,6 @@ slaves_mem="2048M"
 slaves_disk="10G"
 
 # -------------------------------------
-# DRONE HQ DEPLOYER ON K3S CONFIG
-# -------------------------------------
-
-drone_control_dir_name="drone-control-2"
-
-# -------------------------------------
 # DRONE SERVICE & SIMULATION CONFI
 # -------------------------------------
 
@@ -43,3 +37,5 @@ MAVLINK_START_PORT=11311
 
 COMMANDER_PORT=80
 COMMANDER_START_NODE_PORT=30080
+
+

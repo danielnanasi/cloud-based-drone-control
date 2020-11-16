@@ -1,15 +1,8 @@
 #!/bin/bash
 
 cd "$(dirname "$0")"
-source config.sh
-source docker-credentials.sh
-
-service_dir=$(pwd)
-cd ${service_dir}/..
-work_dir=$(pwd)
-cd $service_dir
-drone_control_dir=${work_dir}/${drone_control_dir_name}
-
+source ../config/configUp.sh
+source ../config/docker-credentials.sh
 
 if [ ! -z $1 ] && [ $1 == 'kill' ]; then
     for i in $(seq 1 $NUMBER_OF_DRONES); do

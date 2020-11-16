@@ -1,15 +1,8 @@
 #!/bin/bash
 
 cd "$(dirname "$0")"
-source config.sh
-source docker-credentials.sh
-
-service_dir=$(pwd)
-cd ${service_dir}/..
-work_dir=$(pwd)
-cd $service_dir
-drone_control_dir=${work_dir}/${drone_control_dir_name}
-
+source ../config/configUp.sh
+source ../config/docker-credentials.sh
 
 echo "LOGGING IN INTO DOCKER"
 docker login
