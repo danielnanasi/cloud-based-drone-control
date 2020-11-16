@@ -37,17 +37,17 @@ for i in $(seq 1 ${NUMBER_OF_DRONES}); do
     MAVLINK_PORT=$((i-1+MAVLINK_START_PORT))
 
     DRONE_IP=$(docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker ps -q -f name=drone-$i))
-    cp kube-drone-hq.yml kube-drone-hq-$i.yml
+    cp ${service_dir}/kube-drone-hq.yml ${service_dir}/kube-drone-hq-$i.yml
 
-    sed -i 's/$(MASTER_IP)/'${MASTER_IP}'/g' kube-drone-hq-$i.yml
-    sed -i 's/$(DRONE_IP)/'${DRONE_IP}'/g' kube-drone-hq-$i.yml
-    sed -i 's/$(DRONE_IDENTIFIER)/'${i}'/g' kube-drone-hq-$i.yml
-    sed -i 's/$(SIMULATION_START_PORT)/'${SIMULATION_START_PORT}'/g' kube-drone-hq-$i.yml
-    sed -i 's/$(ROSCORE_IP)/'${ROSCORE_IP}'/g' kube-drone-hq-$i.yml
-    sed -i 's/$(MAVLINK_PORT)/'${MAVLINK_PORT}'/g' kube-drone-hq-$i.yml
-    sed -i 's/$(FCU_PORT)/'${FCU_PORT}'/g' kube-drone-hq-$i.yml
-    sed -i 's/$(COMMANDER_PORT)/'${COMMANDER_PORT}'/g' kube-drone-hq-$i.yml
-    sed -i 's/$(COMMANDER_NODE_PORT)/'${COMMANDER_NODE_PORT}'/g' kube-drone-hq-$i.yml
+    sed -i 's/$(MASTER_IP)/'${MASTER_IP}'/g' ${service_dir}/kube-drone-hq-$i.yml
+    sed -i 's/$(DRONE_IP)/'${DRONE_IP}'/g' ${service_dir}/kube-drone-hq-$i.yml
+    sed -i 's/$(DRONE_IDENTIFIER)/'${i}'/g' ${service_dir}/kube-drone-hq-$i.yml
+    sed -i 's/$(SIMULATION_START_PORT)/'${SIMULATION_START_PORT}'/g' ${service_dir}/kube-drone-hq-$i.yml
+    sed -i 's/$(ROSCORE_IP)/'${ROSCORE_IP}'/g' ${service_dir}/kube-drone-hq-$i.yml
+    sed -i 's/$(MAVLINK_PORT)/'${MAVLINK_PORT}'/g' ${service_dir}/kube-drone-hq-$i.yml
+    sed -i 's/$(FCU_PORT)/'${FCU_PORT}'/g' ${service_dir}/kube-drone-hq-$i.yml
+    sed -i 's/$(COMMANDER_PORT)/'${COMMANDER_PORT}'/g' ${service_dir}/kube-drone-hq-$i.yml
+    sed -i 's/$(COMMANDER_NODE_PORT)/'${COMMANDER_NODE_PORT}'/g' ${service_dir}/kube-drone-hq-$i.yml
 
     multipass exec ${master} -- sudo kubectl apply -f ${service_dir}/kube-drone-hq-$i.yml
 

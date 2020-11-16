@@ -8,9 +8,9 @@ source ../config/docker-credentials.sh
 if [ ! -z $1 ] && [ $1 == 'kill' ]; then
     for i in $(seq 1 $NUMBER_OF_DRONES); do
         multipass exec ${master} -- sudo kubectl delete -f ${service_dir}/kube-roscore-$i.yml
-        rm kube-roscore-$i.yml
+        rm ${service_dir}/kube-roscore-$i.yml
         multipass exec $master -- kubectl delete -f ${service_dir}/kube-drone-hq-$i.yml
-        rm kube-drone-hq-$i.yml
+        rm ${service_dir}/kube-drone-hq-$i.yml
     done
     exit
 fi
@@ -32,9 +32,9 @@ for i in $(seq 1 ${NUMBER_OF_DRONES}); do
     echo 
     echo "ROSCORE-"$i
     echo "-------------------------------------------------"
-    cp kube-roscore.yml kube-roscore-$i.yml
-    sed -i 's/$(MAVLINK_PORT)/'${MAVLINK_PORT}'/g' kube-roscore-$i.yml
-    sed -i 's/$(DRONE_IDENTIFIER)/'${i}'/g' kube-roscore-$i.yml
+    cp ${service_dir}/kube-roscore.yml ${service_dir}/kube-roscore-$i.yml
+    sed -i 's/$(MAVLINK_PORT)/'${MAVLINK_PORT}'/g' ${service_dir}/kube-roscore-$i.yml
+    sed -i 's/$(DRONE_IDENTIFIER)/'${i}'/g' ${service_dir}/kube-roscore-$i.yml
     multipass exec ${master} -- sudo kubectl apply -f ${service_dir}/kube-roscore-$i.yml
 done
 
