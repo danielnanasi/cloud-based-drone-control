@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd "$(dirname "$0")"
-source ../../config.sh
+source ../config/configUp.sh
 
 for i in $(seq 1 $NUMBER_OF_DRONES); do
     multipass exec ${master} -- sudo kubectl delete -f ${service_dir}/kube-roscore-$i.yml
