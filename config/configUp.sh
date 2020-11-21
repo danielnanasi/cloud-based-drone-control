@@ -1,10 +1,7 @@
 #!/bin/bash
 
-cd "$(dirname "$0")"
 cd ../config
 config_dir=$(pwd)
-
-echo $(pwd)
 source config.sh
 
 cd $config_dir"/../kubernetes"
