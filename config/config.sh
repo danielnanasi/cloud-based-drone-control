@@ -10,7 +10,7 @@ deployer_sleep_time=30
 master="master"
 
 # slaves name must be separated by space
-slaves="slave-1 slave-2"
+slaves="worker-1 worker-2"
 
 vms=$master" "$slaves
 
@@ -28,7 +28,7 @@ slaves_disk="10G"
 # DRONE SERVICE & SIMULATION CONFI
 # -------------------------------------
 
-ROSCORE_NODE="slave-1"
+ROSCORE_NODE="worker-1"
 
 NUMBER_OF_DRONES=2
 SIMULATION_START_PORT=10000

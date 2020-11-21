@@ -1,9 +1,8 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: DaemonSet
 metadata:
   name: roscore-$(DRONE_IDENTIFIER)
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: roscore-$(DRONE_IDENTIFIER)
@@ -12,8 +11,15 @@ spec:
       labels:
         app: roscore-$(DRONE_IDENTIFIER)
     spec:
-      nodeSelector:
-        dedicated: roscore-$(DRONE_IDENTIFIER)
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchFields:
+              - key: metadata.name
+                operator: NotIn
+                values:
+                - master
       hostname: roscore-$(DRONE_IDENTIFIER)
       containers:
       - name: roscore-$(DRONE_IDENTIFIER)
@@ -26,5 +32,4 @@ spec:
           - name: ROS_MASTER_URI
             value: "http://$(ROS_IP):$(MAVLINK_PORT)"
         args: ["roscore", "-p", "$(MAVLINK_PORT)"]
-      nodeSelector: 
       hostNetwork: true
