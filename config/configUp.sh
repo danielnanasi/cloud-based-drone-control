@@ -2,7 +2,7 @@
 
 cd ../config
 config_dir=$(pwd)
-source config.sh
+source config
 
 cd $config_dir"/../kubernetes"
 service_dir=$(pwd)
