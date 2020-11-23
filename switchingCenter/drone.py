@@ -1,12 +1,14 @@
+from configobj import ConfigObj
 import docker
 import re
 
 class Drone():
     def __init__(self, drone_id, node_ip):
-        self.drone_id=drone_id
+        self.config_parser = ConfigObj('../config/config')
+        self.drone_id=int(drone_id)
         self.node_ip=node_ip
-
         self.docker_client = docker.from_env()
+        self.mavlink_port = int(self.config_parser.get('MAVLINK_START_PORT'))+drone_id-1
 
         self.drone= self.docker_client.containers.get("drone-"+str(self.drone_id))
 
@@ -23,6 +25,11 @@ class Drone():
 
     def getActualDelay(self, n=1):
         return self.getConnectionDelay(self.node_ip, n)
+
+    def setNode(ip):
+        self.node=ip
+        master_uri= "http//"+ip+":"+str(self.mavlink_port)
+        self.docker_client.containers.env({'ROS_MASTER_URI': master_uri}) 
 
     def getBetterNode(self, nodes, n=1, ratio=0.9):
         existsBetterNode=False
