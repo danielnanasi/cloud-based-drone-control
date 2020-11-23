@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: roscore-2
+spec:
+  selector:
+    matchLabels:
+      app: roscore-2
+  template:
+    metadata:
+      labels:
+        app: roscore-2
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchFields:
+              - key: metadata.name
+                operator: NotIn
+                values:
+                - master
+      hostname: roscore-2
+      containers:
+      - name: roscore-2
+        image: alpineros/alpine-ros:noetic-ros-core 
+        env:
+          - name: ROS_IP
+            valueFrom:
+              fieldRef:
+                fieldPath: status.podIP
+          - name: ROS_MASTER_URI
+            value: "http://$(ROS_IP):11312"
+        args: ["roscore", "-p", "11312"]
+      hostNetwork: true
