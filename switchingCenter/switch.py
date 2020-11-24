@@ -2,6 +2,7 @@ from drone import Drone
 from configobj import ConfigObj
 import json
 import subprocess
+import logger
 
 class SwitchingCenter():
     def __init__(self):
@@ -33,13 +34,15 @@ class SwitchingCenter():
     def searchAllDroneBetterOption(self, n=1):
         betterOptions=[]
         for drone in self.drones:
-            (isBetter, betterIP) = drone.getBetterNode(n)
+            (isBetter, betterIP) = drone.getBetterNode(self.getWorkerNodes(), n)
             if isBetter:
-                drone.setNode(betterIP)
+                betterOptions.append({drone.drone_id : betterIP})
+        return betterOptions
 
+    def setDronesToNode(self, droneNodeList):
+        for droneNodePair in droneNodeList:
+            for d in self.drones:
+                if d.drone_id == droneNodePair:
+                    d.setNode(droneNodePair(droneNodePair))
+                    logger.info("Drone-"+d.drone_id+" was set to node: "+droneNodePair(droneNodePair))
 
-if __name__ == "__main__":
-
-    sw = SwitchingCenter()
-    d = Drone(1, "10.253.192.64")
-    print(d.getBetterNode(sw.getWorkerNodes(), 3))

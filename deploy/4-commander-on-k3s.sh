@@ -21,7 +21,7 @@ echo "CREATE DOCKER REGISTRY SECRET FOR KUBERNETES"
 multipass exec ${master} -- kubectl create secret docker-registry regcred --docker-server=${docker_server} --docker-username=${docker_username} --docker-password=${docker_password} --docker-email=${docker_email}
 
 MASTER_IP=$(multipass list | grep $master | grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b")
-ROSCORE_IP=$(multipass list | grep $ROSCORE_NODE | grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b")
+ROSCORE_IP=$(multipass list | grep $ROSCORE_NODE | tail -n 1 | grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b")
 
 echo
 echo "DEPLOY DRONE-HQS ON KUBERNETES"
