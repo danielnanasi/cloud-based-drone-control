@@ -49,5 +49,5 @@
 \select@language {magyar} \contentsline {section}{\numberline {5.1}Tömegkiszolgálási modell}{21}{section.5.1}%
 \select@language {magyar} \contentsline {section}{\numberline {5.2}Várakozási idő várható értéke}{22}{section.5.2}%
 \select@language {magyar} \contentsline {chapter}{\numberline {6}Távoli Robotvezérlés Optimalizálása}{23}{chapter.6}%
-\select@language {magyar} \contentsline {chapter}{Összegzés}{23}{lstnumber.6.1.19}%
-\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\'ek}{24}{chapter*.32}%
+\select@language {magyar} \contentsline {chapter}{Összegzés}{24}{lstnumber.6.1.19}%
+\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\'ek}{25}{chapter*.32}%

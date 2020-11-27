@@ -1,9 +1,9 @@
 \chapter{Távoli Robotvezérlés Optimalizálása}
 
-Ebben a fejezetben a távoli robotvezérléshez használt algoritmust ismertetem. Az algoritmus célja, hogy a drónok vezérléséhez biztosítsa a QoS feltételeit, amit jelen esetben két paraméterben határozunk meg: sávszélesség és válaszidő. Ennek a két paraméternek a kontrollálásával biztosítható a videó folyam minősége a drón és a Kubernetes Node-ok között. A Kubernetes klaszterben több node-on végződik a drón irányítása és videófeldolgozása, amiből egyszerre csak egyet használ, a többi pedig backup erőforrásként funkcionál. \\
+Ebben a fejezetben a távoli robotvezérléshez használt algoritmust ismertetem. Az algoritmus célja, hogy a drónok vezérléséhez biztosítsa a QoS feltételeit, amit jelen esetben két paraméterben határozunk meg: sávszélesség és válaszidő. Ennek a két paraméternek a kontrollálásával biztosítható a videó folyam minősége a drón és a Kubernetes Node-ok között. A Kubernetes klaszter worker node-jai (rendelkezésre álló szerverek) erőforrás készletének függvényében a videófeldolgozás és a drón irányítása áthelyezhető (váltható, migrálható) az optimális teljesítmény érdekében. Az algoritmus rendszeresen méri az elérhető erőforrásokat, proaktívan vált a szolgáltatás zökkenőmentes fenntartása érdekében. \\
 
 \noindent
-Tehát van valamennyi Node-unk amik között a drónok válthatnak, az algoritmus úgy vált időközönként, hogy a késleltetést optimalizálja és biztosítja a sávszélességet is. Ha a sávszélességet nem lehet biztosítani, akkor egy ALARM állapotba fut, ekkor a drón biztonságosan leszáll és azonnal értesíti a felhasználót. \\
+Tehát van valamennyi Node-unk amik között a drónok vezérlését áthelyezhetjük, az algoritmus úgy vált időközönként, hogy a késleltetést optimalizálja és biztosítja a sávszélességet is. Ha a sávszélességet nem lehet biztosítani, akkor egy ALARM állapotba fut, ekkor a drón biztonságosan leszáll és azonnal értesíti a felhasználót. \\
 
 \noindent
 Az algoritmus bemenete tehát a Node-ok IP címének halmaza, amin keresztül kapcsolódik a drón a központhoz, a minimum sávszélesség a videó folyamra felé (vbw), a minimum sávszélesség a kontroll kommunikációra (cbw), ellenőrzések között eltelt időintervallum (T) és a jobb válaszidő esetén az az arány ami esetén vált (R). Az algoritmus a teljes üzemidő alatt fut T időközönként, a kimenete pedig a videó folyam vezérlése és a virtuális funkciók lokációjának a meghatározása, hálózati erőforrás vezérlése.
@@ -30,3 +30,4 @@ while(!ALARM):
 	sleep(T)
 \end{lstlisting}
 
+Az algoritmusban használt migrationTrigger boolean változó-t igazra áll, hogyha a az algoritmus váltana egy jobb node-ra, az ALARM változó pedig igazra áll, ha baj van és le kell állítani biztonságosan a drónt. A minLat változóba tárolom a késleltetés minimumát, az actLat-ba pedig az aktuális node késleltetését. Hasonlóan az actBW az aktuális sávszélesség, a bestNode pedig az a node amelyikre vált az algoritmus.
