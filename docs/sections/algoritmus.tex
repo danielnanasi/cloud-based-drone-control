@@ -1,0 +1,32 @@
+\chapter{Távoli Robotvezérlés Optimalizálása}
+
+Ebben a fejezetben a távoli robotvezérléshez használt algoritmust ismertetem. Az algoritmus célja, hogy a drónok vezérléséhez biztosítsa a QoS feltételeit, amit jelen esetben két paraméterben határozunk meg: sávszélesség és válaszidő. Ennek a két paraméternek a kontrollálásával biztosítható a videó folyam minősége a drón és a Kubernetes Node-ok között. A Kubernetes klaszterben több node-on végződik a drón irányítása és videófeldolgozása, amiből egyszerre csak egyet használ, a többi pedig backup erőforrásként funkcionál. \\
+
+\noindent
+Tehát van valamennyi Node-unk amik között a drónok válthatnak, az algoritmus úgy vált időközönként, hogy a késleltetést optimalizálja és biztosítja a sávszélességet is. Ha a sávszélességet nem lehet biztosítani, akkor egy ALARM állapotba fut, ekkor a drón biztonságosan leszáll és azonnal értesíti a felhasználót. \\
+
+\noindent
+Az algoritmus bemenete tehát a Node-ok IP címének halmaza, amin keresztül kapcsolódik a drón a központhoz, a minimum sávszélesség a videó folyamra felé (vbw), a minimum sávszélesség a kontroll kommunikációra (cbw), ellenőrzések között eltelt időintervallum (T) és a jobb válaszidő esetén az az arány ami esetén vált (R). Az algoritmus a teljes üzemidő alatt fut T időközönként, a kimenete pedig a videó folyam vezérlése és a virtuális funkciók lokációjának a meghatározása, hálózati erőforrás vezérlése.
+
+\begin{lstlisting}[caption={Az optimalizáló algoritmus}]
+ALARM := false
+while(!ALARM):
+	migrationTrigger := false
+	actLat = checkActualLat()
+	(minLat, minNode) = MIN{checkAllNodeLat()}
+	actBW = checkActualBW()
+	moreBandwith = isThereNodeWithBetterBW()
+	IF (minLat / actLat > R AND morBandWith):
+		migrationTrigger = true
+		nextNode = minNode
+	criticalState = IF (cbw + vbw > actBW)
+	IF (migrationTrigger OR criticalState):
+		bestNode = findBestNode()
+		bBW = checkActualBW(bestNode)
+		IF (bBW < cbw + vbw):
+			ALARM = true
+		ELSE:
+			swithTo(bestNode)
+	sleep(T)
+\end{lstlisting}
+

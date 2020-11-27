@@ -5,21 +5,9 @@ Reallocating 'name_of_file' (item size: 1) to 8 items.
 The style file: huplain.bst
 Reallocating 'name_of_file' (item size: 1) to 22 items.
 I couldn't open auxiliary file include/titlepage.aux
----line 22 of file thesis.aux
+---line 21 of file thesis.aux
  : \@input{include/titlepage.aux
  :                              }
-I'm skipping whatever remains of this command
-Reallocating 'name_of_file' (item size: 1) to 24 items.
-I couldn't open auxiliary file include/declaration.aux
----line 25 of file thesis.aux
- : \@input{include/declaration.aux
- :                                }
-I'm skipping whatever remains of this command
-Reallocating 'name_of_file' (item size: 1) to 21 items.
-I couldn't open auxiliary file content/abstract.aux
----line 27 of file thesis.aux
- : \@input{content/abstract.aux
- :                             }
 I'm skipping whatever remains of this command
 Reallocating 'name_of_file' (item size: 1) to 10 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
@@ -38,7 +26,7 @@ Reallocating 'singl_function' (item size: 4) to 100 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
 You've used 16 entries,
             4991 wiz_defined-function locations,
-            1187 strings with 13518 characters,
+            1185 strings with 13475 characters,
 and the built_in function-call counts, 30175 in all, are:
 = -- 5615
 > -- 123
@@ -77,4 +65,4 @@ warning$ -- 0
 while$ -- 150
 width$ -- 18
 write$ -- 237
-(There were 3 error messages)
+(There was 1 error message)

@@ -21,7 +21,8 @@
 \newcommand{\vikkonzulensCVezeteknev}{}
 \newcommand{\vikkonzulensCKeresztnev}{}
 
-\newcommand{\vikcim}{Felhő alapú drónvezérlés} % Cím
+\newcommand{\vikcim}{Drón vezérlés kommunikációs
+	követelményeinek optimalizálása} % Cím
 \newcommand{\viktanszek}{\bmetmit} % Tanszék
 \newcommand{\vikdoktipus}{\msc} % Dokumentum típusa (\bsc vagy \msc)
 \newcommand{\vikmunkatipusat}{diplomatervet} % a "hallgató nyilatkozat" részhez: szakdolgozatot vagy diplomatervet
@@ -50,7 +51,7 @@
 %\include{include/guideline}
 %\include{include/project}
 %feladatkiírás, majd az eredeti aláírtat kell hozzáfűzni
-\includepdf[pages=-,pagecommand={},width=\linewidth]{include/project.pdf}
+%\includepdf[pages=-,pagecommand={},width=\linewidth]{include/project.pdf}
 
 \selectthesislanguage
 
@@ -63,8 +64,8 @@
 
 % Declaration and Abstract
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\include{include/declaration}
-\include{content/abstract}
+%\include{include/declaration}
+%\include{content/abstract}
 
 % The main part of the thesis
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -74,10 +75,11 @@
 \input{sections/robot}
 \input{sections/vm-tests}
 \input{sections/tomegkiszolgalas}
+\input{sections/algoritmus}
 \input{sections/summary}
 
-\input{sections/kubernetes}
-\input{sections/logic}
+%\input{sections/kubernetes}
+%\input{sections/logic}
 
 
 
@@ -88,9 +90,9 @@
 
 % List of Figures, Tables
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\listoffigures\addcontentsline{toc}{chapter}{\listfigurename}
+%\listoffigures\addcontentsline{toc}{chapter}{\listfigurename}
 %\listoftables\addcontentsline{toc}{chapter}{\listtablename}
-\lstlistoflistings\addcontentsline{toc}{chapter}{\lstlistlistingname}
+%\lstlistoflistings\addcontentsline{toc}{chapter}{\lstlistlistingname}
 
 % Bibliography
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
