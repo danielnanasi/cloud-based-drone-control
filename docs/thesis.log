@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (MiKTeX 2.9.7440 64-bit) (preloaded format=xelatex 2020.5.19)  27 NOV 2020 11:58
+This is XeTeX, Version 3.14159265-2.6-0.999992 (MiKTeX 2.9.7440 64-bit) (preloaded format=xelatex 2020.5.19)  27 NOV 2020 12:01
 entering extended mode
 **./thesis.tex
 (thesis.tex
@@ -845,14 +845,12 @@ LaTeX Info: Redefining \mit on input line 578.
 
 (include/titlepage.tex
 Package hyperref Info: Option `pageanchor' set `false' on input line 1.
-File: figures/bme_logo.pdf Graphic file (type pdf)
-<use figures/bme_logo.pdf>
  [1
 
 
 
 ]
-Package hyperref Info: Option `pageanchor' set `false' on input line 22.
+Package hyperref Info: Option `pageanchor' set `false' on input line 21.
 ) (thesis.toc
 LaTeX Font Info:    Trying to load font information for U+msa on input line 2.
 
@@ -1053,10 +1051,10 @@ Package rerunfilecheck Info: File `thesis.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 108.
  ) 
 Here is how much of TeX's memory you used:
- 18138 strings out of 414083
- 319996 string characters out of 2898444
- 714402 words of memory out of 3000000
- 35489 multiletter control sequences out of 15000+200000
+ 18132 strings out of 414083
+ 319856 string characters out of 2898444
+ 713402 words of memory out of 3000000
+ 35484 multiletter control sequences out of 15000+200000
  538172 words of font info for 62 fonts, out of 3000000 for 9000
  1352 hyphenation exceptions out of 8191
  47i,13n,51p,1499b,1004s stack positions out of 5000i,500n,10000p,200000b,50000s
