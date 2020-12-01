@@ -51,6 +51,9 @@ class Drone():
         else:
             return 1000
 
-    def isEnoughBWNode(self, node):
-
-
+    def isEnoughBWNode(self, nodes, minBW):
+        workingNodes = []
+        for node in nodes:
+            if(self.getBW(node) > minBW):
+                workingNodes.append(node)
+        return (len(workingNodes) > 0)
