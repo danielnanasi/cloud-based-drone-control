@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (MiKTeX 2.9.7440 64-bit) (preloaded format=xelatex 2020.5.19)  27 NOV 2020 12:01
+This is XeTeX, Version 3.14159265-2.6-0.999992 (MiKTeX 2.9.7440 64-bit) (preloaded format=xelatex 2020.5.19)  1 DEC 2020 19:14
 entering extended mode
 **./thesis.tex
 (thesis.tex
@@ -676,11 +676,6 @@ Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
 )
 (include/tdk-variables.tex) (include/thesis-hu.tex) (include/preamble.tex
 Package hyperref Info: Option `unicode' set `true' on input line 39.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\\' on input line 39.
-
 Package hyperref Info: Option `pdfnewwindow' set `true' on input line 39.
 Package hyperref Info: Option `colorlinks' set `true' on input line 39.
 \c@currexamplectr=\count306
@@ -692,7 +687,8 @@ Package hyperref Info: Option `colorlinks' set `true' on input line 39.
 \c@currtheoremctr=\count312
 \c@endtheoremctr=\count313
 \c@theorem=\count314
-) (include/danistuff.tex
+)
+(include/danistuff.tex
 (C:\Users\nanas\AppData\Roaming\MiKTeX\2.9\tex/latex/psnfss\pifont.sty
 Package: pifont 2020/03/25 PSNFSS-v9.3 Pi font support (SPQR) 
 LaTeX Font Info:    Trying to load font information for U+pzd on input line 63.
@@ -845,31 +841,32 @@ LaTeX Info: Redefining \mit on input line 578.
 
 (include/titlepage.tex
 Package hyperref Info: Option `pageanchor' set `false' on input line 1.
- [1
+File: figures/bme_logo.pdf Graphic file (type pdf)
+<use figures/bme_logo.pdf>
+LaTeX Font Info:    Trying to load font information for U+msa on input line 20.
+
+ ("C:\Program Files\MiKTeX 2.9\tex/latex/amsfonts\umsa.fd"
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 20.
+
+ ("C:\Program Files\MiKTeX 2.9\tex/latex/amsfonts\umsb.fd"
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+) [1
 
 
 
 ]
-Package hyperref Info: Option `pageanchor' set `false' on input line 21.
+Package hyperref Info: Option `pageanchor' set `false' on input line 32.
 ) (thesis.toc
-LaTeX Font Info:    Trying to load font information for U+msa on input line 2.
-
-("C:\Program Files\MiKTeX 2.9\tex/latex/amsfonts\umsa.fd"
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Trying to load font information for U+msb on input line 2.
-
-("C:\Program Files\MiKTeX 2.9\tex/latex/amsfonts\umsb.fd"
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1
+[1
 
 
 ])
 \tf@toc=\write4
 \openout4 = `thesis.toc'.
 
-
-(sections/introduction.tex [2]
+ (sections/introduction.tex [2]
 1. fejezet.
 File: figures/plan_excecute_monitor.png Graphic file (type bmp)
 <figures/plan_excecute_monitor.png>
@@ -1051,10 +1048,10 @@ Package rerunfilecheck Info: File `thesis.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 108.
  ) 
 Here is how much of TeX's memory you used:
- 18132 strings out of 414083
- 319856 string characters out of 2898444
- 713402 words of memory out of 3000000
- 35484 multiletter control sequences out of 15000+200000
+ 18137 strings out of 414083
+ 319991 string characters out of 2898444
+ 713930 words of memory out of 3000000
+ 35488 multiletter control sequences out of 15000+200000
  538172 words of font info for 62 fonts, out of 3000000 for 9000
  1352 hyphenation exceptions out of 8191
  47i,13n,51p,1499b,1004s stack positions out of 5000i,500n,10000p,200000b,50000s
