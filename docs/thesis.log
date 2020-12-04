@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (MiKTeX 2.9.7440 64-bit) (preloaded format=xelatex 2020.5.19)  1 DEC 2020 19:14
+This is XeTeX, Version 3.14159265-2.6-0.999992 (MiKTeX 2.9.7440 64-bit) (preloaded format=xelatex 2020.5.19)  4 DEC 2020 12:16
 entering extended mode
 **./thesis.tex
 (thesis.tex
@@ -873,28 +873,34 @@ File: figures/plan_excecute_monitor.png Graphic file (type bmp)
 [3
 
 ]
+Underfull \hbox (badness 10000) in paragraph at lines 27--30
+
+ []
+
+[4]
+File: figures/drone_communication_to_cloud.png Graphic file (type bmp)
+<figures/drone_communication_to_cloud.png>
 File: figures/industry40.png Graphic file (type bmp)
 <figures/industry40.png>
- [4]
+ [5]
 File: figures/aws-drone-delivery.jpg Graphic file (type bmp)
 <figures/aws-drone-delivery.jpg>
- [5]
 File: figures/super_bowl.png Graphic file (type bmp)
 <figures/super_bowl.png>
- [6]) (sections/cloud.tex [7]
+ [6] [7] [8]) (sections/cloud.tex [9]
 2. fejezet.
-[8
+[10
 
 ]
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
 nput line 36.
- [9]
+ [11]
 File: figures/swarm.png Graphic file (type bmp)
 <figures/swarm.png>
- [10]
+ [12]
 File: figures/kube_arch.png Graphic file (type bmp)
 <figures/kube_arch.png>
- [11]
+ [13]
 File: figures/docker_swarm.png Graphic file (type bmp)
 <figures/docker_swarm.png>
 
@@ -921,36 +927,50 @@ Overfull \hbox (19.54721pt too wide) in paragraph at lines 121--148
 [][] 
  []
 
-) (sections/robot.tex [12] [13]
+) (sections/robot.tex [14] [15]
 3. fejezet.
 File: figures/mantisq.jpg Graphic file (type bmp)
 <figures/mantisq.jpg>
-[14
+[16
 
 ]
 File: figures/px4_sitl_overview.png Graphic file (type bmp)
 <figures/px4_sitl_overview.png>
 File: figures/sitl_optical_flow.png Graphic file (type bmp)
 <figures/sitl_optical_flow.png>
- [15] [16]
+ [17] [18]
 File: figures/egyuttes.png Graphic file (type bmp)
 <figures/egyuttes.png>
-) (sections/vm-tests.tex [17] [18]
+) (sections/vm-tests.tex [19] [20]
 4. fejezet.
 File: figures/local.png Graphic file (type bmp)
 <figures/local.png>
 File: figures/multi-control.png Graphic file (type bmp)
 <figures/multi-control.png>
-) (sections/tomegkiszolgalas.tex [19
+) (sections/tomegkiszolgalas.tex [21
 
-] [20]
+] [22]
 5. fejezet.
 File: figures/qos.png Graphic file (type bmp)
 <figures/qos.png>
-[21
+[23
 
-]) (sections/algoritmus.tex [22]
+]) (sections/kubernetes.tex [24]
 6. fejezet.
+
+Underfull \hbox (badness 10000) in paragraph at lines 15--16
+\TU/lmr/m/n/10.95 https://medium.com/google-cloud/kubernetes-nodeport-vs-loadba
+lancer-vs-ingress-
+ []
+
+) (sections/logic.tex [25
+
+]
+7. fejezet.
+) (sections/algoritmus.tex [26
+
+]
+8. fejezet.
 
 Underfull \hbox (badness 10000) in paragraph at lines 3--4
 
@@ -961,9 +981,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 5--7
 
  []
 
-) (sections/summary.tex [23
+) (sections/measurements.tex [27
 
-] [24]) (thesis.bbl [25
+] [28]
+9. fejezet.
+) (sections/5g.tex [29
+
+]
+10. fejezet.
+) (sections/summary.tex [30
+
+]) (thesis.bbl [31
 
 ]
 Underfull \hbox (badness 3323) in paragraph at lines 97--100
@@ -1035,25 +1063,25 @@ Underfull \hbox (badness 10000) in paragraph at lines 181--185
 \tf@thm=\write5
 \openout5 = `thesis.thm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 108.
- [26
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 110.
+ [32
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 108.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 110.
  (thesis.aux (include/titlepage.aux))
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 108.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 108.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 110.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 110.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: C712A9CCE5E421070E6D4E26E9CC6157;5878.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 108.
+(rerunfilecheck)             Checksum: D9113A5441F88D53166DB16426F96389;11082.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 110.
  ) 
 Here is how much of TeX's memory you used:
- 18137 strings out of 414083
- 319991 string characters out of 2898444
- 713930 words of memory out of 3000000
- 35488 multiletter control sequences out of 15000+200000
+ 18163 strings out of 414083
+ 320544 string characters out of 2898444
+ 718515 words of memory out of 3000000
+ 35502 multiletter control sequences out of 15000+200000
  538172 words of font info for 62 fonts, out of 3000000 for 9000
  1352 hyphenation exceptions out of 8191
  47i,13n,51p,1499b,1004s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on thesis.pdf (27 pages).
+Output written on thesis.pdf (33 pages).
