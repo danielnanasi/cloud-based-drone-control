@@ -13,11 +13,11 @@ virtualizáció képességet. Magában foglal egy betölthető kernel modult, al
 Szoftverben megvalósított menedzser a virtuális gépek számára. A gazdahardveren fut,
 lehetővé teszi a vendég gépek (guest OS) futtatását, memória kezelését és processzor ütemezését különböző
 algoritmusokkal. Két főbb típust különböztetünk meg. 
-\paragraphl{Type I: bare matel}
+\paragraphl{Bare matel}
 Az első típusú hypervisorok közvetlenül a hardverre vannak telepítve.
 Tartalmazniuk kell saját operációs rendszerüket a rendszerindításhoz, a hardver futtatásához és a
 hálózathoz való csatlakozáshoz. Ilyen hypervisor pl. a Microsoft Hyper-V. 
-\paragraphl{Type II: hosted}
+\paragraphl{Hosted}
 A hosztolt hypervisorok olyan operációs rendszereken futnak, amely közvetlenül a hardverre van telepítve. Ebben az esetben szükség van egy gazda operációs rendszerre (host OS).
 \subsection{Konténer}
 A konténerizáció egy olyan megoldás, ahol a szolgáltatásokat külön-külön letisztult operációs rendszerre telepítjük és csak azokat a szoftvereket ami az adott szolgáltatáshoz szükséges. A konténerizáció elszeparálása a Linux kernel namespace technológiáján alapul. Működésük alapján hasonlítanak a VM-ekre, úgy is lehet mondani, hogy egy olyan VM optimalizált megoldása, amin egy applikáció fut. Egy rendes operációs rendszeren futó számítógépes program képes megtekinteni az adott rendszer összes erőforrását (csatlakoztatott eszközök, fájlok és mappák, hálózati megosztások, CPU-teljesítmény, számszerűsíthető hardver-

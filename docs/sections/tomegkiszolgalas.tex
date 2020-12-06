@@ -13,7 +13,7 @@ Egy durva modellben (\ref{fig:qos}. ábrán látható), a robotok felhővel val�
 \end{enumerate}
 
 \section{Tömegkiszolgálási modell}
-Valamennyi $R$ drón valamilyen $\lambda$ [kérés/s] intenzitással fordul a felhőhöz, hogy az számítást végezzen a kameraképen és megmondja mit kell csinálni. Erre a drón valamennyi idő múlva választ kap és ennek az időnek nem szabad elszállni. A megbecsléséhez majd meg kell mérnünk, hogy átlagosan egy ilyen kérést a felhő mennyi idő alatt végez el, ez legyen $\mu$.
+Valamennyi $R$ drón valamilyen $\lambda$ [kérés/s] intenzitással fordul a felhőhöz, hogy az számítást végezzen a kameraképen és megmondja mit kell csinálni. Erre a drón valamennyi idő múlva választ kap és ennek nem lehet a késleltetés értékét jelentősen megnövelni. A megbecsléséhez majd meg kell mérnünk, hogy átlagosan egy ilyen kérést a felhő mennyi idő alatt végez el, ez legyen $\mu$.
 Feltételezhetjük, hogy nagy $R$ drónszám esetén függetlenül érkeznek a kérések, így modellezhetünk Poission folyamattal a beérkező kéréseket nézve. Tehát ha egy drónnak a kérési intenzitása valamilyen feladatra $\frac{\lambda}{R}$, akkor az összes drónnak $\lambda$.
 Ezt tekinthetjük egy Markov folyamatnak, ahol az infinitezimális generátorból tudunk majd valamilyen sorhossz várhatóértékeket kiszámítani. Mivel nem vesznek el kérések, csupán torlódik a sor, ezért ez egy M/M/1 kiszolgálási modell. \cite{toki}
 Az infinitezimális generátor definíció szerint
