@@ -1,8 +1,40 @@
-\chapter{Kialakított K3S rendszer}
+\chapter{Kialakított Kubernetes alapú felhő}
+
+Ebben a fejezetben rátérünk a felhőrendszer tényleges megvalósítására. A \ref{cha:cloud}. fejezetben megnéztük milyen lehetséges mai technológiák közül választhatunk, realizálhattuk, hogy a Kubernetes tűnik a legjobb választásnak ilyen célra, most pedig ezen a vonalon haladunk tovább. Megnézzük Kubernetesen belül milyen lehetőségek vannak, mik a probléma alapfeltételei és hogyan lehet integrálni a \ref{cha:fizikai}. fejezetben bemutatott konténerkollaborációt egy ilyen Kubernetes felhőbe.
+
+\section{Kubernetes technológiái}
+Több Kubernetes technológia közül választhatunk, bepillantunk némelyikbe, hogy mire jó és miért ezt választjuk vagy nem választjuk.
+
+\subsection{K8S}
+
+A K8s a Kubernetes rövidítése ("K", majd 8 "ubernete", majd "s" betű). Azonban általában, amikor az emberek Kubernetesről vagy K8-ról beszélnek, akkor az eredeti upstream projektről beszélnek, amelyet a Google valóban rendkívül elérhető és skálázható platformként tervezett.
+
+Tehát a Kubernetes minden alapfunkcióval, mely összességének tulajdonságai:
+\begin{itemize}
+	\item elválasztott Master és Worker node-ok, biztosítható az irányítás erőforrása
+	\item etcd külön clusteren futtatható, biztosítható a terhelés kezelése
+	\item ideális esetben külön bejáratú csomópontokkal rendelkezik, hogy azok könnyedén kezeljék a bejövő forgalmat, még akkor is, ha az alatta lévő csomópontok némelyike foglalt. \cite{k8svsk3s}
+\end{itemize}
+\subsection{K3S}
+A K3S egy egyszerűsített változata a K8S-nek, melynek forrása 40MB bináris fájl, amely teljesen implementálja a Kubernetes API-t. Rengeteg extra driver-t kihagytak belőle, melyre alap esetben nincs szükség tesztrendszer vagy egyszerű klaszter esetén. Ezeket a kihagyott funkciókat egyébként később hozzá lehet illeszteni a rendszerhez add-onokkal. \cite{k8svsk3s}
+K3s is designed to be a single binary of less than 40MB that completely implements the Kubernetes API. In order to achieve this, they removed a lot of extra drivers that didn't need to be part of the core and are easily replaced with add-ons. Az etcd3 adatbázis helyett SQLite-ot használ.
+\subsection{Kind}
+
+A Kind egy Docker fölötti Kubernetes megvalósítás egy node-on. Egyszerű installálni, azonban nem a Kubernetes API-t használja.
+
+\subsection{MiniKube}
+
+A MiniKube az első Kubernetes technológia amely a fejlesztők ajánlása alapján a kezdőknek kipróbálásra a legalkalmasabb. Mivel egyszerű telepíteni, nincs nagy erőforrásigénye (2 vCPU/2GB RAM/20GB lemez). Egy gépre installálható, nem adható több node a klaszterhez. \cite{typesofkubernetes2}
+
+\subsection{Miért K3S?}
+
+A tanszéki klaszter természetesen egy teljes kialakított K8S, melyen az eredeti API használható és teljesértékű szolgáltatásokat lehet tesztelni a Kubernetes összes optimalizálásával. A Kind más API-t használ, így a telepítést leegyszerűsíteni, azonban nem összeegyeztethető egy Kind-os applikáció K8S megvalósításával. MiniKube már egyel jobb, azonban csak egy node-ot használ, ebben a projekben pedig fontos a hálózati tesztelés több node között. Így marad a K3S, amellyel a legjobban szimulálhatjuk a tanszéki K8S rendszert és a megvalósított applikáció is könnyen portolható.
 
 \section{Konténerek átalakítása}
 
-\section{Kubernetes virtualiztált telepítése, Multipass}
+A felhasznált Docker konténereket néhány esetben változtatni kellett, ez csak a \emph{Dockerfile}-ra igaz, a forráskódok az eredeti esetben is működtek nem K3S rendszeren. Mindegyik konténerben volt egy kivétel, amely csak akkor engedte futtathatóvá tenni a konténert, ha az Docker rendszerben fut, ezt a \emph{[/.dockerenv} fájl létezésére vonatkozó feltétel.
+
+\section{Kubernetes virtualiztált telepítése Multipass VM-eken}
 
 \section{Konténer registry, lokális és központi}
 

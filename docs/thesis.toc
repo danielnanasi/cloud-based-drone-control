@@ -14,8 +14,8 @@
 \select@language {magyar} \contentsline {chapter}{\numberline {2}Felhőrendszer kiválasztása}{10}{chapter.2}%
 \select@language {magyar} \contentsline {section}{\numberline {2.1}Virtualizációs alapok}{10}{section.2.1}%
 \select@language {magyar} \contentsline {subsection}{\numberline {2.1.1}Hypervisor}{10}{subsection.2.1.1}%
-\select@language {magyar} \contentsline {paragraph}{Type I: bare matel}{10}{section*.7}%
-\select@language {magyar} \contentsline {paragraph}{Type II: hosted}{10}{section*.8}%
+\select@language {magyar} \contentsline {paragraph}{Bare matel}{10}{section*.7}%
+\select@language {magyar} \contentsline {paragraph}{Hosted}{10}{section*.8}%
 \select@language {magyar} \contentsline {subsection}{\numberline {2.1.2}Konténer}{10}{subsection.2.1.2}%
 \select@language {magyar} \contentsline {subsection}{\numberline {2.1.3}Docker}{11}{subsection.2.1.3}%
 \select@language {magyar} \contentsline {paragraph}{Hálózata}{11}{section*.9}%
@@ -52,26 +52,27 @@
 \select@language {magyar} \contentsline {chapter}{\numberline {5}QoS sztohasztikus becslése}{23}{chapter.5}%
 \select@language {magyar} \contentsline {section}{\numberline {5.1}Tömegkiszolgálási modell}{23}{section.5.1}%
 \select@language {magyar} \contentsline {section}{\numberline {5.2}Várakozási idő várható értéke}{24}{section.5.2}%
-\select@language {magyar} \contentsline {chapter}{\numberline {6}Kubernetes K3S tesztrendszer}{25}{chapter.6}%
-\select@language {magyar} \contentsline {section}{\numberline {6.1}Konténerek átalakítása}{25}{section.6.1}%
-\select@language {magyar} \contentsline {section}{\numberline {6.2}Kubernetes virtualiztált telepítése, Multipass}{25}{section.6.2}%
-\select@language {magyar} \contentsline {section}{\numberline {6.3}Konténer registry, lokális és központi}{25}{section.6.3}%
-\select@language {magyar} \contentsline {section}{\numberline {6.4}4 podos megvalósítás}{25}{section.6.4}%
-\select@language {magyar} \contentsline {section}{\numberline {6.5}Konténerek hálózata, service-deployment 1 podos megoldás}{25}{section.6.5}%
-\select@language {magyar} \contentsline {section}{\numberline {6.6}Load Balancer, NodePort, Ingress}{25}{section.6.6}%
-\select@language {magyar} \contentsline {section}{\numberline {6.7}ROS Port forwarding}{25}{section.6.7}%
-\select@language {magyar} \contentsline {section}{\numberline {6.8}Kauzalitási probléma, deploy sorrend}{25}{section.6.8}%
-\select@language {magyar} \contentsline {section}{\numberline {6.9}N drónra K3S service és drónok deployolása}{25}{section.6.9}%
-\select@language {magyar} \contentsline {section}{\numberline {6.10}N drón irányítása K3S-ből}{25}{section.6.10}%
-\select@language {magyar} \contentsline {chapter}{\numberline {7}Drónkapcsoló állomás K8S fölött}{26}{chapter.7}%
-\select@language {magyar} \contentsline {section}{\numberline {7.1}Kivitelezési lehetőségek és várható kapcsolási idők}{26}{section.7.1}%
-\select@language {magyar} \contentsline {subsection}{\numberline {7.1.1}A: Node váltás és új címhirdetés}{26}{subsection.7.1.1}%
-\select@language {magyar} \contentsline {subsection}{\numberline {7.1.2}B: Node váltás proxy mögött}{26}{subsection.7.1.2}%
-\select@language {magyar} \contentsline {subsection}{\numberline {7.1.3}C: Minden node-on rendelkezésre állás}{26}{subsection.7.1.3}%
-\select@language {magyar} \contentsline {section}{\numberline {7.2}Minden node-on replica kivitelezése}{26}{section.7.2}%
-\select@language {magyar} \contentsline {section}{\numberline {7.3}DaemonSet}{26}{section.7.3}%
-\select@language {magyar} \contentsline {chapter}{\numberline {8}Távoli Robotvezérlés Optimalizálása}{27}{chapter.8}%
-\select@language {magyar} \contentsline {chapter}{\numberline {9}Mérések}{29}{chapter.9}%
-\select@language {magyar} \contentsline {chapter}{\numberline {10}Válaszidő 5G-s közeghozzáférési technológiával}{30}{chapter.10}%
-\select@language {magyar} \contentsline {chapter}{Összegzés}{30}{chapter.10}%
-\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\'ek}{31}{chapter*.33}%
+\select@language {magyar} \contentsline {chapter}{\numberline {6}Továbbfejlesztendő földi rendszer}{25}{chapter.6}%
+\select@language {magyar} \contentsline {chapter}{\numberline {7}Kialakított K3S rendszer}{27}{chapter.7}%
+\select@language {magyar} \contentsline {section}{\numberline {7.1}Konténerek átalakítása}{27}{section.7.1}%
+\select@language {magyar} \contentsline {section}{\numberline {7.2}Kubernetes virtualiztált telepítése, Multipass}{27}{section.7.2}%
+\select@language {magyar} \contentsline {section}{\numberline {7.3}Konténer registry, lokális és központi}{27}{section.7.3}%
+\select@language {magyar} \contentsline {section}{\numberline {7.4}4 podos megvalósítás}{27}{section.7.4}%
+\select@language {magyar} \contentsline {section}{\numberline {7.5}Konténerek hálózata, service-deployment 1 podos megoldás}{27}{section.7.5}%
+\select@language {magyar} \contentsline {section}{\numberline {7.6}Load Balancer, NodePort, Ingress}{27}{section.7.6}%
+\select@language {magyar} \contentsline {section}{\numberline {7.7}ROS Port forwarding}{27}{section.7.7}%
+\select@language {magyar} \contentsline {section}{\numberline {7.8}Kauzalitási probléma, deploy sorrend}{27}{section.7.8}%
+\select@language {magyar} \contentsline {section}{\numberline {7.9}N drónra K3S service és drónok deployolása}{27}{section.7.9}%
+\select@language {magyar} \contentsline {section}{\numberline {7.10}N drón irányítása K3S-ből}{27}{section.7.10}%
+\select@language {magyar} \contentsline {chapter}{\numberline {8}Drónkapcsoló állomás K8S fölött}{28}{chapter.8}%
+\select@language {magyar} \contentsline {section}{\numberline {8.1}Kivitelezési lehetőségek és várható kapcsolási idők}{28}{section.8.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {8.1.1}A: Node váltás és új címhirdetés}{28}{subsection.8.1.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {8.1.2}B: Node váltás proxy mögött}{28}{subsection.8.1.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {8.1.3}C: Minden node-on rendelkezésre állás}{28}{subsection.8.1.3}%
+\select@language {magyar} \contentsline {section}{\numberline {8.2}Minden node-on replica kivitelezése}{28}{section.8.2}%
+\select@language {magyar} \contentsline {section}{\numberline {8.3}DaemonSet}{28}{section.8.3}%
+\select@language {magyar} \contentsline {chapter}{\numberline {9}Távoli Robotvezérlés Optimalizálása}{29}{chapter.9}%
+\select@language {magyar} \contentsline {chapter}{\numberline {10}Mérések}{31}{chapter.10}%
+\select@language {magyar} \contentsline {chapter}{\numberline {11}Válaszidő 5G-s közeghozzáférési technológiával}{32}{chapter.11}%
+\select@language {magyar} \contentsline {chapter}{Összegzés}{32}{chapter.11}%
+\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\'ek}{33}{chapter*.34}%

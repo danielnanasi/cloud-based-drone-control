@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (MiKTeX 2.9.7440 64-bit) (preloaded format=xelatex 2020.5.19)  4 DEC 2020 12:16
+This is XeTeX, Version 3.14159265-2.6-0.999992 (MiKTeX 2.9.7440 64-bit) (preloaded format=xelatex 2020.5.19)  7 DEC 2020 13:51
 entering extended mode
 **./thesis.tex
 (thesis.tex
@@ -955,22 +955,38 @@ File: figures/qos.png Graphic file (type bmp)
 <figures/qos.png>
 [23
 
-]) (sections/kubernetes.tex [24]
+]) (sections/fizikai.tex [24]
 6. fejezet.
 
-Underfull \hbox (badness 10000) in paragraph at lines 15--16
+Underfull \hbox (badness 10000) in paragraph at lines 2--3
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 12--14
+
+ []
+
+File: figures/vke_drone.png Graphic file (type bmp)
+<figures/vke_drone.png>
+) (sections/kubernetes.tex [25
+
+] [26]
+7. fejezet.
+
+Underfull \hbox (badness 10000) in paragraph at lines 14--15
 \TU/lmr/m/n/10.95 https://medium.com/google-cloud/kubernetes-nodeport-vs-loadba
 lancer-vs-ingress-
  []
 
-) (sections/logic.tex [25
-
-]
-7. fejezet.
-) (sections/algoritmus.tex [26
+) (sections/logic.tex [27
 
 ]
 8. fejezet.
+) (sections/algoritmus.tex [28
+
+]
+9. fejezet.
 
 Underfull \hbox (badness 10000) in paragraph at lines 3--4
 
@@ -981,17 +997,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 5--7
 
  []
 
-) (sections/measurements.tex [27
+) (sections/measurements.tex [29
 
-] [28]
-9. fejezet.
-) (sections/5g.tex [29
+] [30]
+10. fejezet.
+) (sections/5g.tex [31
 
 ]
-10. fejezet.
-) (sections/summary.tex [30
+11. fejezet.
+) (sections/summary.tex [32
 
-]) (thesis.bbl [31
+]) (thesis.bbl [33
 
 ]
 Underfull \hbox (badness 3323) in paragraph at lines 97--100
@@ -1063,25 +1079,25 @@ Underfull \hbox (badness 10000) in paragraph at lines 181--185
 \tf@thm=\write5
 \openout5 = `thesis.thm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 110.
- [32
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 111.
+ [34
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 110.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 111.
  (thesis.aux (include/titlepage.aux))
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 110.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 110.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 111.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 111.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: D9113A5441F88D53166DB16426F96389;11082.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 110.
+(rerunfilecheck)             Checksum: F27EF2BED24E76F14291537B55B4A2C2;11290.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 111.
  ) 
 Here is how much of TeX's memory you used:
- 18163 strings out of 414083
- 320544 string characters out of 2898444
- 718515 words of memory out of 3000000
- 35502 multiletter control sequences out of 15000+200000
+ 18175 strings out of 414083
+ 320755 string characters out of 2898444
+ 719841 words of memory out of 3000000
+ 35510 multiletter control sequences out of 15000+200000
  538172 words of font info for 62 fonts, out of 3000000 for 9000
  1352 hyphenation exceptions out of 8191
  47i,13n,51p,1499b,1004s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on thesis.pdf (33 pages).
+Output written on thesis.pdf (35 pages).

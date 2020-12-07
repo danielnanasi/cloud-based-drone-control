@@ -1,4 +1,5 @@
 \chapter{Továbbfejlesztendő földi rendszer}
+\label{cha:fizikai}
 A diplomatervezés második félévére továbbfejlődött a projekt, aminek integrálása a feladatom, így a \ref{chap:vmtest}. fejezetben taglaltaknál egy komplexebb rendszert is kialakíthatunk, de továbbra is a már tesztelt négy konténeren alapszik a megoldásom. Azonban ebben a fejezetben megnézzük, hogyan néz ki a felhő nélküli, egy gépen, konténereken megvalósított megoldás. A fejlesztéshez kaptam egy \emph{drone-control-2} nevű könyvtárat, ami egy docker-compose.yaml fájlt és a hozzá tartozó Docker konténerek alkönyvtárait tartalmazza. A féléves munkám során készített kódbázis feltétele, hogy a gyökörkönyvtár szülője tartalmazza a drone-control-2 nevű projektet vagyis annak a 2020 november harmadikán módosított változtatát. \\
 
 \noindent
@@ -31,4 +32,5 @@ A VKE irányítóközpont felel minden feldolgozandó és irányítandó tényez
 	\label{fig:vke}
 \end{figure}
 
-Ezen bemutatott rendszer az amit felhőbe integrálok, fizikai drón helyett szimulációval és leegyszerűsítve a funkciókat és a hálózati megvalósítást. A négy konténer amivel tovább dolgozom, az a Roscore, Mavros irányítópult, Aruco képfeldolgozó és ami a \ref{fig:vke}. számú ábrán nincs rajta, a PX4 alapú Gazebo szimuláció konténere.
+\noindent
+Ezen bemutatott rendszer az amit felhőbe integrálok, fizikai drón helyett szimulációval és leegyszerűsítve a funkciókat és a hálózati megvalósítást. A négy konténer amivel tovább dolgozom, az a Roscore, Mavros irányítópult, Aruco képfeldolgozó és ami a \ref{fig:vke}. számú ábrán nincs rajta, a PX4 alapú Gazebo szimuláció konténere. Az ábrán látható konténerek mindegyike Docker technológiával megvalósított és a \emph{drone-control-2} gyűjtőkönyvtár tartalmaz egy \emph{docker-compose.yml} fájlt, ami az adott konténerek más környezetben való összehangolásában van segítségünkre. Az egyes almappák mindegyike tartalmaz egy \emph{Dockerfile}-t, ami megmutatja, hogy Docker környezetben az adott konténer miként van létrehozva, mik a szükséges elvégzendő műveletek az alapműködésükhöz.
