@@ -98,6 +98,17 @@
 \bibNewBlock Industry 4.0 components (2020. május 23.).
 \bibNewBlock \url{https://aethon.com/mobile-robots-and-industry4-0/}.
 
+\bibitem{k8svsk3s}
+{Andy Jeffries}:
+\bibNewBlock What’s the difference between k3s vs k8s? (2020. december 6.).
+\bibNewBlock \url{https://www.civo.com/blog/k8s-vs-k3s}.
+
+\bibitem{typesofkubernetes2}
+{Cyprien Lecallier}:
+\bibNewBlock Minikube, kubeadm, kind, k3s, how to get started on kubernetes?
+  (2020. december 6.).
+\bibNewBlock \url{https://www.padok.fr/en/blog/minikube-kubeadm-kind-k3s}.
+
 \bibitem{robtel}
 Juhász Ádám:
 \bibNewBlock Robotvezérlés telekommunikációs eszközökkel, 2008.

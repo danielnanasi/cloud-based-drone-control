@@ -59,6 +59,7 @@
 \@writefile{toc}{\select@language{magyar} \contentsline {chapter}{\numberline {2}Felhőrendszer kiválasztása}{10}{chapter.2}\protected@file@percent }
 \@writefile{lof}{\select@language{magyar} \addvspace {10\p@ }}
 \@writefile{lot}{\select@language{magyar} \addvspace {10\p@ }}
+\newlabel{cha:cloud}{{2}{10}{Használt kifejezések}{chapter.2}{}}
 \@writefile{toc}{\select@language{magyar} \contentsline {section}{\numberline {2.1}Virtualizációs alapok}{10}{section.2.1}\protected@file@percent }
 \@writefile{toc}{\select@language{magyar} \contentsline {subsection}{\numberline {2.1.1}Hypervisor}{10}{subsection.2.1.1}\protected@file@percent }
 \@writefile{toc}{\select@language{magyar} \contentsline {paragraph}{Bare matel}{10}{section*.7}\protected@file@percent }
@@ -155,57 +156,76 @@
 \@writefile{toc}{\select@language{magyar} \contentsline {chapter}{\numberline {6}Továbbfejlesztendő földi rendszer}{25}{chapter.6}\protected@file@percent }
 \@writefile{lof}{\select@language{magyar} \addvspace {10\p@ }}
 \@writefile{lot}{\select@language{magyar} \addvspace {10\p@ }}
+\newlabel{cha:fizikai}{{6}{25}{Várakozási idő várható értéke}{chapter.6}{}}
 \@writefile{lof}{\select@language{magyar} \contentsline {figure}{\numberline {6.1.}{\ignorespaces Kész VKE földi rendszer\relax }}{26}{figure.caption.33}\protected@file@percent }
 \newlabel{fig:vke}{{6.1}{26}{Kész VKE földi rendszer\relax }{figure.caption.33}{}}
-\@writefile{toc}{\select@language{magyar} \contentsline {chapter}{\numberline {7}Kialakított K3S rendszer}{27}{chapter.7}\protected@file@percent }
+\citation{k8svsk3s}
+\citation{k8svsk3s}
+\citation{typesofkubernetes2}
+\@writefile{toc}{\select@language{magyar} \contentsline {chapter}{\numberline {7}Kialakított Kubernetes alapú felhő}{27}{chapter.7}\protected@file@percent }
 \@writefile{lof}{\select@language{magyar} \addvspace {10\p@ }}
 \@writefile{lot}{\select@language{magyar} \addvspace {10\p@ }}
-\@writefile{toc}{\select@language{magyar} \contentsline {section}{\numberline {7.1}Konténerek átalakítása}{27}{section.7.1}\protected@file@percent }
-\@writefile{toc}{\select@language{magyar} \contentsline {section}{\numberline {7.2}Kubernetes virtualiztált telepítése, Multipass}{27}{section.7.2}\protected@file@percent }
-\@writefile{toc}{\select@language{magyar} \contentsline {section}{\numberline {7.3}Konténer registry, lokális és központi}{27}{section.7.3}\protected@file@percent }
-\@writefile{toc}{\select@language{magyar} \contentsline {section}{\numberline {7.4}4 podos megvalósítás}{27}{section.7.4}\protected@file@percent }
-\@writefile{toc}{\select@language{magyar} \contentsline {section}{\numberline {7.5}Konténerek hálózata, service-deployment 1 podos megoldás}{27}{section.7.5}\protected@file@percent }
-\@writefile{toc}{\select@language{magyar} \contentsline {section}{\numberline {7.6}Load Balancer, NodePort, Ingress}{27}{section.7.6}\protected@file@percent }
-\@writefile{toc}{\select@language{magyar} \contentsline {section}{\numberline {7.7}ROS Port forwarding}{27}{section.7.7}\protected@file@percent }
-\@writefile{toc}{\select@language{magyar} \contentsline {section}{\numberline {7.8}Kauzalitási probléma, deploy sorrend}{27}{section.7.8}\protected@file@percent }
-\@writefile{toc}{\select@language{magyar} \contentsline {section}{\numberline {7.9}N drónra K3S service és drónok deployolása}{27}{section.7.9}\protected@file@percent }
-\@writefile{toc}{\select@language{magyar} \contentsline {section}{\numberline {7.10}N drón irányítása K3S-ből}{27}{section.7.10}\protected@file@percent }
-\@writefile{toc}{\select@language{magyar} \contentsline {chapter}{\numberline {8}Drónkapcsoló állomás K8S fölött}{28}{chapter.8}\protected@file@percent }
+\@writefile{toc}{\select@language{magyar} \contentsline {section}{\numberline {7.1}Kubernetes technológiái}{27}{section.7.1}\protected@file@percent }
+\@writefile{toc}{\select@language{magyar} \contentsline {subsection}{\numberline {7.1.1}K8S}{27}{subsection.7.1.1}\protected@file@percent }
+\@writefile{toc}{\select@language{magyar} \contentsline {subsection}{\numberline {7.1.2}K3S}{27}{subsection.7.1.2}\protected@file@percent }
+\@writefile{toc}{\select@language{magyar} \contentsline {subsection}{\numberline {7.1.3}Kind}{27}{subsection.7.1.3}\protected@file@percent }
+\@writefile{toc}{\select@language{magyar} \contentsline {subsection}{\numberline {7.1.4}MiniKube}{28}{subsection.7.1.4}\protected@file@percent }
+\@writefile{toc}{\select@language{magyar} \contentsline {subsection}{\numberline {7.1.5}Miért K3S?}{28}{subsection.7.1.5}\protected@file@percent }
+\@writefile{toc}{\select@language{magyar} \contentsline {section}{\numberline {7.2}Konténerek átalakítása}{28}{section.7.2}\protected@file@percent }
+\@writefile{toc}{\select@language{magyar} \contentsline {section}{\numberline {7.3}Kubernetes virtualiztált telepítése Multipass VM-eken}{28}{section.7.3}\protected@file@percent }
+\newlabel{lst:mlaunch}{{7.1}{28}{Multipass VM-ek létrehozása}{lstlisting.7.1}{}}
+\@writefile{lol}{\select@language{magyar} \contentsline {lstlisting}{\numberline {7.1}Multipass VM-ek létrehozása}{28}{lstlisting.7.1}\protected@file@percent }
+\newlabel{lst:minit}{{7.2}{29}{K3S Master inicializálása}{lstlisting.7.2}{}}
+\@writefile{lol}{\select@language{magyar} \contentsline {lstlisting}{\numberline {7.2}K3S Master inicializálása}{29}{lstlisting.7.2}\protected@file@percent }
+\newlabel{lst:initk3s}{{7.3}{29}{K3S Slave-ek inicializálása}{lstlisting.7.3}{}}
+\@writefile{lol}{\select@language{magyar} \contentsline {lstlisting}{\numberline {7.3}K3S Slave-ek inicializálása}{29}{lstlisting.7.3}\protected@file@percent }
+\@writefile{lol}{\select@language{magyar} \contentsline {lstlisting}{\numberline {7.4}Node-ok lekérdezése}{29}{lstlisting.7.4}\protected@file@percent }
+\@writefile{toc}{\select@language{magyar} \contentsline {section}{\numberline {7.4}Konténer registry, lokális és központi}{29}{section.7.4}\protected@file@percent }
+\@writefile{toc}{\select@language{magyar} \contentsline {section}{\numberline {7.5}4 podos megvalósítás}{29}{section.7.5}\protected@file@percent }
+\@writefile{toc}{\select@language{magyar} \contentsline {section}{\numberline {7.6}Konténerek hálózata, service-deployment 1 podos megoldás}{29}{section.7.6}\protected@file@percent }
+\@writefile{toc}{\select@language{magyar} \contentsline {section}{\numberline {7.7}Load Balancer, NodePort, Ingress}{29}{section.7.7}\protected@file@percent }
+\@writefile{toc}{\select@language{magyar} \contentsline {section}{\numberline {7.8}ROS Port forwarding}{29}{section.7.8}\protected@file@percent }
+\@writefile{toc}{\select@language{magyar} \contentsline {section}{\numberline {7.9}Kauzalitási probléma, deploy sorrend}{30}{section.7.9}\protected@file@percent }
+\@writefile{toc}{\select@language{magyar} \contentsline {section}{\numberline {7.10}N drónra K3S service és drónok deployolása}{30}{section.7.10}\protected@file@percent }
+\@writefile{toc}{\select@language{magyar} \contentsline {section}{\numberline {7.11}N drón irányítása K3S-ből}{30}{section.7.11}\protected@file@percent }
+\@writefile{toc}{\select@language{magyar} \contentsline {chapter}{\numberline {8}Drónkapcsoló állomás Kubernetes felhőben}{31}{chapter.8}\protected@file@percent }
 \@writefile{lof}{\select@language{magyar} \addvspace {10\p@ }}
 \@writefile{lot}{\select@language{magyar} \addvspace {10\p@ }}
-\@writefile{toc}{\select@language{magyar} \contentsline {section}{\numberline {8.1}Kivitelezési lehetőségek és várható kapcsolási idők}{28}{section.8.1}\protected@file@percent }
-\@writefile{toc}{\select@language{magyar} \contentsline {subsection}{\numberline {8.1.1}A: Node váltás és új címhirdetés}{28}{subsection.8.1.1}\protected@file@percent }
-\@writefile{toc}{\select@language{magyar} \contentsline {subsection}{\numberline {8.1.2}B: Node váltás proxy mögött}{28}{subsection.8.1.2}\protected@file@percent }
-\@writefile{toc}{\select@language{magyar} \contentsline {subsection}{\numberline {8.1.3}C: Minden node-on rendelkezésre állás}{28}{subsection.8.1.3}\protected@file@percent }
-\@writefile{toc}{\select@language{magyar} \contentsline {section}{\numberline {8.2}Minden node-on replica kivitelezése}{28}{section.8.2}\protected@file@percent }
-\@writefile{toc}{\select@language{magyar} \contentsline {section}{\numberline {8.3}DaemonSet}{28}{section.8.3}\protected@file@percent }
-\@writefile{toc}{\select@language{magyar} \contentsline {chapter}{\numberline {9}Távoli Robotvezérlés Optimalizálása}{29}{chapter.9}\protected@file@percent }
+\@writefile{toc}{\select@language{magyar} \contentsline {section}{\numberline {8.1}Kivitelezési lehetőségek és várható kapcsolási idők}{31}{section.8.1}\protected@file@percent }
+\@writefile{toc}{\select@language{magyar} \contentsline {subsection}{\numberline {8.1.1}A: Node váltás és új címhirdetés}{31}{subsection.8.1.1}\protected@file@percent }
+\@writefile{toc}{\select@language{magyar} \contentsline {subsection}{\numberline {8.1.2}B: Node váltás proxy mögött}{31}{subsection.8.1.2}\protected@file@percent }
+\@writefile{toc}{\select@language{magyar} \contentsline {subsection}{\numberline {8.1.3}C: Minden node-on rendelkezésre állás}{31}{subsection.8.1.3}\protected@file@percent }
+\@writefile{toc}{\select@language{magyar} \contentsline {section}{\numberline {8.2}Minden node-on replica kivitelezése}{31}{section.8.2}\protected@file@percent }
+\@writefile{toc}{\select@language{magyar} \contentsline {section}{\numberline {8.3}DaemonSet}{31}{section.8.3}\protected@file@percent }
+\@writefile{toc}{\select@language{magyar} \contentsline {chapter}{\numberline {9}Távoli Robotvezérlés Optimalizálása}{32}{chapter.9}\protected@file@percent }
 \@writefile{lof}{\select@language{magyar} \addvspace {10\p@ }}
 \@writefile{lot}{\select@language{magyar} \addvspace {10\p@ }}
-\@writefile{lol}{\select@language{magyar} \contentsline {lstlisting}{\numberline {9.1}Az optimalizáló algoritmus}{29}{lstlisting.9.1}\protected@file@percent }
-\@writefile{toc}{\select@language{magyar} \contentsline {chapter}{\numberline {10}Mérések}{31}{chapter.10}\protected@file@percent }
+\@writefile{lol}{\select@language{magyar} \contentsline {lstlisting}{\numberline {9.1}Az optimalizáló algoritmus}{32}{lstlisting.9.1}\protected@file@percent }
+\@writefile{toc}{\select@language{magyar} \contentsline {chapter}{\numberline {10}Mérések}{34}{chapter.10}\protected@file@percent }
 \@writefile{lof}{\select@language{magyar} \addvspace {10\p@ }}
 \@writefile{lot}{\select@language{magyar} \addvspace {10\p@ }}
-\@writefile{toc}{\select@language{magyar} \contentsline {chapter}{\numberline {11}Válaszidő 5G-s közeghozzáférési technológiával}{32}{chapter.11}\protected@file@percent }
+\@writefile{toc}{\select@language{magyar} \contentsline {chapter}{\numberline {11}Válaszidő 5G-s közeghozzáférési technológiával}{35}{chapter.11}\protected@file@percent }
 \@writefile{lof}{\select@language{magyar} \addvspace {10\p@ }}
 \@writefile{lot}{\select@language{magyar} \addvspace {10\p@ }}
-\@writefile{toc}{\select@language{magyar} \contentsline {chapter}{Összegzés}{32}{chapter.11}\protected@file@percent }
+\@writefile{toc}{\select@language{magyar} \contentsline {chapter}{Összegzés}{35}{chapter.11}\protected@file@percent }
 \bibdata{bib/mybib}
-\@writefile{toc}{\select@language{magyar} \contentsline {chapter}{Irodalomjegyz\'ek}{33}{chapter*.34}\protected@file@percent }
+\@writefile{toc}{\select@language{magyar} \contentsline {chapter}{Irodalomjegyz\'ek}{36}{chapter*.34}\protected@file@percent }
 \bibcite{industry40}{{1}{}{{}}{{}}}
-\bibcite{robtel}{{2}{}{{}}{{}}}
-\bibcite{compose}{{3}{}{{}}{{}}}
-\bibcite{concert}{{4}{}{{}}{{}}}
-\bibcite{ProjecPlan}{{5}{}{{}}{{}}}
-\bibcite{super-bowl-pic}{{6}{}{{}}{{}}}
-\bibcite{multi-vehicle}{{7}{}{{}}{{}}}
-\bibcite{kube-arch}{{8}{}{{}}{{}}}
-\bibcite{toki}{{9}{}{{}}{{}}}
-\bibcite{mavlink}{{10}{}{{}}{{}}}
-\bibcite{docker-swarm}{{11}{}{{}}{{}}}
-\bibcite{px4dev}{{12}{}{{}}{{}}}
-\bibcite{px4}{{13}{}{{}}{{}}}
-\bibcite{roswiki}{{14}{}{{}}{{}}}
-\bibcite{drone-delivery}{{15}{}{{}}{{}}}
-\bibcite{mantisq}{{16}{}{{}}{{}}}
+\bibcite{k8svsk3s}{{2}{}{{}}{{}}}
+\bibcite{typesofkubernetes2}{{3}{}{{}}{{}}}
+\bibcite{robtel}{{4}{}{{}}{{}}}
+\bibcite{compose}{{5}{}{{}}{{}}}
+\bibcite{concert}{{6}{}{{}}{{}}}
+\bibcite{ProjecPlan}{{7}{}{{}}{{}}}
+\bibcite{super-bowl-pic}{{8}{}{{}}{{}}}
+\bibcite{multi-vehicle}{{9}{}{{}}{{}}}
+\bibcite{kube-arch}{{10}{}{{}}{{}}}
+\bibcite{toki}{{11}{}{{}}{{}}}
+\bibcite{mavlink}{{12}{}{{}}{{}}}
+\bibcite{docker-swarm}{{13}{}{{}}{{}}}
+\bibcite{px4dev}{{14}{}{{}}{{}}}
+\bibcite{px4}{{15}{}{{}}{{}}}
+\bibcite{roswiki}{{16}{}{{}}{{}}}
+\bibcite{drone-delivery}{{17}{}{{}}{{}}}
+\bibcite{mantisq}{{18}{}{{}}{{}}}
 \providecommand\NAT@force@numbers{}\NAT@force@numbers
