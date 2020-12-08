@@ -1,4 +1,5 @@
 \chapter{Kialakított Kubernetes alapú felhő}
+\label{cha:kubernetes}
 
 Ebben a fejezetben rátérünk a felhőrendszer tényleges megvalósítására. A \ref{cha:cloud}. fejezetben megnéztük milyen lehetséges mai technológiák közül választhatunk, realizálhattuk, hogy a Kubernetes tűnik a legjobb választásnak ilyen célra, most pedig ezen a vonalon haladunk tovább. Megnézzük Kubernetesen belül milyen lehetőségek vannak, mik a probléma alapfeltételei és hogyan lehet integrálni a \ref{cha:fizikai}. fejezetben bemutatott konténerkollaborációt egy ilyen Kubernetes felhőbe.
 
@@ -29,7 +30,7 @@ A MiniKube az első Kubernetes technológia amely a fejlesztők ajánlása alapj
 
 A tanszéki klaszter természetesen egy teljes kialakított K8S, melyen az eredeti API használható és teljesértékű szolgáltatásokat lehet tesztelni a Kubernetes összes optimalizálásával. A Kind más API-t használ, így a telepítést leegyszerűsíteni, azonban nem összeegyeztethető egy Kind-os applikáció K8S megvalósításával. MiniKube már egyel jobb, azonban csak egy node-ot használ, ebben a projekben pedig fontos a hálózati tesztelés több node között. Így marad a K3S, amellyel a legjobban szimulálhatjuk a tanszéki K8S rendszert és a megvalósított applikáció is könnyen portolható.
 
-\section{Konténerek átalakítása}
+\section{Földi scenario felkészítése a menedzselt felhőrendszerbe}
 
 A felhasznált Docker konténereket néhány esetben változtatni kellett, ez csak a \emph{Dockerfile}-ra igaz, a forráskódok az eredeti esetben is működtek nem K3S rendszeren. Mindegyik konténerben volt egy kivétel, amely csak akkor engedte futtathatóvá tenni a konténert, ha az Docker rendszerben fut, ezt a \emph{[/.dockerenv} fájl létezésére vonatkozó feltétel. \\
 
@@ -77,10 +78,86 @@ multipass exec $master kubectl get nodes
 \end{lstlisting}
 
 \section{Konténer registry, lokális és központi}
-Docker-Compose esetén a konténer kollaborációs megvalósításhoz elég volt definiálni a könyvtárt, mely forrása és konfigurációja alapján meg kell építeni az image-et és a lokális Docker környezet eltárolta ezen image-eket, amit fel is tudott használni az adott környezetben. Ez természetesnek tűnt, azonban a Kubernetes alapvetően nem tartalmaz ilyen fejlesztéseket, csakis lefordított képfájlokat tud publikus vagy privát registry-ből letölteni.
+Docker-Compose esetén a konténer kollaborációs megvalósításhoz elég volt definiálni a könyvtárt, mely forrása és konfigurációja alapján meg kell építeni az image-et és a lokális Docker környezet eltárolta ezen image-eket, amit fel is tudott használni az adott környezetben. Ez természetesnek tűnt, azonban a Kubernetes alapvetően nem tartalmaz ilyen fejlesztéseket, csakis lefordított képfájlokat tud publikus vagy privát registry-ből letölteni. A Docker Registry egy olyan verziókezelő, amely felépített konténer képfájlokat tárol és állít rendelkezésre aktívan használó rendszereknek, mint például a Kubernetes vagy Docker Swarm. Három megoldást próbáltam ki, hogy az egyedi lemezképeket használhassam a felhőmben (\ref{fig:registry}. ábra).\\
 
-...
-\section{4 podos megvalósítás}
+\noindent
+\paragraph{A)}
+Elsőnek úgy gondoltam, hogy a legegyszerűbb megoldás az ha a K3S vagy egy Docker környezetben, amely a K3S master-én futna, inicializálok egy előre készített Docker registry szervert, arra feltöltöm a felépített konténerlemezeket és lokálisan eléri a Kubernetes master, deploy esetén. Tehát definiáltam egy pod-ot, amely az 5000-res porton elérhető a K3S rendszeren belül, a master-ről. A \emph{registry} nevű image-et adtam meg, így a hivatalos Docker registry került letöltésre. Push-olni sikerült konténert, azonban a Kubernetes API-ra definiált Deployment-el már nem sikerült pull-olni SSL biztonsági okok miatt. \\
+
+\noindent
+\paragraph{B)}
+Ezután hagytam a felhőbe integrálást, a master node-ra telepítettem Dockert és Docker-Compose-t, majd a deploy-oltam a hivatalos oldalról a registry-t (\ref{lst:registryB}. lista). A konténerek push-olása pedig szintén a master node-ról történt (\ref{lst:localreg} lista). Ez a megoldás működött, azonban nem túl szép és optimális, mivel a master-en sokszor tárolódik egy konténer image (forrásként, Docker image-ként, Docker registry-ben, Kubernetes letöltött image-ként és példányosított konténerként).
+\begin{lstlisting}[caption={Docker registry inicializálás a master docker környezetében},label={lst:registryB}]
+multipass exec ${master} -- sudo docker run -d -p 5000:5000 --restart=always --name registry registry:2
+\end{lstlisting}
+\begin{lstlisting}[caption={Build és push lokál konténer registry-be},label={lst:localreg}]
+for container in "commander px4sim aruco"; do
+	multipass exec ${master} -- sudo docker build ${drone_control_dir}/vke_${container}/. -t localhost:5000/${container}
+	multipass exec ${master} -- sudo docker push localhost:5000/${container}
+done
+\end{lstlisting}
+
+\paragraph{C)}
+Így inkább talán a legegyszerűbb megoldást választottam, igénybe vettem a hivatalos Docker Hub privát repository szolgáltatását, amely ugyan egy konténert biztosít ingyen, egy kis trükkel, mi szerint ugyanazt a konténert töltöm fel 3 különböző taggel, ezt is meg lehet oldani (\ref{lst:registryC}. lista).
+\begin{lstlisting}[caption={Docker Hub build és push},label={lst:registryC}]
+for container in "commander px4sim aruco"; do
+	docker build ${drone_control_dir}/vke_${container}/. -t nanasidnl/drone_control:${container}
+	docker push nanasidnl/drone_control:${container}
+done
+\end{lstlisting}
+
+ \begin{figure}
+ 	\centering
+ 	\includegraphics[width=\linewidth]{figures/registry.png}
+ 	\caption{Registry megoldásaim egyedi konténerek esetén}
+ 	\label{fig:registry}
+ \end{figure}
+
+\noindent
+A Docker Hub privát repository-hoz authentikálni kell az API-t, ahhoz hogy elérje az adott K8S deployment. Ehhez egy configurációs fájlba kiszerveztem a hitelesítő adatokat. A szolgáltatást létrehozó deploy szkriptbe pedig beleírtam, hogy használja fel ezt a fájlt és authentikáljon egy \emph{regcred} titkon keresztül (\ref{lst:dhk3s}. lista). Ezt meg kell adni az API használatakor is (\ref{lst:dhsec}. lista).
+\begin{lstlisting}[caption={Docker Hub authentikáció K3S-ről},label={lst:dhk3s}]
+source ../config/docker-credentials.sh
+multipass exec ${master} -- kubectl create secret docker-registry regcred --docker-server=${docker_server} --docker-username=${docker_username} --docker-password=${docker_password} --docker-email=${docker_email}
+\end{lstlisting}
+
+\begin{lstlisting}[caption={K8S API secret definiálása a konténerekhez},label={lst:dhsec}]
+imagePullSecrets:
+- name: regcred
+\end{lstlisting}
+
+
+\chapter{Drónirányítás mint szolgáltatás a Kubernetes felhőben}
+
+Az előző (\ref{cha:kubernetes}.) fejezetben megmutattam, hogyan alakítottam ki a saját felhőrendszeremet. Ebben a fejezetben pedig megnézzük a diplomamunkának szánt feladat miként tud felkerülni ebbe a felhőbe.
+
+\section{Első, 4 podos megvalósítása a szolgáltatásnak}
+Elsőként a legegyszerűbb összeállításban szerettem volna megbizonyosodni arról, hogy a szolgáltatás valóban tud működni a felhőben ezért elsőnek a négy konténert 4 különálló pod-ként próbáltam ki (\ref{lst:1pod4}. lista). \\
+
+\noindent
+A Pod a legkisebb telepíthető számítási egység, amely létrehozható és kezelhető a Kubernetesben. Egy Pod létrehozása esetén példányosodik az előre definiált konténer vagy konténer csoport, azonban a futás megkezdése után semmilyen felügyeleti szolgáltatásban nem részesül, nem indul újra leállás esetén, nem alkalmazódik rá semmilyen skálázás. Egyszerűen ha csak Pod szinten futtatunk alkalmazásokat, akkor ugyanott járunk mintha Docker Swarm környezetben dolgoznánk. \\
+\begin{lstlisting}[caption={Példa egy Pod-ra a négyből},label={lst:1pod4}]
+apiVersion: v1
+kind: Pod
+metadata:
+	name: aruco
+	labels:
+		name: drone-hq
+spec:
+	hostname: aruco
+	containers:
+	- 	image: nanasidnl/drone_control:aruco
+		name: aruco
+	env:
+	- 	name: ROS_MASTER_URI
+		value: "http://roscore:11311"
+	- 	name: ARUCO_LAUNCH
+		value: "sim"
+	imagePullSecrets:
+	-	name: regcred
+\end{lstlisting}
+
+\noindent
+Jelen négy Podos megvalósításban a belső hálózati problémák nem merültek fel, hiszen a Pod neve hostname-ként is funkcionál, így egymás között könnyedén el tudták érni egymást az alkalmazások. Ez egy működő verzió volt, azonban túl egyszerű. A drón szimulációt nem a felhőben képzeljük el, hiszen a fizikai drón sem a felhőben fog futni.
 
 \section{Konténerek hálózata, service-deployment 1 podos megoldás}
 
