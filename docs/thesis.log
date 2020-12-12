@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (MiKTeX 2.9.7440 64-bit) (preloaded format=xelatex 2020.5.19)  8 DEC 2020 20:07
+This is XeTeX, Version 3.14159265-2.6-0.999992 (MiKTeX 2.9.7440 64-bit) (preloaded format=xelatex 2020.5.19)  11 DEC 2020 14:03
 entering extended mode
 **./thesis.tex
 (thesis.tex
@@ -1021,14 +1021,29 @@ Underfull \hbox (badness 10000) in paragraph at lines 136--138
 [32
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 165--166
+Underfull \hbox (badness 10000) in paragraph at lines 164--165
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 197--199
+
+ []
+
+[33]
+Underfull \hbox (badness 10000) in paragraph at lines 222--223
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 255--256
 \TU/lmr/m/n/10.95 https://medium.com/google-cloud/kubernetes-nodeport-vs-loadba
 lancer-vs-ingress-
  []
 
-) (sections/logic.tex [33]
+[34]) (sections/logic.tex [35]
 8. fejezet.
-) (sections/algoritmus.tex [34
+) (sections/algoritmus.tex [36
 
 ]
 9. fejezet.
@@ -1042,17 +1057,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 5--7
 
  []
 
-) (sections/measurements.tex [35
+) (sections/measurements.tex [37
 
-] [36]
+] [38]
 10. fejezet.
-) (sections/5g.tex [37
+) (sections/5g.tex [39
 
 ]
 11. fejezet.
-) (sections/summary.tex [38
+) (sections/summary.tex [40
 
-]) (thesis.bbl [39
+]) (thesis.bbl [41
 
 ]
 Underfull \hbox (badness 3323) in paragraph at lines 97--100
@@ -1116,20 +1131,39 @@ Underfull \hbox (badness 10000) in paragraph at lines 148--153
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 165--169
+Underfull \hbox (badness 10000) in paragraph at lines 171--175
 []\TU/lmr/m/n/10.95 Mohamed Fawzy: Create cluster using docker swarm
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 165--169
+Underfull \hbox (badness 10000) in paragraph at lines 171--175
 \TU/lmr/m/n/10.95 (2020. május 24.). [][]$[][][][][] [] [] [] [][][][][][] [] [
 ][][] [] [][][][][][][][][][][][][] []
  []
 
-[40
+[42
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 192--196
+Underfull \hbox (badness 1038) in paragraph at lines 192--197
+[]\TU/lmr/m/n/10.95 Sandeep Dinesh: Kubernetes nodeport vs loadbalancer vs ingr
+ess? when sho-
+ []
+
+
+Underfull \hbox (badness 2119) in paragraph at lines 192--197
+\TU/lmr/m/n/10.95 uld i use what? (2020. november 24.). [][]$[][][][][] [] [] [
+] [][][][][][] [] [][][] [] [][][][][][][][][][][][][] []
+ []
+
+
+Overfull \hbox (75.66333pt too wide) in paragraph at lines 192--197
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+[][][][][][][][][][][][][][]$[][]\TU/lmr/m/n/10.95 . 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 205--209
 []\TU/lmr/m/n/10.95 Yuneec: Mantis q (2020. május 25.). [][]$[][][][][] [] [] [
 ] [][][] [] [][][][][][] [] [][][] [] [][] [] [][] []
  []
@@ -1139,22 +1173,22 @@ Underfull \hbox (badness 10000) in paragraph at lines 192--196
 \openout5 = `thesis.thm'.
 
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 109.
- [41]
+ [43]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 109.
  (thesis.aux (include/titlepage.aux))
 Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 109.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 109.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: BBD1ECEA64AC255EC966CA3C99628ED2;13042.
+(rerunfilecheck)             Checksum: 0C21DB3E68F7293BDE656A30B2380717;13190.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 109.
  ) 
 Here is how much of TeX's memory you used:
- 18198 strings out of 414083
- 321138 string characters out of 2898444
- 739324 words of memory out of 3000000
- 35535 multiletter control sequences out of 15000+200000
+ 18208 strings out of 414083
+ 321288 string characters out of 2898444
+ 739750 words of memory out of 3000000
+ 35545 multiletter control sequences out of 15000+200000
  538172 words of font info for 62 fonts, out of 3000000 for 9000
  1352 hyphenation exceptions out of 8191
- 47i,13n,51p,1499b,1010s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 47i,13n,51p,1499b,1773s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on thesis.pdf (42 pages).
+Output written on thesis.pdf (44 pages).

@@ -151,6 +151,12 @@ Juhász Ádám:
 \bibNewBlock
   \url{https://v1-17.docs.kubernetes.io/docs/concepts/architecture/cloud-controller/}.
 
+\bibitem{kservice}
+{Kubernetes Documentation}:
+\bibNewBlock Service (2020. november 24.).
+\bibNewBlock
+  \url{https://kubernetes.io/docs/concepts/services-networking/service/}.
+
 \bibitem{toki}
 Dr.~Györfi László\bibAnd 0Győri Sándor\bibAnd 2Dr.~Pintér Márta:
 \bibNewBlock {\em Tömegkiszolgálás}.
@@ -181,6 +187,13 @@ Dr.~Györfi László\bibAnd 0Győri Sándor\bibAnd 2Dr.~Pintér Márta:
 {ROS}:
 \bibNewBlock Wiki (2020. május 25.).
 \bibNewBlock \url{http://wiki.ros.org/}.
+
+\bibitem{nodeport}
+{Sandeep Dinesh}:
+\bibNewBlock Kubernetes nodeport vs loadbalancer vs ingress? when should i use
+  what? (2020. november 24.).
+\bibNewBlock
+  \url{https://medium.com/google-cloud/kubernetes-nodeport-vs-loadbalancer-vs-ingress-when-should-i-use-what-922f010849e0}.
 
 \bibitem{drone-delivery}
 {Verband für umbemannte Luftfahrt}:

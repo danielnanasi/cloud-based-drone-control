@@ -128,9 +128,9 @@ imagePullSecrets:
 
 \chapter{Drónirányítás mint szolgáltatás a Kubernetes felhőben}
 
-Az előző (\ref{cha:kubernetes}.) fejezetben megmutattam, hogyan alakítottam ki a saját felhőrendszeremet. Ebben a fejezetben pedig megnézzük a diplomamunkának szánt feladat miként tud felkerülni ebbe a felhőbe.
+Az előző (\ref{cha:kubernetes}.) fejezetben megmutattam, hogyan alakítottam ki a saját felhőrendszeremet. Ebben a fejezetben pedig megnézzük a diplomamunkának szánt feladat miként tud felkerülni ebbe a felhőbe. Végignézzük a Kubernetes API szolgáltatásait, mely technológiával mit lehet elérni a cél érdekében. Kezdjük a legegyszerűbb Pod-tól és betekintünk az API szolgáltatásainak jelentős részébe.
 
-\section{Első, 4 podos megvalósítása a szolgáltatásnak}
+\section{Szimpla 4 podos megvalósítás}
 Elsőként a legegyszerűbb összeállításban szerettem volna megbizonyosodni arról, hogy a szolgáltatás valóban tud működni a felhőben ezért elsőnek a négy konténert 4 különálló pod-ként próbáltam ki (\ref{lst:1pod4}. lista). \\
 
 \noindent
@@ -159,16 +159,149 @@ spec:
 \noindent
 Jelen négy Podos megvalósításban a belső hálózati problémák nem merültek fel, hiszen a Pod neve hostname-ként is funkcionál, így egymás között könnyedén el tudták érni egymást az alkalmazások. Ez egy működő verzió volt, azonban túl egyszerű. A drón szimulációt nem a felhőben képzeljük el, hiszen a fizikai drón sem a felhőben fog futni.
 
-\section{Konténerek hálózata, service-deployment 1 podos megoldás}
+\section{Konténerek hálózata, Service és Deployment}
 
-\section{Load Balancer, NodePort, Ingress}
-https://medium.com/google-cloud/kubernetes-nodeport-vs-loadbalancer-vs-ingress-when-should-i-use-what-922f010849e0
+Ahhoz, hogy a Kubernetes szolgáltatásait érdemben igénybe tudjuk venni valamilyen magasabb szintű API-t kell használnunk. Ezért megnézzük a Deploymentet és a Service-t. Utóbbi arra szolgál, hogy a szolgáltatásunk megfelelő külső interface-el rendelkezhessen, bármely mögöttes konténerkonstrukcióval, amely integritását a Deployment biztosítja. Mindegyik Pod megkapja a saját IP-címét, azonban egy Deployment során az egy pillanatban futó Podok halmaza eltérhet az adott alkalmazást egy időpillanattal később futtató Podok halmazától. A nem natív alkalmazások esetében a Kubernetes lehetőséget kínál hálózati port vagy LoadBalancer elhelyezésére az alkalmazás és a háttéralkalmazások között. \cite{kservice} \\
 
-\section{ROS Port forwarding}
-https://journals.sagepub.com/doi/pdf/10.1177/1729881417703355
+\begin{lstlisting}[caption={Példa 4 konténeres deployment megoldásra},label={lst:4deploy}]
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+	name: drone-hq
+spec:
+	replicas: 1
+	selector:
+		matchLabels:
+			app: drone-hq
+	template:
+		metadata:
+			labels:
+				app: drone-hq
+	spec:
+	containers:
+	-	name: roscore
+		image: alpineros/alpine-ros:noetic-ros-core 
+	-	name: aruco
+		image: nanasidnl/drone_control:aruco
+	- 	name: commander
+		image: nanasidnl/drone_control:commander
+			ports: 
+			-	containerPort: 80
+		image: nanasidnl/drone_control:px4sim
+			ports: 
+			- containerPort: 10000
+	imagePullSecrets:
+	-	name: regcred
+\end{lstlisting}
 
-\section{Kauzalitási probléma, deploy sorrend}
+\noindent
+Elsőnek a 4 podos verzióból készítettem egy Deploymentet (\ref{lst:4deploy}. lista), amely már egy Pod-ként definiálható, azonban érvényesülni fognak rá a Kubernetes integritás szabályai. A Roscore konténert éri el az összes, de Pod-on belüli kommunikáció a legkönnyebb, hiszen egy Pod egy lokális hálózatnak szármoztatható le, így a konténerek \emph{localhost}-ra címezve tudnak kommunikálni egymással, mintha virtuális környezetben lennének. Külső interfész 2 van, a Gazebo szimuláció és az irányító dashboard. \\
 
-\section{N drónra K3S service és drónok deployolása}
+\begin{lstlisting}[caption={Példa 4 konténeres megoldás service kivezetésére},label={lst:4service}]
+apiVersion: apps/v1
+kind: Service
+metadata:
+	name: drone-hq
+spec:
+	ports:
+	-	port: 80
+		targetPort: 81
+		name: dashboard
+	-	port: 10000
+		targetPort: 10001
+		name: gazebo
+\end{lstlisting}
+
+\noindent
+A külső interface-ek kapcsán jön képbe a Service API, míg minden belső kommunikációt le tud kezelni a Deployment, ahhoz hogy ezeket a külső interface-eket elérjük kell definiálnunk egy Service-t a Deployment fölé (\ref{lst:4service}. lista), amely a Deployment selectorán keresztül kapcsolódik hozzá és a definiált portokhoz rendel egy külső portot. Ez a külső port valjában csak a Kubernetes rendszeren definiált flannel hálózatról elérhető. Tehát más a rendszeren futó alkalmazás el fogja tudni érni, de kívülről nem. Márpedig a fizikai drón irányításra tervezünk, így következő lépésként a befelé való kommunikáció megvalósíthatósági technológiáit fogjuk megvizsgálni.
+
+\section{Szolgáltatás külső elérése}
+Több Kubernetes API szolgáltatás rendelkezésünkre áll, hogy elérhessük kívülről a konténerünket amin a felhasználói felület fut, illetve a drónnak kivezessük a roscore konténer Mavlink protját.
+
+\subsection{NodePort}
+A NodePort szolgáltatás a legprimitívebb módja a külső forgalom közvetlenül a szolgáltatásának elérésére. A NodePort, amint a neve is mutatja, megnyit egy adott portot az összes csomóponton (a virtuális gépek), és az erre a portra küldött forgalmat továbbítja a szolgáltatásnak. \cite{nodeport} A NodePortokat hasonlóan rendelhetjük hozzá a szolgáltatás portjaihoz, mint a sima proxy-n keresztüli külső portot, azonban a NodePort számozása 30000-től kezdődhet. \\
+
+\noindent
+Ezzel a megoldással meghatározhatjuk, hogy a drón kívülről a Master külső IP-jén érjen el minden szükséges alkalmazást, illetve a drónt irányító személy is érje el a Dashboard-ot. A probléma a NodePort-tal, hogy más porton nem tud kommunikálni, így a Roscore véletlenszerűen generált portja nem lesz elérhető kívülről.
+
+\begin{lstlisting}[caption={Service kiegészítése NodePort-okkal},label={lst:nodeport}]
+apiVersion: v1
+kind: Service
+metadata:
+	name: drone-hq
+spec:
+	type: NodePort
+	ports:
+	-	port: 80
+		nodePort: 30080
+		name: dashboard
+	-	port: 11311
+		nodePort: 31311
+		name: roscore
+selector:
+	app: drone-hq
+\end{lstlisting}
+
+\subsection{Ingress, szolgálgatások szétválasztása}
+Fontos megemlíteni az Ingress-t is, hiszen több alkalmazásban gondolkozunk, mivel lesz két konténerünk a felhőben amelyből egy példányt szeretnénk és a Roscore-t egészíti ki, ezt neveztem \emph{drone-hq}-nak, ez tartalmazza az aruco kódolvasót és az irányítót. A másik pedig a Roscore, amiből szeretnénk backup futó szolgáltatást. Ha hosszútávú szolgáltatást szeretnénk alakítani vagy továbbfejleszteni, esetleg publikus felhőben, akkor mindenképpen érdemes az Ingress-t használni, mivel domain-eket, subdomain-eket és útvonalakat rendelhetünk a különböző szolgáltatásunk felé (\ref{fig:ingress}. ábra). Így ha publikus felhőben gondolkoznánk, akkor a roscore backup-okat ki lehetne vezetni különböző elérési címekre, illetve változtathatnánk a címek mögöttes elérését, ha szükséges.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{figures/ingress.png}
+	\caption{Ingress Service szétválasztása a klaszterben \cite{nodeport}}
+	\label{fig:ingress}
+\end{figure}
+
+\subsection{ROS Port forwarding}
+Az Ingress megoldás biztosíthatná, hogy szétválasszuk a Roscore-t és a többi konténert a magasabb rendelkezésre állás érdekében, azonban a Roscore rendelkezik egy nem túl előnyös kommunikációs kapcsolódási stratégiával. Egy ROS rendszer működtethet számtalan eszközt, a mi példánkban egy Roscore-ra három ROS Node csatlakozik, egyedül a drón a felhőn kívülről (\ref{fig:rosjoin}. ábra). Mikor elsőnek csatlakozik egy Node, akkor megkap bizonyos paramétereket, mint például a portszám amin az adott node-nak kommunikálnia kell a Roscore-ral. Felmerül a kérdés, hogy a külső ROS Node hogyan fog bejutni a Kubernetes cluster szolgáltatásához véletlenszerűen generált porton. \\
+
+\noindent
+Sokféle megoldáson gondolkoztam, azonban mivel egy egyszerű NAT-olt hálózat mögé is csak úgy lehet elhelyezni a kiszolgáló Roscore-t ha az lérhető portok intervallumát kinyitjuk a nagyvilág felé, mivel nem előre tudható, hogy milyen portot fog lefoglalni az adott Node-al való kommunikációra. Ezt részletesen bizonyítja a \cite{portforward} számú hivatkozott cikk. Gondoltam olyan megoldásra is amely korlátozza a Linux alapú konténer által kiosztott portszámot a Roscore alatt. Ezt úgy lehetne megoldani a Roscore konténer inicializálásnál lekorlátozom a kiosztható portokat a NodePort tartományra, ami 30000 és 32767 között van (\ref{lst:portlimit}. lista). Majd amikor a külső eszköz felveszi a kommunikációt, akkor a logban kap egy hibát "\emph{ERROR: Communication with node[http://10.42.2.13:32045/] failed!}", amelyből ki tudjuk olvasni a portszámot és kinyithatjuk ezt a NodePortot. Ez azért visszás, mert súlyos másodpercek telnek el, amíg megkapjuk a hibaüzenetet, felolvassuk és eljuttatjuk a dróntól a klaszterig. Így ezt a megoldást QoS célú szolgáltatás alatt nem engedhetjük meg.
+
+\begin{lstlisting}[caption={Linuxon kiosztható port korlátozása}, label={lst:portlimit}]
+echo 30000-32767 > /proc/sys/net/ipv4/ip_local_reserved_ports
+\end{lstlisting}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{figure/ros_join.png}
+	\caption{ROS Node csatlakozása Roscore-hoz \cite{rosjoin}}
+	\label{fig:rosjoin}
+\end{figure}
+
+\subsection{LoadBalancer}
+A valódi megoldást a LoadBalancer fogja nyújtani, ami egy standard megoldás arra, hogy egy teljes szolgáltatást kiirányítsunk a klaszterből, a teljes port intervallumon, amelyet a Roscore generálhat. Ez a port az egyik Node-on lesz elérhető, amelyiken az adott Pod fut. A LoadBalancert használhatjuk NodePort-tal is, ami a mögöttes alkalmazásunknak megfelel, hiszen onnan csak egy konstans portra van szükségünk, hogy a felhasználó elérhesse az irányító felületet. Tehát a LoadBalancer segít abban, hogy az elválasztott Roscore szolgáltatás egyedi Node elérésével legyen elérhető, továbbá lehetővéteszi, hogy különböző drónok Roscore-ja ugyanazon a Node-on fussanak és legyenek elérhetőek egymás mellett. A magok elsőkénti elérése inkrementális sorrendben fog történni az alapértelmezett porttól, a további kommunikáció pedig a kisorsolt egyedi portokon (\ref{fig:loadbalancer}. ábra). \\
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{figures/loadBalancer.png}
+	\caption{LoadBalancer megoldás Kubernetes felhőben}
+	\label{fig:loadbalancer}
+\end{figure}
+
+
+\begin{lstlisting}[caption={Roscore Service specifikációja inkrementális változókkal}, label={lst:kubeload}]
+spec:
+	hostname: roscore-$(DRONE_IDENTIFIER)
+	containers:
+	-	name: roscore-$(DRONE_IDENTIFIER)
+		image: alpineros/alpine-ros:noetic-ros-core 
+		env:
+		-	name: ROS_IP
+			valueFrom:
+				fieldRef:
+					fieldPath: status.podIP
+		-	name: ROS_MASTER_URI
+			value: "http://$(ROS_IP):$(MAVLINK_PORT)"
+		args: ["roscore", "-p", "$(MAVLINK_PORT)"]
+	hostNetwork: true
+\end{lstlisting}
+
+\noindent
+A K8S megvalósításhoz a szolgáltatás yaml fájlt kell módosítanunk az adott Service-hez (\ref{lst:kubeload}. lista). Automatikusan deployoló szkriptekkel dolgoztam, így a yaml fájlokban megtalálható \emph{\$(VARIABLE)} formátúmú változókat a klaszterhez való hozzáadás előtt adom meg. A \emph{DRONE\_IDENTIFIER} a drón azonosítója, egytől indulunk, ez alapján számoljuk ki a pontos portokat. A \emph{ROS\_IP} a konténer belső változója, amely a ROS Node-ok számára hirdetendő kapcsolattartó IP címet adja meg, a fájlban látható módon kivezettem, hogy a Kubernetes status.podIP változója legyen, tehát a Pod külső IP címe. A \emph{ROS\_MASTER\_URI} pedig az a HTTP cím melyen kapcsolódni tud a ROS Node a core-hoz. A konténert nem hagyományos módon indítjuk, hanem a kiválasztott \emph{MAVLINK\_PORT} hirdető porton, melyet deploy során fog megkapni.
+
+\section{Deploy szkriptek, kauzalitási probléma}
+
+
 
 \section{N drón irányítása K3S-ből}
