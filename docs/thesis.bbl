@@ -109,10 +109,6 @@
   (2020. december 6.).
 \bibNewBlock \url{https://www.padok.fr/en/blog/minikube-kubeadm-kind-k3s}.
 
-\bibitem{robtel}
-Juhász Ádám:
-\bibNewBlock Robotvezérlés telekommunikációs eszközökkel, 2008.
-
 \bibitem{compose}
 {Docker docs}:
 \bibNewBlock Overview of docker compose (2020. május 24.).
@@ -130,6 +126,12 @@ Juhász Ádám:
 \bibNewBlock Project excecution process (2020. május 23.).
 \bibNewBlock
   \url{http://www.free-management-ebooks.com/faqpm/processes-04.htm}.
+
+\bibitem{portforward}
+Sami Salama~Hussen Hajjaj\bibAnd 1Khairul Saleh~Mohamed Sahari:
+\bibNewBlock Establishing remote networks for ros applications via port
+  forwarding: A detailed tutorial.
+\bibNewBlock 2017.\ 05. 1-13. sz.
 
 \bibitem{super-bowl-pic}
 {Jacob Brogen}:
@@ -172,6 +174,11 @@ Dr.~Györfi László\bibAnd 0Győri Sándor\bibAnd 2Dr.~Pintér Márta:
 \bibNewBlock Create cluster using docker swarm (2020. május 24.).
 \bibNewBlock
   \url{https://medium.com/tech-tajawal/create-cluster-using-docker-swarm-94d7b2a10c43}.
+
+\bibitem{rosjoin}
+Hanumant~Singh Pushyami~Kaveti:
+\bibNewBlock Ros rescue : Fault tolerance system for robot operating system.
+\bibNewBlock 2019.\ 10. 5. sz.
 
 \bibitem{px4dev}
 {PX4}:

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (MiKTeX 2.9.7440 64-bit) (preloaded format=xelatex 2020.5.19)  11 DEC 2020 14:03
+This is XeTeX, Version 3.14159265-2.6-0.999992 (MiKTeX 2.9.7440 64-bit) (preloaded format=xelatex 2020.5.19)  12 DEC 2020 18:53
 entering extended mode
 **./thesis.tex
 (thesis.tex
@@ -1035,15 +1035,51 @@ Underfull \hbox (badness 10000) in paragraph at lines 222--223
 
  []
 
+[34]
+File: figures/ingress.png Graphic file (type bmp)
+<figures/ingress.png>
 
-Underfull \hbox (badness 10000) in paragraph at lines 255--256
-\TU/lmr/m/n/10.95 https://medium.com/google-cloud/kubernetes-nodeport-vs-loadba
-lancer-vs-ingress-
+Underfull \hbox (badness 10000) in paragraph at lines 256--257
+
  []
 
-[34]) (sections/logic.tex [35]
+[35]
+File: figures/rosjoin.png Graphic file (type bmp)
+<figures/rosjoin.png>
+
+Underfull \hbox (badness 10000) in paragraph at lines 273--274
+
+ []
+
+[36]
+Underfull \hbox (badness 10000) in paragraph at lines 292--294
+
+ []
+
+File: figures/loadBalancer.png Graphic file (type bmp)
+<figures/loadBalancer.png>
+[37]
+Underfull \hbox (badness 10000) in paragraph at lines 330--331
+
+ []
+
+
+Underfull \hbox (badness 1571) in paragraph at lines 332--334
+\TU/lmr/m/n/10.95 A megoldásom két sablonfájlt tartalmaz a forrás \TU/lmr/m/it/
+10.95 kubernetes \TU/lmr/m/n/10.95 könyvtárában, \TU/lmr/m/it/10.95 kube-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 332--334
+
+ []
+
+[38]
+File: figures/full2drone.png Graphic file (type bmp)
+<figures/full2drone.png>
+) (sections/logic.tex [39] [40]
 8. fejezet.
-) (sections/algoritmus.tex [36
+) (sections/algoritmus.tex [41
 
 ]
 9. fejezet.
@@ -1057,17 +1093,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 5--7
 
  []
 
-) (sections/measurements.tex [37
+) (sections/measurements.tex [42
 
-] [38]
+] [43]
 10. fejezet.
-) (sections/5g.tex [39
+) (sections/5g.tex [44
 
 ]
 11. fejezet.
-) (sections/summary.tex [40
+) (sections/summary.tex [45
 
-]) (thesis.bbl [41
+]) (thesis.bbl [46
 
 ]
 Underfull \hbox (badness 3323) in paragraph at lines 97--100
@@ -1088,82 +1124,82 @@ Underfull \hbox (badness 10000) in paragraph at lines 107--111
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 122--127
+Underfull \hbox (badness 10000) in paragraph at lines 118--123
 []\TU/lmr/m/n/10.95 Frank Tobe: Lady gaga, 300 intel drones, and the su-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 122--127
+Underfull \hbox (badness 10000) in paragraph at lines 118--123
 \TU/lmr/m/n/10.95 per bowl (2020. május 23.). [][]$[][][][][] [] [] [] [][][] [
 ] [][][][][][][][][][][][][][] [] [][][] []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 135--140
+Underfull \hbox (badness 10000) in paragraph at lines 137--142
 []\TU/lmr/m/n/10.95 Jacob Brogen: How intel lit up the super bowl with drones—a
 nd
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 135--140
+Underfull \hbox (badness 10000) in paragraph at lines 137--142
 \TU/lmr/m/n/10.95 why (2020. május 23.). [][]$[][][][][] [] [] [] [][][][][] []
  [][][] [] [][][][][][][][][][] [] [][][][] [] [][] []
  []
 
 
-Overfull \hbox (4.13425pt too wide) in paragraph at lines 135--140
+Overfull \hbox (4.13425pt too wide) in paragraph at lines 137--142
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
 [][] []
  []
 
 
-Underfull \hbox (badness 1762) in paragraph at lines 148--153
+Underfull \hbox (badness 1762) in paragraph at lines 150--155
 []\TU/lmr/m/n/10.95 Kubernetes: Concepts underlying the cloud controller manage
 r (2020. május
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 148--153
+Underfull \hbox (badness 10000) in paragraph at lines 150--155
 \TU/lmr/m/n/10.95 25.). [][]$[][][][][] [] [] [] [][][][][][] [] [][][][] [] []
 [][][][][][][][][] [] [][] [] [][][][] [] [][][][][][][][] [] [][][][][][][][][
 ][][][] []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 171--175
+Underfull \hbox (badness 10000) in paragraph at lines 173--177
 []\TU/lmr/m/n/10.95 Mohamed Fawzy: Create cluster using docker swarm
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 171--175
+Underfull \hbox (badness 10000) in paragraph at lines 173--177
 \TU/lmr/m/n/10.95 (2020. május 24.). [][]$[][][][][] [] [] [] [][][][][][] [] [
 ][][] [] [][][][][][][][][][][][][] []
  []
 
-[42
+[47
 
 ]
-Underfull \hbox (badness 1038) in paragraph at lines 192--197
+Underfull \hbox (badness 1038) in paragraph at lines 199--204
 []\TU/lmr/m/n/10.95 Sandeep Dinesh: Kubernetes nodeport vs loadbalancer vs ingr
 ess? when sho-
  []
 
 
-Underfull \hbox (badness 2119) in paragraph at lines 192--197
+Underfull \hbox (badness 2119) in paragraph at lines 199--204
 \TU/lmr/m/n/10.95 uld i use what? (2020. november 24.). [][]$[][][][][] [] [] [
 ] [][][][][][] [] [][][] [] [][][][][][][][][][][][][] []
  []
 
 
-Overfull \hbox (75.66333pt too wide) in paragraph at lines 192--197
+Overfull \hbox (75.66333pt too wide) in paragraph at lines 199--204
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
 [][][][][][][][][][][][][][]$[][]\TU/lmr/m/n/10.95 . 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 205--209
+Underfull \hbox (badness 10000) in paragraph at lines 212--216
 []\TU/lmr/m/n/10.95 Yuneec: Mantis q (2020. május 25.). [][]$[][][][][] [] [] [
 ] [][][] [] [][][][][][] [] [][][] [] [][] [] [][] []
  []
@@ -1173,22 +1209,22 @@ Underfull \hbox (badness 10000) in paragraph at lines 205--209
 \openout5 = `thesis.thm'.
 
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 109.
- [43]
+ [48]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 109.
  (thesis.aux (include/titlepage.aux))
 Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 109.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 109.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 0C21DB3E68F7293BDE656A30B2380717;13190.
+(rerunfilecheck)             Checksum: 5D9A3A5056A1C185FACF00D613CAD4B7;13179.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 109.
  ) 
 Here is how much of TeX's memory you used:
- 18208 strings out of 414083
- 321288 string characters out of 2898444
- 739750 words of memory out of 3000000
- 35545 multiletter control sequences out of 15000+200000
+ 18245 strings out of 414083
+ 322012 string characters out of 2898444
+ 740431 words of memory out of 3000000
+ 35578 multiletter control sequences out of 15000+200000
  538172 words of font info for 62 fonts, out of 3000000 for 9000
  1352 hyphenation exceptions out of 8191
- 47i,13n,51p,1499b,1773s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 47i,13n,51p,1499b,1783s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on thesis.pdf (44 pages).
+Output written on thesis.pdf (49 pages).

@@ -18,51 +18,53 @@ Reallocating 'global_strs' (item size: 1) to 4000000 items.
 Reallocating 'wiz_functions' (item size: 4) to 6000 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
 Database file #1: bib/mybib.bib
-Warning--entry type for "robtel" isn't style-file defined
---line 41 of file bib/mybib.bib
 Reallocating 'singl_function' (item size: 4) to 100 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
-You've used 20 entries,
+Warning--empty journal in portforward
+Warning--there's a number but no volume in portforward
+Warning--empty journal in rosjoin
+Warning--there's a number but no volume in rosjoin
+You've used 21 entries,
             4991 wiz_defined-function locations,
-            1201 strings with 14151 characters,
-and the built_in function-call counts, 39621 in all, are:
-= -- 7457
-> -- 151
-< -- 0
-+ -- 2832
-- -- 104
-* -- 460
-:= -- 1456
-add.period$ -- 39
-call.type$ -- 20
-change.case$ -- 81
+            1207 strings with 14319 characters,
+and the built_in function-call counts, 44085 in all, are:
+= -- 8349
+> -- 164
+< -- 2
++ -- 3186
+- -- 111
+* -- 507
+:= -- 1550
+add.period$ -- 46
+call.type$ -- 21
+change.case$ -- 86
 chr.to.int$ -- 0
-cite$ -- 20
-duplicate$ -- 6000
-empty$ -- 886
-format.name$ -- 44
-if$ -- 8432
+cite$ -- 25
+duplicate$ -- 6722
+empty$ -- 930
+format.name$ -- 50
+if$ -- 9378
 int.to.chr$ -- 0
-int.to.str$ -- 20
-missing$ -- 3
-newline$ -- 195
-num.names$ -- 40
-pop$ -- 1542
+int.to.str$ -- 21
+missing$ -- 5
+newline$ -- 201
+num.names$ -- 42
+pop$ -- 1720
 preamble$ -- 1
-purify$ -- 62
+purify$ -- 66
 quote$ -- 22
-skip$ -- 342
+skip$ -- 355
 stack$ -- 0
-substring$ -- 4473
-swap$ -- 4360
-text.length$ -- 0
+substring$ -- 5013
+swap$ -- 4899
+text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 98
-warning$ -- 0
-while$ -- 186
-width$ -- 22
-write$ -- 273
+type$ -- 103
+warning$ -- 4
+while$ -- 198
+width$ -- 23
+write$ -- 283
 (There was 1 error message)

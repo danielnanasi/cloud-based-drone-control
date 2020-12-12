@@ -264,21 +264,13 @@ echo 30000-32767 > /proc/sys/net/ipv4/ip_local_reserved_ports
 
 \begin{figure}
 	\centering
-	\includegraphics[width=\linewidth]{figure/ros_join.png}
+	\includegraphics[width=\linewidth]{figures/rosjoin.png}
 	\caption{ROS Node csatlakozása Roscore-hoz \cite{rosjoin}}
 	\label{fig:rosjoin}
 \end{figure}
 
 \subsection{LoadBalancer}
 A valódi megoldást a LoadBalancer fogja nyújtani, ami egy standard megoldás arra, hogy egy teljes szolgáltatást kiirányítsunk a klaszterből, a teljes port intervallumon, amelyet a Roscore generálhat. Ez a port az egyik Node-on lesz elérhető, amelyiken az adott Pod fut. A LoadBalancert használhatjuk NodePort-tal is, ami a mögöttes alkalmazásunknak megfelel, hiszen onnan csak egy konstans portra van szükségünk, hogy a felhasználó elérhesse az irányító felületet. Tehát a LoadBalancer segít abban, hogy az elválasztott Roscore szolgáltatás egyedi Node elérésével legyen elérhető, továbbá lehetővéteszi, hogy különböző drónok Roscore-ja ugyanazon a Node-on fussanak és legyenek elérhetőek egymás mellett. A magok elsőkénti elérése inkrementális sorrendben fog történni az alapértelmezett porttól, a további kommunikáció pedig a kisorsolt egyedi portokon (\ref{fig:loadbalancer}. ábra). \\
-
-\begin{figure}
-	\centering
-	\includegraphics[width=\linewidth]{figures/loadBalancer.png}
-	\caption{LoadBalancer megoldás Kubernetes felhőben}
-	\label{fig:loadbalancer}
-\end{figure}
-
 
 \begin{lstlisting}[caption={Roscore Service specifikációja inkrementális változókkal}, label={lst:kubeload}]
 spec:
@@ -298,10 +290,81 @@ spec:
 \end{lstlisting}
 
 \noindent
-A K8S megvalósításhoz a szolgáltatás yaml fájlt kell módosítanunk az adott Service-hez (\ref{lst:kubeload}. lista). Automatikusan deployoló szkriptekkel dolgoztam, így a yaml fájlokban megtalálható \emph{\$(VARIABLE)} formátúmú változókat a klaszterhez való hozzáadás előtt adom meg. A \emph{DRONE\_IDENTIFIER} a drón azonosítója, egytől indulunk, ez alapján számoljuk ki a pontos portokat. A \emph{ROS\_IP} a konténer belső változója, amely a ROS Node-ok számára hirdetendő kapcsolattartó IP címet adja meg, a fájlban látható módon kivezettem, hogy a Kubernetes status.podIP változója legyen, tehát a Pod külső IP címe. A \emph{ROS\_MASTER\_URI} pedig az a HTTP cím melyen kapcsolódni tud a ROS Node a core-hoz. A konténert nem hagyományos módon indítjuk, hanem a kiválasztott \emph{MAVLINK\_PORT} hirdető porton, melyet deploy során fog megkapni.
+A K8S megvalósításhoz a szolgáltatás yaml fájlt kell módosítanunk az adott Service-hez (\ref{lst:kubeload}. lista). Automatikusan deployoló szkriptekkel dolgoztam, így a yaml fájlokban megtalálható \emph{\$(VARIABLE)} formátúmú változókat a klaszterhez való hozzáadás előtt adom meg. A \emph{DRONE\_IDENTIFIER} a drón azonosítója, egytől indulunk, ez alapján számoljuk ki a pontos portokat. A \emph{ROS\_IP} a konténer belső változója, amely a ROS Node-ok számára hirdetendő kapcsolattartó IP címet adja meg, a fájlban látható módon kivezettem, hogy a Kubernetes status.podIP változója legyen, tehát a Pod külső IP címe. A \emph{ROS\_MASTER\_URI} pedig az a HTTP cím melyen kapcsolódni tud a ROS Node a core-hoz. A konténert nem hagyományos módon indítjuk, hanem a kiválasztott \emph{MAVLINK\_PORT} hirdető porton, melyet deploy során fog megkapni. \\
 
-\section{Deploy szkriptek, kauzalitási probléma}
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{figures/loadBalancer.png}
+	\caption{LoadBalancer megoldás Kubernetes felhőben}
+	\label{fig:loadbalancer}
+\end{figure}
 
+\noindent
+Ennél a pontnál érzékelődik a K3S hiányossága, ugyanis a K8S-hez képest nem tartalmazza a Traefik modult, ami a LoadBalancer-hez szükséges. Így a K3S-t installáló szkriptet kiegészítettem a Traefik pod-ként való hozzáadásával a klaszterhez (\ref{lst:traefik}. lista).
 
+\begin{lstlisting}[caption={Traefik hozzáadása a klaszterhez}, label={lst:traefik}]
+multipass exec $master -- sudo kubectl apply -f /var/lib/rancher/k3s/server/manifests/traefik.yaml
+\end{lstlisting}
 
-\section{N drón irányítása K3S-ből}
+\section{Teljes klaszter létrehozása N drónnal}
+
+\subsection{Kauzalitási probléma}
+Szimulációnk létrehozásához több különálló lépést kell megtennünk, miután üzemképes a K3S/K8S klaszter. Nézzük meg milyen információ függőségei vannak az egyes komponenseknek.
+\begin{itemize}
+	\item A drónnak tudnia kell a Roscore-t futtató Node külső IP-jét
+	\item Az irányító konténernek ismernie kell a drón IP címét
+\end{itemize}
+
+\noindent
+Ezen feltételekből következik a kialakított sorrendem, hogy hogyan inicializáljuk a virtuális tesztkörnyezetet. A diplomatervhez csatolt forráskód \emph{deploy} könyvtárában sorszámozással megtalálhatóak ezek Bash szkriptek formájában.
+
+\begin{enumerate}
+	\item K3S klaszter létrehozása, kimenet: master és worker-ek IP címei
+	\item ROSCore-ok indítása a klaszteren, kimenet: melyik drón-hoz tartozó core melyik Node-ra került
+	\item Drónok indítása, külső környezetben (Docker), kimenet: drónok IP címei
+	\item Drone-HQ indítása a klaszteren
+\end{enumerate}
+A lépések végrehajtása után feláll a teljes rendszer és a drónok irányíthatóak a master külső IP-jén keresztül.
+
+\section{Deploy szkriptek}
+Az előző felsorolásból kimaradt egy nulladik szkript, amely arra szolgál, hogy a legfrissebb verziójú konténereket felépíti és feltölti a DockerHub-ra, privát repository-ba. A szkriptek egy közös konfigfájlt használnak \emph{config}), amely-ben a klaszter paraméterei, kezdő portszámok és a drónok száma szerepel. Ezt a konfigfájlt használja Bash és Python program is, ezért a Bash felkonfigurálására létrehoztam egy kiegészítő szkriptet (configUp.sh), amely lemenedzseli a mapparendszerből következő változókat, hogy mi hol van, erre csak a Bash szkripteknek van szüksége. Utána minden deploy szkript ezt a külső konfigurációt hívja meg és konzisztens változókat fognak használni. \\
+
+\noindent
+A megoldásom két sablonfájlt tartalmaz a forrás \emph{kubernetes} könyvtárában, \emph{kube-roscore.yml} és \emph{kube-drone-hq.yml}. Mindkét fájl tartalmaz környezeti változókat, melyek értékét az adott drón azonosítószámában találhatunk ki. Ugyan a környezeti változókat tudná kezelni a Kubernetes API, a Multipass rendszeren keresztül viszont ha létrehozzuk az adott Service-t, akkor a master környezeti változóit használná fel, amit a Multipass rendszerén keresztül nem tudunk beállítani. Így ezekből a yaml fájlokból létrehoz a szkript annyit amennyi drón szerepel a konfigurációban. Ezután a Linuxos sed program segítségével cseréljük ki a környezeti változókat Bash változó értékekre. Ahhoz, hogy a gazdagép fájlrendszeréből fel tudja használni a virtuális master a yaml fájlt, a Multipass segítségével mount-olom a könyvtárat a végrehajtás előtt (példa: \ref{lst:script}. lista). A példában az látszik, hogy a mount parancs után információkat gyűjtünk, a konfigurációból szármozik a Roscore node neve, ami kap egy címkét, majd ez alapján megkeressük a Multipass listázásával a külső IP-jét, hasonlóan a master-nek. Ez után minden drónra elvégezvén (for cikusban), kiszámítjuk az adott drón Mavlink csatlakozási portját, lemásoljuk a sablonfájlt és a már említett környezeti változókat kicseréljük benne, végül a \emph{kubectl apply} paranccsal elindítjuk a klaszteren. \\
+
+\begin{lstlisting}[caption={Roscore információk összegyűjtése és deploy},label={lst:script}]
+multipass mount ${work_dir} ${master}
+multipass exec $master -- kubectl label nodes ${ROSCORE_NODE} dedicated=roscore
+MASTER_IP=$(multipass list | grep $master | grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b")
+ROSCORE_IP=$(multipass list | grep $ROSCORE_NODE | grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b")
+for i in $(seq 1 ${NUMBER_OF_DRONES}); do
+	MAVLINK_PORT=$((i-1+MAVLINK_START_PORT))
+	cp ${service_dir}/kube-roscore.yml ${service_dir}/kube-roscore-$i.yml
+	sed -i 's/$(MAVLINK_PORT)/'${MAVLINK_PORT}'/g' ${service_dir}/kube-roscore-$i.yml
+	sed -i 's/$(DRONE_IDENTIFIER)/'${i}'/g' ${service_dir}/kube-roscore-$i.yml
+	multipass exec ${master} -- sudo kubectl apply -f ${service_dir}/kube-roscore-$i.yml
+done
+\end{lstlisting}
+
+\noindent
+A Roscore deploy szkriptjéhez nagyon hasonló a drónokat indító szkript és a Drone-HQ-t indíti szkript. A drónok indításánál Docker megoldást alkalmazok a külső környezetben, ahol hasonlóan szármoznak le az adott információk, a szimuláció külső portja is hasonlóan inkrementális a Mavlink porthoz (\ref{lst:dronedeploy}. lista). A Roscore címét a master-en keresztül kapjuk meg, a \emph{kubectl get pods - wide} parancs standard kimenetéből kiolvasva grep programmal, először az elnevezett Service nevére szűrve, utána az IP formátumra. A drón indítása Docker paranccsal történik, ahol megadjuk a környezeti változókat, melyeket alapján el fogja érni az adott Roscore-t, illetve a dashboard-ot átirányítjuk a 10000-res portról inkrementálisan, hogy akármennyi drónt lehessen irányítani.
+
+\begin{lstlisting}[caption={Drónok indítása külső Docker környezetben}, label={lst:dronedeploy}]
+for i in $(seq 1 ${NUMBER_OF_DRONES}); do
+	ROSCORE_IP=$(multipass exec $master -- kubectl get pods -o wide | grep roscore-$i | tail -n 1 | grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b")
+	MAVLINK_PORT=$((i-1+MAVLINK_START_PORT))
+	SIMULATION_PORT=$((i-1+SIMULATION_START_PORT))
+
+	docker run --name drone-$i -e ROS_IP=${ROSCORE_IP} -e ROS_MASTER_URI=http://${ROSCORE_IP}:${MAVLINK_PORT} -p ${SIMULATION_PORT}:10000 -d nanasidnl/drone_control:px4sim
+done
+\end{lstlisting}
+
+\noindent
+Egy teljesen felépített két drónos rendszer a \ref{fig:full2drone}. ábrán látszik. Az egy fizikai gépes környezetben a három Multipass VM-en a K3S rendszer látható, mellette ugyanabban a környezetben a Docker, amin keresztül a két szimuláció fut. A K3S klaszteren belül a három Node-on öt Pod-ot láthatunk, a Traefik alkalmazást, ami a Roscore LoadBalancer-e miatt szükséges, illetve a két-két drón kiszolgáló Pod-ot. A szimuláció konténerei a Multipass külső IP címein a hozzájuk tartozó porton érik el a Roscore-t. Az irányító lehet az adott környezetben, de akár a hálózaton más fizikai környezetben is, csak el kell érnie az alkalmazásokat az adott portokon.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{figures/full2drone.png}
+	\caption{Teljes környezet két szimulációval}
+	\label{fig:full2drone}
+\end{figure}
