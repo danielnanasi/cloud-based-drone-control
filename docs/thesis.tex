@@ -43,14 +43,14 @@
 % Table of contents and the main text
 %--------------------------------------------------------------------------------------
 \begin{document}
-\pagenumbering{arabic}
-%\pagenumbering{gobble}
+%\pagenumbering{arabic}
+\pagenumbering{gobble}
 
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 %\include{include/guideline}
 %\include{include/project}
 %feladatkiírás, majd az eredeti aláírtat kell hozzáfűzni
-%\includepdf[pages=-,pagecommand={},width=\linewidth]{include/project.pdf}
+\includepdf[pages=-,pagecommand={},width=\linewidth]{include/project.pdf}
 
 \selectthesislanguage
 
@@ -68,7 +68,7 @@
 
 % The main part of the thesis
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-%\pagenumbering{arabic}
+\pagenumbering{arabic}
 \input{sections/introduction}
 \input{sections/cloud}
 \input{sections/robot}

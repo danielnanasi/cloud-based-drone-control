@@ -1,7 +1,84 @@
 \chapter{Drónkapcsoló állomás Kubernetes felhőben}
+Ebben a fejezetben, a kialakított K3S alapú drón kiszolgáló központot fejlesztem tovább, úgy hogy valamilyen QoS feltételeket valósítson meg. Megnézzük, hogyan választottam technológiát a szoftver architektúráját, részleteit. Tárgyaljuk, hogy milyen architekturális változást kell végeznünk ahhoz, hogy javítsuk a válaszidőt. Megmutatom a Node váltási lehetőségeket és becsléseket teszek a hatékonyságukra. \\
 
+\noindent
+A fejlesztendő szoftver a drón közelébe tervezett, tehát nem a felhőben fog futni, hanem a drónok központi irányításának a kiegészítése. E szerint futtatását azon a gépen célszerű végezni, mely a drónnal is egy hálózaton/környezetben van.
+
+\section{Felhasznált technológia}
+Olyan technológiában kell megkezdeni a fejlesztést, amely lehetőséget biztosít egyszerű kezelésére az eddig felállított rendszernek és környezetnek. Szükséges belevinni modularitást és sklázhatóságot, továbbfejlesztési lehetőség érdekében. Tehát a felhasználó számíthat rá, hogy nagyobb számú drón vagy robotvezérlést is támogat a rendszer. \\
+
+\noindent
+Mivel egy QoS megvalósításáról beszélünk, amelynek paraméterei változhatnak a szükségletek függvényében, ezért az implementáció részeként csak a logikai működést szükséges megvalósítani, az egyes kritériumok változtathatóak. A bevezetőben szó esett különböző jövőbeli automatikus drónfelhasználásnak, melyben volt példa élő szórakoztatóipari fellépésre és mezőgazdasági munkára is. Ezen iparágakban teljesen más QoS feltételeket szabnak meg. Míg egy élő fellépésben nagyon hamar belerondíthat a show-ba pár késleltetésből félreszinkronizált drón, addig a mezőgazdaságban inkább hosszú idejű stabilitásnak kellhet megfelelni. Ezért az algoritmus megalkotásánál paraméterekben fogunk dolgozni, melyeket a felhasználás definiál.
+
+\subsection{Python}
+A szakmai előítéleteim alapján már sejtettem, hogy a Python lesz az a nyelv, amelynek a legtöbb támogatása van a natív felhőtechnológiákhoz. A Python egy értelmezett, magas szintű és általános célú programozási nyelv. A Python tervezési filozófiája hangsúlyozza a kód olvashatóságát a jelentős szóköz jelentős felhasználásával. Nyelvi konstrukcióinak és objektum-orientált megközelítésének célja, hogy segítsen a programozóknak világos, logikus kódot írni kis és nagy projektekhez. A Python dinamikusan be van írva és automatikus garbage-collector-ral működik. Támogatja a több programozási paradigmát, beleértve a strukturált (különösen az eljárási), az objektum-orientált és a funkcionális programozást. A Python-t átfogó szabványos könyvtárának köszönhetően gyakran "csomagokkal együtt" használt nyelvként írják le. \cite{pwiki} \\
+
+\noindent
+Amely lehetőségek miatt kifejezetten a Python technológiát választottam azok az alábbiak:
+\begin{itemize}
+	\item Kubernetes API támogatás
+	\item Docker API támogatás
+	\item Könnyű naplózás, időalapú feljegyzés
+	\item Gyenge objektumorientált támogatás, a modularitás és a tiszta kód miatt
+	\item Egyszerűség, gyengén típusosság
+\end{itemize}
+
+\noindent
+A dolgozathoz mellékelt könyvtár \emph{switchingCenter} nevű könyvtárban található a Python projekt implementáció. A könyvtárban található még egy \emph{requiments} felsorolás, mely a használt Python könyvtárakat sorolja fel azzal a verzióval, mellyel teszteltem is. Ezen kiegészítések telepítése a Pip programmal lehetséges az adott környezetben (\ref{lst:pip}. lista).
+
+\begin{lstlisting}[caption={Python könyvtárak telepítése}, label={lst:pip}]
+pip install - r requiments.txt
+\end{lstlisting}
+
+\noindent
+A programhoz tartozó beállításokat egy globális fájlba helyeztem, melyet a Bash és a Python program egyaránt fel tud használni, utóbbi a \emph{ConfigObj} konfiguráció illesztő modullal.
+
+\subsection{Kubernetes könyvtár alkalmazása}
+Nyílt forráskódú, stabil verziójú Kubernetes Python kliens létezik, amelyet felhasználtam a fejlesztés során. \cite{kubpy} Mint a kliens főoldalán is látható, Kubernetes API-t széleskörűen támogatja, így az általam felhasznált Kubernetes API technológiákat is. \\
+
+\noindent
+A jelenlegi környezetben a program felhasználja a Multipass program parancsait a Bash-en keresztül, ami nem túl kifinomult mérnöki kivitelezés, azonban a Multipass-nak még nincs Python kliense, illetve későbbi rendszerek esetén könnyen átfejleszthető másra. A külső program meghívására a \emph{subprocess} modult használtam, mely segítségével kértem le a master VM-ről a K3S tokent és a master IP-jét. Utána a kapott információkból fel tudtam építeni a Kubernetes authentikációt, megadva a Multipass által generált privát kulcsot is (\ref{lst:kubclient}. lista).
+
+\begin{lstlisting}[caption={Kubernetes kliens felépítése}, label={lst:kubclient}]
+aToken= subprocess.check_output(["multipass", "exec", self.config_parser.get('master'), "--", "kubectl describe secret $SECRET_NAME | grep -E '^token' | cut -f2 -d':' | tr -d " ")"]).decode('utf-8')
+master_ip= subprocess.check_output(["multipass", "list", "|", "grep", self.config_parser.get('master'),'grep -oE \b([0-9]{1,3}\.){3}[0-9]{1,3}\b']).decode('utf-8')
+
+aConfiguration = kubernetes.client.Configuration()
+aConfiguration.verify_ssl = False
+aConfiguration.host = "https://"+master_ip+":443"
+aConfiguration.api_key = {"authorization": "Bearer " + aToken}
+aApiClient = kubernetes.client.ApiClient(aConfiguration)
+
+self.kApi = client.CoreV1Api(aApiClient)
+\end{lstlisting}
+
+\subsection{Docker könyvtár alkalmazása}
+A \emph{Docker SDK for Python} segítségemre volt, hogy a Drónokat elérjem és parancsokat adhassak ki a konténeren belül. Az SDK nagyon egyszerű lehetőséget nyújtott kapcsolódni a környezethez, kifejezetten ha a szoftver is ugyanabban a fut. \\
+
+\noindent
+Definiáltam egy Drone osztályt, amely példányosításával egy drónhoz kapcsolódik a program, melyet tárol és fenntartja a kapcsolatot. Az inicializálás a drón száma alapján történik, hasonlóan a korábbiakhoz, az azonosítóból kiszámoljuk a portokat, mely kezdőportokat a konfigfájlból olvasunk ki (\ref{lst:droneconnect}. lista). A konténert a konvencionális nevezéktanon keresztül ismerjük fel (drone-1, drone-2, ...), mely konténer lekérése után bármilyen Docker parancsot végre tudunk hajtani a \emph{self.drone} elnevezésű kliens segítségével.
+
+\begin{lstlisting}[caption={Drón konténeréhez csatlakozás}, label={lst:droneconnect}]
+class Drone():
+	def __init__(self, drone_id, node_ip):
+		self.config_parser = ConfigObj('../config/config')
+		self.drone_id=int(drone_id)
+		self.node_ip=node_ip
+		self.docker_client = docker.from_env()
+		self.mavlink_port = int(self.config_parser.get('MAVLINK_START_PORT'))+drone_id-1
+
+		self.drone= self.docker_client.containers.get("drone-"+str(self.drone_id))
+\end{lstlisting}
+
+\subsection{Naplózás}
+Szoftveremben nagyon fontos a naplózás, melyet a \emph{logger} modullal valósítottam meg. A QoS miatt minden egyes tevékenységet, amit a program elvégez nyers időbélyeg formátumban írom ki, hogy méréseket lehessen végezni a tevékenységek között (\ref{lst:logconf}. lista).
+
+\begin{lstlisting}[caption={Naplózás beállítása}, label={lst:logconf}]
+logging.basicConfig(filename='switchCenter.log', level=logging.INFO, format='%(asctime)s %(levelname)-8s %(message)s')
+\end{lstlisting}
 
 \section{Kivitelezési lehetőségek és várható kapcsolási idők}
+
 \subsection{A: Node váltás és új címhirdetés}
 \subsection{B: Node váltás proxy mögött}
 \subsection{C: Minden node-on rendelkezésre állás}

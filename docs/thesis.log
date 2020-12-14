@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (MiKTeX 2.9.7440 64-bit) (preloaded format=xelatex 2020.5.19)  12 DEC 2020 18:53
+This is XeTeX, Version 3.14159265-2.6-0.999992 (MiKTeX 2.9.7440 64-bit) (preloaded format=xelatex 2020.5.19)  14 DEC 2020 20:01
 entering extended mode
 **./thesis.tex
 (thesis.tex
@@ -836,6 +836,24 @@ Package pdflscape Info: Auto-detected driver: dvipdfm (xetex) on input line 98.
 LaTeX Info: Redefining \cal on input line 577.
 LaTeX Info: Redefining \mit on input line 578.
 )
+File: include/project.pdf Graphic file (type pdf)
+<use include/project.pdf>
+File: include/project.pdf Graphic file (type pdf)
+<use include/project.pdf>
+File: include/project.pdf Graphic file (type pdf)
+<use include/project.pdf, page 1>
+File: include/project.pdf Graphic file (type pdf)
+<use include/project.pdf, page 1>
+File: include/project.pdf Graphic file (type pdf)
+<use include/project.pdf, page 1>
+File: include/project.pdf Graphic file (type pdf)
+<use include/project.pdf, page 1>
+File: include/project.pdf Graphic file (type pdf)
+<use include/project.pdf, page 1>
+ [1
+
+
+]
 \openout2 = `include/titlepage.aux'.
 
 
@@ -854,8 +872,6 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 20.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-
-
 ]
 Package hyperref Info: Option `pageanchor' set `false' on input line 32.
 ) (thesis.toc
@@ -866,41 +882,41 @@ Package hyperref Info: Option `pageanchor' set `false' on input line 32.
 \tf@toc=\write4
 \openout4 = `thesis.toc'.
 
- (sections/introduction.tex [2]
+ (sections/introduction.tex [1]
 1. fejezet.
 File: figures/plan_excecute_monitor.png Graphic file (type bmp)
 <figures/plan_excecute_monitor.png>
-[3
+[2
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 27--30
 
  []
 
-[4]
+[3]
 File: figures/drone_communication_to_cloud.png Graphic file (type bmp)
 <figures/drone_communication_to_cloud.png>
 File: figures/industry40.png Graphic file (type bmp)
 <figures/industry40.png>
- [5]
+ [4]
 File: figures/aws-drone-delivery.jpg Graphic file (type bmp)
 <figures/aws-drone-delivery.jpg>
 File: figures/super_bowl.png Graphic file (type bmp)
 <figures/super_bowl.png>
- [6] [7] [8]) (sections/cloud.tex [9]
+ [5] [6] [7]) (sections/cloud.tex [8]
 2. fejezet.
-[10
+[9
 
 ]
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
 nput line 37.
- [11]
+ [10]
 File: figures/swarm.png Graphic file (type bmp)
 <figures/swarm.png>
- [12]
+ [11]
 File: figures/kube_arch.png Graphic file (type bmp)
 <figures/kube_arch.png>
- [13]
+ [12]
 File: figures/docker_swarm.png Graphic file (type bmp)
 <figures/docker_swarm.png>
 
@@ -927,21 +943,21 @@ Overfull \hbox (19.54721pt too wide) in paragraph at lines 122--149
 [][] 
  []
 
-) (sections/robot.tex [14] [15]
+) (sections/robot.tex [13] [14]
 3. fejezet.
 File: figures/mantisq.jpg Graphic file (type bmp)
 <figures/mantisq.jpg>
-[16
+[15
 
 ]
 File: figures/px4_sitl_overview.png Graphic file (type bmp)
 <figures/px4_sitl_overview.png>
 File: figures/sitl_optical_flow.png Graphic file (type bmp)
 <figures/sitl_optical_flow.png>
- [17] [18]
+ [16] [17]
 File: figures/egyuttes.png Graphic file (type bmp)
 <figures/egyuttes.png>
-) (sections/vm-tests.tex [19] [20]
+) (sections/vm-tests.tex [18] [19]
 4. fejezet.
 
 Underfull \hbox (badness 10000) in paragraph at lines 6--7
@@ -953,25 +969,25 @@ Underfull \hbox (badness 10000) in paragraph at lines 16--18
 
  []
 
-[21
+[20
 
 ]
 File: figures/vke_drone.png Graphic file (type bmp)
 <figures/vke_drone.png>
 File: figures/local.png Graphic file (type bmp)
 <figures/local.png>
- [22]
+ [21]
 File: figures/multi-control.png Graphic file (type bmp)
 <figures/multi-control.png>
-) (sections/tomegkiszolgalas.tex [23] [24]
+) (sections/tomegkiszolgalas.tex [22] [23]
 5. fejezet.
 File: figures/qos.png Graphic file (type bmp)
 <figures/qos.png>
-[25
+[24
 
-]) (sections/kubernetes.tex [26]
+]) (sections/kubernetes.tex [25]
 6. fejezet.
-[27
+[26
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 35--36
@@ -993,7 +1009,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 55--57
 
  []
 
-[28]
+[27]
 Underfull \hbox (badness 10000) in paragraph at lines 81--82
 
  []
@@ -1003,10 +1019,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 85--86
 
  []
 
-[29]
+[28]
 File: figures/registry.png Graphic file (type bmp)
 <figures/registry.png>
- [30] [31]
+ [29] [30]
 7. fejezet.
 
 Underfull \hbox (badness 10000) in paragraph at lines 134--135
@@ -1018,7 +1034,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 136--138
 
  []
 
-[32
+[31
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 164--165
@@ -1030,12 +1046,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 197--199
 
  []
 
-[33]
+[32]
 Underfull \hbox (badness 10000) in paragraph at lines 222--223
 
  []
 
-[34]
+[33]
 File: figures/ingress.png Graphic file (type bmp)
 <figures/ingress.png>
 
@@ -1043,7 +1059,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 256--257
 
  []
 
-[35]
+[34]
 File: figures/rosjoin.png Graphic file (type bmp)
 <figures/rosjoin.png>
 
@@ -1051,14 +1067,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 273--274
 
  []
 
-[36]
+[35]
 Underfull \hbox (badness 10000) in paragraph at lines 292--294
 
  []
 
 File: figures/loadBalancer.png Graphic file (type bmp)
 <figures/loadBalancer.png>
-[37]
+[36]
 Underfull \hbox (badness 10000) in paragraph at lines 330--331
 
  []
@@ -1074,14 +1090,39 @@ Underfull \hbox (badness 10000) in paragraph at lines 332--334
 
  []
 
-[38]
+[37]
 File: figures/full2drone.png Graphic file (type bmp)
 <figures/full2drone.png>
-) (sections/logic.tex [39] [40]
+) (sections/logic.tex [38] [39]
 8. fejezet.
-) (sections/algoritmus.tex [41
+
+Underfull \hbox (badness 10000) in paragraph at lines 2--3
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 8--9
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 14--15
+
+ []
+
+[40
 
 ]
+Underfull \hbox (badness 10000) in paragraph at lines 37--38
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 56--57
+
+ []
+
+[41]) (sections/algoritmus.tex [42]
 9. fejezet.
 
 Underfull \hbox (badness 10000) in paragraph at lines 3--4
@@ -1093,17 +1134,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 5--7
 
  []
 
-) (sections/measurements.tex [42
+) (sections/measurements.tex [43
 
-] [43]
+] [44]
 10. fejezet.
-) (sections/5g.tex [44
+) (sections/5g.tex [45
 
 ]
 11. fejezet.
-) (sections/summary.tex [45
+) (sections/summary.tex [46
 
-]) (thesis.bbl [46
+]) (thesis.bbl [47
 
 ]
 Underfull \hbox (badness 3323) in paragraph at lines 97--100
@@ -1177,29 +1218,29 @@ Underfull \hbox (badness 10000) in paragraph at lines 173--177
 ][][] [] [][][][][][][][][][][][][] []
  []
 
-[47
+[48
 
 ]
-Underfull \hbox (badness 1038) in paragraph at lines 199--204
+Underfull \hbox (badness 1038) in paragraph at lines 209--214
 []\TU/lmr/m/n/10.95 Sandeep Dinesh: Kubernetes nodeport vs loadbalancer vs ingr
 ess? when sho-
  []
 
 
-Underfull \hbox (badness 2119) in paragraph at lines 199--204
+Underfull \hbox (badness 2119) in paragraph at lines 209--214
 \TU/lmr/m/n/10.95 uld i use what? (2020. november 24.). [][]$[][][][][] [] [] [
 ] [][][][][][] [] [][][] [] [][][][][][][][][][][][][] []
  []
 
 
-Overfull \hbox (75.66333pt too wide) in paragraph at lines 199--204
+Overfull \hbox (75.66333pt too wide) in paragraph at lines 209--214
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
 [][][][][][][][][][][][][][]$[][]\TU/lmr/m/n/10.95 . 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 212--216
+Underfull \hbox (badness 10000) in paragraph at lines 222--226
 []\TU/lmr/m/n/10.95 Yuneec: Mantis q (2020. május 25.). [][]$[][][][][] [] [] [
 ] [][][] [] [][][][][][] [] [][][] [] [][] [] [][] []
  []
@@ -1209,22 +1250,22 @@ Underfull \hbox (badness 10000) in paragraph at lines 212--216
 \openout5 = `thesis.thm'.
 
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 109.
- [48]
+ [49]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 109.
  (thesis.aux (include/titlepage.aux))
 Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 109.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 109.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 5D9A3A5056A1C185FACF00D613CAD4B7;13179.
+(rerunfilecheck)             Checksum: D3C95526487AACE216A17B4992984C45;14002.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 109.
  ) 
 Here is how much of TeX's memory you used:
- 18245 strings out of 414083
- 322012 string characters out of 2898444
- 740431 words of memory out of 3000000
- 35578 multiletter control sequences out of 15000+200000
+ 18266 strings out of 414083
+ 322387 string characters out of 2898444
+ 741581 words of memory out of 3000000
+ 35597 multiletter control sequences out of 15000+200000
  538172 words of font info for 62 fonts, out of 3000000 for 9000
  1352 hyphenation exceptions out of 8191
- 47i,13n,51p,1499b,1783s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 47i,18n,51p,1499b,1783s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on thesis.pdf (49 pages).
+Output written on thesis.pdf (52 pages).

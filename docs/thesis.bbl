@@ -175,6 +175,11 @@ Dr.~Györfi László\bibAnd 0Győri Sándor\bibAnd 2Dr.~Pintér Márta:
 \bibNewBlock
   \url{https://medium.com/tech-tajawal/create-cluster-using-docker-swarm-94d7b2a10c43}.
 
+\bibitem{kubpy}
+{Opensource community}:
+\bibNewBlock Kubernetes python client github (2020. december 13.).
+\bibNewBlock \url{https://github.com/kubernetes-client/python}.
+
 \bibitem{rosjoin}
 Hanumant~Singh Pushyami~Kaveti:
 \bibNewBlock Ros rescue : Fault tolerance system for robot operating system.
@@ -189,6 +194,11 @@ Hanumant~Singh Pushyami~Kaveti:
 {PX4 developers}:
 \bibNewBlock Open source autopilot (2020. május 26.).
 \bibNewBlock \url{https://px4.io/}.
+
+\bibitem{pwiki}
+{Python}:
+\bibNewBlock Python about (2020. december 13.).
+\bibNewBlock \url{https://www.python.org/about/}.
 
 \bibitem{roswiki}
 {ROS}:

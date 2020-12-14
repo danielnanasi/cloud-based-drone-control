@@ -5,7 +5,7 @@ Reallocating 'name_of_file' (item size: 1) to 8 items.
 The style file: huplain.bst
 Reallocating 'name_of_file' (item size: 1) to 22 items.
 I couldn't open auxiliary file include/titlepage.aux
----line 21 of file thesis.aux
+---line 22 of file thesis.aux
  : \@input{include/titlepage.aux
  :                              }
 I'm skipping whatever remains of this command
@@ -26,45 +26,45 @@ Warning--empty journal in portforward
 Warning--there's a number but no volume in portforward
 Warning--empty journal in rosjoin
 Warning--there's a number but no volume in rosjoin
-You've used 21 entries,
+You've used 23 entries,
             4991 wiz_defined-function locations,
-            1207 strings with 14319 characters,
-and the built_in function-call counts, 44085 in all, are:
-= -- 8349
-> -- 164
+            1215 strings with 14528 characters,
+and the built_in function-call counts, 47520 in all, are:
+= -- 8990
+> -- 178
 < -- 2
-+ -- 3186
-- -- 111
-* -- 507
-:= -- 1550
-add.period$ -- 46
-call.type$ -- 21
-change.case$ -- 86
++ -- 3426
+- -- 121
+* -- 545
+:= -- 1690
+add.period$ -- 50
+call.type$ -- 23
+change.case$ -- 94
 chr.to.int$ -- 0
-cite$ -- 25
-duplicate$ -- 6722
-empty$ -- 930
-format.name$ -- 50
-if$ -- 9378
+cite$ -- 27
+duplicate$ -- 7238
+empty$ -- 1018
+format.name$ -- 54
+if$ -- 10115
 int.to.chr$ -- 0
-int.to.str$ -- 21
+int.to.str$ -- 23
 missing$ -- 5
-newline$ -- 201
-num.names$ -- 42
-pop$ -- 1720
+newline$ -- 211
+num.names$ -- 46
+pop$ -- 1853
 preamble$ -- 1
-purify$ -- 66
+purify$ -- 72
 quote$ -- 22
-skip$ -- 355
+skip$ -- 389
 stack$ -- 0
-substring$ -- 5013
-swap$ -- 4899
+substring$ -- 5396
+swap$ -- 5270
 text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 103
+type$ -- 113
 warning$ -- 4
-while$ -- 198
-width$ -- 23
-write$ -- 283
+while$ -- 216
+width$ -- 25
+write$ -- 301
 (There was 1 error message)
