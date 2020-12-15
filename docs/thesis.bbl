@@ -146,12 +146,24 @@ Sami Salama~Hussen Hajjaj\bibAnd 1Khairul Saleh~Mohamed Sahari:
 \bibNewBlock
   \url{https://auterion.com/multi-vehicle-drone-simulation-in-gazebo/}.
 
+\bibitem{proxy}
+{Kubernetes}:
+\bibNewBlock Accessing clusters (2020. december 13.).
+\bibNewBlock
+  \url{https://kubernetes.io/docs/tasks/access-application-cluster/access-cluster/}.
+
 \bibitem{kube-arch}
 {Kubernetes}:
 \bibNewBlock Concepts underlying the cloud controller manager (2020. május
   25.).
 \bibNewBlock
   \url{https://v1-17.docs.kubernetes.io/docs/concepts/architecture/cloud-controller/}.
+
+\bibitem{daemonset}
+{Kubernetes}:
+\bibNewBlock Daemonset (2020. december 13.).
+\bibNewBlock
+  \url{https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/}.
 
 \bibitem{kservice}
 {Kubernetes Documentation}:

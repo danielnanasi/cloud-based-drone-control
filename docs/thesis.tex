@@ -43,8 +43,8 @@
 % Table of contents and the main text
 %--------------------------------------------------------------------------------------
 \begin{document}
-%\pagenumbering{arabic}
-\pagenumbering{gobble}
+\pagenumbering{arabic}
+%\pagenumbering{gobble}
 
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 %\include{include/guideline}
@@ -63,12 +63,12 @@
 
 % Declaration and Abstract
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-%\include{include/declaration}
-%\include{content/abstract}
+\include{include/declaration}
+\include{content/abstract}
 
 % The main part of the thesis
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\pagenumbering{arabic}
+%\pagenumbering{arabic}
 \input{sections/introduction}
 \input{sections/cloud}
 \input{sections/robot}
@@ -80,7 +80,7 @@
 
 \input{sections/algoritmus}
 \input{sections/measurements}
-\input{sections/5g}
+%\input{sections/5g}
 \input{sections/summary}
 
 
@@ -91,9 +91,9 @@
 
 % List of Figures, Tables
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-%\listoffigures\addcontentsline{toc}{chapter}{\listfigurename}
+\listoffigures\addcontentsline{toc}{chapter}{\listfigurename}
 %\listoftables\addcontentsline{toc}{chapter}{\listtablename}
-%\lstlistoflistings\addcontentsline{toc}{chapter}{\lstlistlistingname}
+\lstlistoflistings\addcontentsline{toc}{chapter}{\lstlistlistingname}
 
 % Bibliography
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

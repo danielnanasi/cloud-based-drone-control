@@ -79,11 +79,109 @@ logging.basicConfig(filename='switchCenter.log', level=logging.INFO, format='%(a
 
 \section{Kivitelezési lehetőségek és várható kapcsolási idők}
 
-\subsection{A: Node váltás és új címhirdetés}
-\subsection{B: Node váltás proxy mögött}
-\subsection{C: Minden node-on rendelkezésre állás}
+Tehát van egy automatizáltan felépített rendszerünk Kubernetes-szel és változtatható mennyiségű szimulált drónnal. És már a szoftver is készen áll, hogy bármely automatizált szabályokat figyelhessünk és bármilyen módosítást végrehajtsunk valós időben a rendszeren. De mik is azok a feltételek, amelyek egy QoS biztosítanak egy ilyen drónokat irányító felhőrendszerben? Definiálom ezeket egy drónra:
+\begin{itemize}
+	\item A drón és a Kubernetes közötti válaszidő nem haladhat meg egy előre definiált maximális időt,
+	\item A drón és a Kubernetes közötti sávszélesség nem lehet kisebb egy előre definiált minimális sávszélességnél, ez a sávszélesség szétbontható egy irányításra meghatározott biztonsági és egy videófolyam sávszélességre,
+	\item Ha ezen feltételeknek nem felel meg az adott konstrukció, végezzen változtatást,
+	\item Ha nem létezik olyan változtatást elvégezni, amellyel megfelelnek a feltételek, akkor érjen véget a program és jelezze, hogy véget ért a QoS feltételek melleti üzemelés, mely esetnen létrejöhet valamilyen biztonsági procedúra, például biztonságos leszállás.
+\end{itemize}
 
-\section{Minden node-on replica kivitelezése}
+\noindent
+A következőkben megnézzük, hogy mi az a változtatás amivel javítani lehet a kapcsolaton. Jelen rendszerben egy 3 Node-os felhőrendszerről beszélünk, amely lehet sokkal szélesebb is, a K8S határain belül. Az implementációnál figyelembe vettem a változtatható Node mennyiséget. Ha valamilyen kritériumnak nem felel meg a kapcsolat, akkor egyféleképp változtathatjuk a kapcsolatot, áthelyezzük a háttérszolgáltatást másik Node-ra. Ebben a lokális virtuális rendszerben ez nem tűnik megoldásnak, de egy nagyobb ipari klaszter ezetén a távolságokból adódóan Node váltással érhetünk el jobb eredményt, biztosíthatjuk rendszerünket túlterheltség és véletlen hiba létrejötte esetén. Tehát akkor azt kell megnéznünk, mely módokon lehet kivitelezni.
 
-\section{DaemonSet}
-https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/
+\subsection{Node váltás és új címhirdetés}
+Első ilyen megközelítés, hogy ha már automatizáltan fel tudjuk építeni a Roscore-t, akkor legyen a változtatás az, hogy új Node-ra deploy-oljuk a Roscore-t és közöljük a drónnal az új elérési címet. Nézzük meg mi ennek a pontos menete:
+\begin{itemize}
+	\item Észrevesszük a hibát és reagálunk ($t_{r}$)
+	\item Kiválasztunk egy megfelelő Node-ot ($t_{s}$)
+	\item Deploy-oljuk a Roscore-t az új Node-on ($t_{d}$)
+	\item Új címet adunk meg a drónnak ($t_{a}$)
+\end{itemize}
+Összesen $t = t_r + t_s + t_d + t_a$ idő. Azt fontos megjegyezni, hogy a $t_r$ reagálási idő konfigurálható vagyis az, hogy milyen időközönként nézzük, amiből tudjuk, hogy a reagálási idő várható értéke az ellenőrzési periódusidő fele lesz.
+
+\subsection{Node váltás proxy mögött}
+Nézzünk meg egy másik megközelítést, amikor meg szeretnénk spórolni $t_a$ címadási időt és kihelyezünk egy proxy-t amely megváltoztatja a mögöttes Node-ot miután a Roscore-t deploy-oltuk az új Node-ra. A probléma továbbra is fennáll, hogy ha egy Node-on fut a Roscore, akkor azt kívülről az elérhető portok nagy részén el kell tudnunk érni. A Kubernetes Service API működhetne ilyen proxy-ként, azonban nem fogja biztosítani a többi portot LoadBalancer nélkül. Sima Kubernetes proxy-val azonban elméletben meg lehet oldani (lásd dokumentáció \cite{proxy}). Azonban ezzel a megoldással létrejönne a proxy kreálás/változtatás ideje, illetve az új proxy-n keresztül hitelesítést is kell végeznünk minden alkalommal. 
+
+\subsection{Széleskörű rendelkezésre állás}
+A legtöbb időt jelentő $t_d$ deploy időt, ami méréseim szerint 2 és 5 másodperc között van, akkor iktathatjuk ki, hogyha nem csak az aktív Node-on áll rendelkezésre az adott drónnak a Roscore, hanem legalább egy backup Node-on. Ezzel a verzióval ugyan átlagosan több erőforrást foglalunk, azonban optimalizálhatjuk a váltási időt, ami javít a QoS-en.
+
+\section{Megvalósítás: DaemonSet}
+Kiderült, hogy a legoptimálisabb QoS megoldása az lehet, ha minden worker Node-on rendelkezésre áll a Roscore minden drón számára. Ezt a DaemonSet Kubernetes API-val lehet megvalósítani. \\
+
+\noindent
+A DaemonSet biztosítja, hogy az összes (vagy néhány) Node futtassa a Pod másolatát. Amint  Node-ok hozzáadódnak a klaszterhez, a Podok automatikusan létrejönnek az új Node-okon. Amint a Node-okat eltávolítják, ezeket a Podokat a Kubernetes Garbage-Collectora gyűjti össze. A DaemonSet törlése megtisztítja az általa létrehozott Podokat. Egyszerű esetben minden démontípushoz egy, minden csomópontot lefedő DaemonSet-et használnak. A bonyolultabb beállítás több DaemonSet-et is használhat egyetlen démontípushoz, de különböző jelzőkkel és / vagy különböző memória- és CPU-kérelmekkel a különböző hardvertípusokhoz. \cite{daemonset} \\
+
+\noindent
+A Kubernetes Service API helyett használom a megvalósítandó ötletben a DaemonSet-et a következőképpen (\ref{lst:daemonset}. lista). A konténer indítás és a változók ugyanazok maradtak, mint a Service-es megvalósításban, az \emph{affinity} résszel egészítettem ki a yaml-t. Itt \emph{hostname} alapján szűröm ki a Node-okat, azokon a Node-okon fog elindulni a Roscore, melyek nem tartalmazzák a master nevet.
+
+\begin{lstlisting}[caption={DaemonSet megvalósítás, Roscore minden worker-en}, label={lst:daemonset}]
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+	name: roscore-$(DRONE_IDENTIFIER)
+spec:
+	selector:
+		matchLabels:
+			app: roscore-$(DRONE_IDENTIFIER)
+	template:
+		metadata:
+			labels:
+				app: roscore-$(DRONE_IDENTIFIER)
+		spec:
+			affinity:
+				nodeAffinity:
+					requiredDuringSchedulingIgnoredDuringExecution:
+						nodeSelectorTerms:
+						-	matchFields:
+							-	key: metadata.name
+								operator: NotIn
+								values:
+								-	master
+			hostname: roscore-$(DRONE_IDENTIFIER)
+			containers:
+			-	name: roscore-$(DRONE_IDENTIFIER)
+				image: alpineros/alpine-ros:noetic-ros-core 
+				env:
+				-	name: ROS_IP
+				valueFrom:
+					fieldRef:
+						fieldPath: status.podIP
+			-	name: ROS_MASTER_URI
+				value: "http://$(ROS_IP):$(MAVLINK_PORT)"
+			args: ["roscore", "-p", "$(MAVLINK_PORT)"]
+		hostNetwork: true
+\end{lstlisting}
+
+\section{Mérési adatok kinyerése}
+A rendszer automatikus működéséhez szükséges megtudnunk az aktuális sávszélességet és válaszidőt a drón és a node között. Mivel a szoftver a drón közelében fut, ezért a jelenlegi szimulált rendszerhez implementálom, azonban ezek a függvények változtathatóak lesznek. A program a konténerből tud kiadni alap Linuxos parancsokat, így a sávszélességet iperf programmal (\ref{lst:bw}. lista), a válaszidőt ping programmal (\ref{lst:ping}. lista)  nyertem ki. Ha nem sikerülne elvégezni a program futását, akkor visszatér egy magas értékkel, melyet lemér mégegyszer a váltás előtt. Ping esetén eldönthetjük, a függvény paraméterében, hogy hány ICMP packet átlagát szeretnénk venni.
+
+\begin{lstlisting}[caption={Sávszélesség megállapítása a konténer és a node között}, label={lst:bw}]
+def getBW(self, node_ip):
+	iperf="iperf -s "+node_ip
+	(exit_code,output)= self.drone.exec_run(iperf)
+	outputStr = output.decode('utf-8')
+	for line in outputStr.split('\n'):
+		if 'window size' in line:
+			bw=line.split(' ')[4]
+			return float(bw)
+	else:
+		return 1000
+\end{lstlisting}
+
+\begin{lstlisting}[caption={Késleltetés megállapítása a konténer és a node között}, label={lst:ping}]
+def getConnectionDelay(self, node_ip, n=1):
+	pingCommand="ping "+node_ip+" -c "+str(n)
+	(exit_code,output)= self.drone.exec_run(pingCommand)
+	outputStr = output.decode('utf-8')
+	for line in outputStr.split('\n'):
+		if 'min/avg/max/mdev' in line:
+			avg=line.split('/')[5]
+			return float(avg)
+	else:
+		return 1000
+\end{lstlisting}
+
+
+
+

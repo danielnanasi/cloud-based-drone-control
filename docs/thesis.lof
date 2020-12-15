@@ -1,20 +1,30 @@
 \select@language {magyar} \addvspace {10\p@ }
-\select@language {magyar} \contentsline {figure}{\numberline {1.1.}{\ignorespaces Kritikus mérföldkövek folyamata \cite {ProjecPlan}\relax }}{4}{figure.caption.2}%
-\select@language {magyar} \contentsline {figure}{\numberline {1.2.}{\ignorespaces Ipar 4.0 komponensei \cite {industry40}\relax }}{5}{figure.caption.3}%
-\select@language {magyar} \contentsline {figure}{\numberline {1.3.}{\ignorespaces Amazon házhozszállítás problémája drónnal \cite {drone-delivery}\relax }}{6}{figure.caption.4}%
-\select@language {magyar} \contentsline {figure}{\numberline {1.4.}{\ignorespaces Lady Gaga 300 drónnal a háttérben a 2017-es Super Bowl döntőjének félideje alatti koncerten \cite {super-bowl-pic}\relax }}{7}{figure.caption.5}%
+\select@language {magyar} \contentsline {figure}{\numberline {1.1.}{\ignorespaces Kritikus mérföldkövek folyamata \cite {ProjecPlan}\relax }}{8}{figure.caption.4}%
+\select@language {magyar} \contentsline {figure}{\numberline {1.2.}{\ignorespaces A drónok és felhő kapcsolatának durva modellje\relax }}{10}{figure.caption.5}%
+\select@language {magyar} \contentsline {figure}{\numberline {1.3.}{\ignorespaces Ipar 4.0 komponensei \cite {industry40}\relax }}{11}{figure.caption.6}%
+\select@language {magyar} \contentsline {figure}{\numberline {1.4.}{\ignorespaces Amazon házhozszállítás problémája drónnal \cite {drone-delivery}\relax }}{11}{figure.caption.7}%
+\select@language {magyar} \contentsline {figure}{\numberline {1.5.}{\ignorespaces Lady Gaga 300 drónnal a háttérben a 2017-es Super Bowl döntőjének félideje alatti koncerten \cite {super-bowl-pic}\relax }}{12}{figure.caption.8}%
 \select@language {magyar} \addvspace {10\p@ }
-\select@language {magyar} \contentsline {figure}{\numberline {2.1.}{\ignorespaces Docker Swarm architektúra \cite {docker-swarm}\relax }}{10}{figure.caption.12}%
-\select@language {magyar} \contentsline {figure}{\numberline {2.2.}{\ignorespaces Kubernetes architektúrája \cite {kube-arch}\relax }}{12}{figure.caption.13}%
+\select@language {magyar} \contentsline {figure}{\numberline {2.1.}{\ignorespaces Docker Swarm architektúra \cite {docker-swarm}\relax }}{16}{figure.caption.15}%
+\select@language {magyar} \contentsline {figure}{\numberline {2.2.}{\ignorespaces Kubernetes architektúrája \cite {kube-arch}\relax }}{18}{figure.caption.16}%
 \select@language {magyar} \addvspace {10\p@ }
-\select@language {magyar} \contentsline {figure}{\numberline {3.1.}{\ignorespaces Yuneec Mantis Q \cite {mantisq}\relax }}{14}{figure.caption.23}%
-\select@language {magyar} \contentsline {figure}{\numberline {3.2.}{\ignorespaces PX4 kommunikációja Mavlink protokollal \cite {px4dev}\relax }}{15}{figure.caption.24}%
-\select@language {magyar} \contentsline {figure}{\numberline {3.3.}{\ignorespaces Gazebo kamerás drón modell\relax }}{16}{figure.caption.25}%
-\select@language {magyar} \contentsline {figure}{\numberline {3.4.}{\ignorespaces Az együttes működés kommunikációja Mavros node-on keresztül\relax }}{18}{figure.caption.28}%
+\select@language {magyar} \contentsline {figure}{\numberline {3.1.}{\ignorespaces Yuneec Mantis Q \cite {mantisq}\relax }}{20}{figure.caption.26}%
+\select@language {magyar} \contentsline {figure}{\numberline {3.2.}{\ignorespaces PX4 kommunikációja Mavlink protokollal \cite {px4dev}\relax }}{21}{figure.caption.27}%
+\select@language {magyar} \contentsline {figure}{\numberline {3.3.}{\ignorespaces Gazebo kamerás drón modell\relax }}{22}{figure.caption.28}%
+\select@language {magyar} \contentsline {figure}{\numberline {3.4.}{\ignorespaces Az együttes működés kommunikációja Mavros node-on keresztül\relax }}{24}{figure.caption.31}%
 \select@language {magyar} \addvspace {10\p@ }
-\select@language {magyar} \contentsline {figure}{\numberline {4.1.}{\ignorespaces Négy azonos konténerrel drónirányítás\relax }}{19}{figure.caption.29}%
-\select@language {magyar} \contentsline {figure}{\numberline {4.2.}{\ignorespaces Két VM-en több drón irányítása\relax }}{20}{figure.caption.30}%
+\select@language {magyar} \contentsline {figure}{\numberline {4.1.}{\ignorespaces Kész VKE földi rendszer\relax }}{26}{figure.caption.32}%
+\select@language {magyar} \contentsline {figure}{\numberline {4.2.}{\ignorespaces Négy azonos konténerrel drónirányítás\relax }}{27}{figure.caption.33}%
+\select@language {magyar} \contentsline {figure}{\numberline {4.3.}{\ignorespaces Két VM-en több drón irányítása\relax }}{28}{figure.caption.34}%
 \select@language {magyar} \addvspace {10\p@ }
-\select@language {magyar} \contentsline {figure}{\numberline {5.1.}{\ignorespaces Több robot kiszolgálásának felhőből a durva modellje\relax }}{22}{figure.caption.31}%
+\select@language {magyar} \contentsline {figure}{\numberline {5.1.}{\ignorespaces Több robot kiszolgálásának felhőből a durva modellje\relax }}{30}{figure.caption.35}%
+\select@language {magyar} \addvspace {10\p@ }
+\select@language {magyar} \contentsline {figure}{\numberline {6.1.}{\ignorespaces Registry megoldásaim egyedi konténerek esetén\relax }}{34}{figure.caption.39}%
+\select@language {magyar} \addvspace {10\p@ }
+\select@language {magyar} \contentsline {figure}{\numberline {7.1.}{\ignorespaces Ingress Service szétválasztása a klaszterben \cite {nodeport}\relax }}{39}{figure.caption.40}%
+\select@language {magyar} \contentsline {figure}{\numberline {7.2.}{\ignorespaces ROS Node csatlakozása Roscore-hoz \cite {rosjoin}\relax }}{40}{figure.caption.41}%
+\select@language {magyar} \contentsline {figure}{\numberline {7.3.}{\ignorespaces LoadBalancer megoldás Kubernetes felhőben\relax }}{41}{figure.caption.42}%
+\select@language {magyar} \contentsline {figure}{\numberline {7.4.}{\ignorespaces Teljes környezet két szimulációval\relax }}{44}{figure.caption.43}%
+\select@language {magyar} \addvspace {10\p@ }
 \select@language {magyar} \addvspace {10\p@ }
 \select@language {magyar} \addvspace {10\p@ }

@@ -9,6 +9,18 @@ I couldn't open auxiliary file include/titlepage.aux
  : \@input{include/titlepage.aux
  :                              }
 I'm skipping whatever remains of this command
+Reallocating 'name_of_file' (item size: 1) to 24 items.
+I couldn't open auxiliary file include/declaration.aux
+---line 25 of file thesis.aux
+ : \@input{include/declaration.aux
+ :                                }
+I'm skipping whatever remains of this command
+Reallocating 'name_of_file' (item size: 1) to 21 items.
+I couldn't open auxiliary file content/abstract.aux
+---line 26 of file thesis.aux
+ : \@input{content/abstract.aux
+ :                             }
+I'm skipping whatever remains of this command
 Reallocating 'name_of_file' (item size: 1) to 10 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
@@ -26,45 +38,45 @@ Warning--empty journal in portforward
 Warning--there's a number but no volume in portforward
 Warning--empty journal in rosjoin
 Warning--there's a number but no volume in rosjoin
-You've used 23 entries,
+You've used 25 entries,
             4991 wiz_defined-function locations,
-            1215 strings with 14528 characters,
-and the built_in function-call counts, 47520 in all, are:
-= -- 8990
-> -- 178
+            1223 strings with 14809 characters,
+and the built_in function-call counts, 50449 in all, are:
+= -- 9521
+> -- 192
 < -- 2
-+ -- 3426
-- -- 121
-* -- 545
-:= -- 1690
-add.period$ -- 50
-call.type$ -- 23
-change.case$ -- 94
++ -- 3622
+- -- 131
+* -- 583
+:= -- 1830
+add.period$ -- 54
+call.type$ -- 25
+change.case$ -- 102
 chr.to.int$ -- 0
-cite$ -- 27
-duplicate$ -- 7238
-empty$ -- 1018
-format.name$ -- 54
-if$ -- 10115
+cite$ -- 29
+duplicate$ -- 7666
+empty$ -- 1106
+format.name$ -- 58
+if$ -- 10742
 int.to.chr$ -- 0
-int.to.str$ -- 23
+int.to.str$ -- 25
 missing$ -- 5
-newline$ -- 211
-num.names$ -- 46
-pop$ -- 1853
+newline$ -- 221
+num.names$ -- 50
+pop$ -- 1964
 preamble$ -- 1
-purify$ -- 72
+purify$ -- 78
 quote$ -- 22
-skip$ -- 389
+skip$ -- 423
 stack$ -- 0
-substring$ -- 5396
-swap$ -- 5270
+substring$ -- 5713
+swap$ -- 5575
 text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 113
+type$ -- 123
 warning$ -- 4
-while$ -- 216
-width$ -- 25
-write$ -- 301
-(There was 1 error message)
+while$ -- 234
+width$ -- 27
+write$ -- 319
+(There were 3 error messages)
