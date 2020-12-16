@@ -41,14 +41,12 @@ class Drone():
         return (existsBetterNode, betterNodeIP)
 
     def getBW(self, node_ip):
-        iperf="iperf -s "+node_ip
+        iperf="iperf3 -f m -c "+node_ip
         (exit_code,output)= self.drone.exec_run(iperf)
         outputStr = output.decode('utf-8')
-        for line in outputStr.split('\n'):
-            if 'window size' in line:
-                bw=line.split(' ')[4]
-                return float(bw)
-        else:
+        try:
+            return float(outputStr.split('\n')[-1].split(' ')[4])
+        except:
             return 1000
 
     def isEnoughBWNode(self, nodes, minBW):

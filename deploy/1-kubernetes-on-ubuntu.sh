@@ -38,7 +38,9 @@ echo
 echo "UPDATE VMS"
 for vm in $vms; do
     multipass exec $vm -- sudo apt-get update
-    #multipass exec $vm -- sudo apt-get upgrade -y
+    multipass exec $vm -- sudo apt-get upgrade -y
+    multipass exec $vm -- sudo apt-get install iperf3 -y
+    multipass exec $vm -- iperf3 -s & 
 done
 
 echo
