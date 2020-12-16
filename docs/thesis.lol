@@ -32,3 +32,4 @@
 \select@language {magyar} \contentsline {lstlisting}{\numberline {8.6}Sávszélesség megállapítása a konténer és a node között}{50}{lstlisting.8.6}%
 \select@language {magyar} \contentsline {lstlisting}{\numberline {8.7}Késleltetés megállapítása a konténer és a node között}{50}{lstlisting.8.7}%
 \select@language {magyar} \contentsline {lstlisting}{\numberline {9.1}Az optimalizáló algoritmus}{51}{lstlisting.9.1}%
+\select@language {magyar} \contentsline {lstlisting}{caption={Node kikapcsolása}, label={lst:close}}{53}{lstlisting.10.-1}%

@@ -158,15 +158,13 @@ A rendszer automatikus működéséhez szükséges megtudnunk az aktuális sávs
 
 \begin{lstlisting}[caption={Sávszélesség megállapítása a konténer és a node között}, label={lst:bw}]
 def getBW(self, node_ip):
-	iperf="iperf -s "+node_ip
+	iperf="iperf3 -f m -c "+node_ip
 	(exit_code,output)= self.drone.exec_run(iperf)
 	outputStr = output.decode('utf-8')
-	for line in outputStr.split('\n'):
-		if 'window size' in line:
-			bw=line.split(' ')[4]
-			return float(bw)
-	else:
-		return 1000
+	try:
+		return float(outputStr.split('\n')[-1].split(' ')[4])
+	except:
+		return 10000
 \end{lstlisting}
 
 \begin{lstlisting}[caption={Késleltetés megállapítása a konténer és a node között}, label={lst:ping}]
@@ -179,7 +177,7 @@ def getConnectionDelay(self, node_ip, n=1):
 			avg=line.split('/')[5]
 			return float(avg)
 	else:
-		return 1000
+		return 10000
 \end{lstlisting}
 
 

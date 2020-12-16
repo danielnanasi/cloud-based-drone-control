@@ -93,7 +93,10 @@
 \select@language {magyar} \contentsline {section}{\numberline {8.4}Mérési adatok kinyerése}{49}{section.8.4}%
 \select@language {magyar} \contentsline {chapter}{\numberline {9}Távoli Robotvezérlés Optimalizálása}{51}{chapter.9}%
 \select@language {magyar} \contentsline {chapter}{\numberline {10}Mérések}{53}{chapter.10}%
-\select@language {magyar} \contentsline {chapter}{Összegzés}{53}{chapter.10}%
-\select@language {magyar} \contentsline {chapter}{\'Abr\'ak jegyz\'eke}{55}{chapter*.45}%
-\select@language {magyar} \contentsline {chapter}{Listák jegyzéke}{56}{chapter*.46}%
-\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\'ek}{56}{chapter*.46}%
+\select@language {magyar} \contentsline {section}{\numberline {10.1}Node váltás ideje}{53}{section.10.1}%
+\select@language {magyar} \contentsline {section}{\numberline {10.2}Terheltségi válaszidő viszonya}{54}{section.10.2}%
+\select@language {magyar} \contentsline {section}{\numberline {10.3}Késleltetés hozadéka 5G közeghozzáférés esetén}{55}{section.10.3}%
+\select@language {magyar} \contentsline {chapter}{Összegzés}{55}{section.10.3}%
+\select@language {magyar} \contentsline {chapter}{\'Abr\'ak jegyz\'eke}{57}{chapter*.47}%
+\select@language {magyar} \contentsline {chapter}{Listák jegyzéke}{58}{chapter*.48}%
+\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\'ek}{58}{chapter*.48}%
