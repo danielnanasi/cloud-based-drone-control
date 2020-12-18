@@ -32,7 +32,7 @@ A tanszéki klaszter természetesen egy teljes kialakított K8S, melyen az erede
 
 \section{Földi scenario felkészítése a menedzselt felhőrendszerbe}
 
-A felhasznált Docker konténereket néhány esetben változtatni kellett, ez csak a \emph{Dockerfile}-ra igaz, a forráskódok az eredeti esetben is működtek nem K3S rendszeren. Mindegyik konténerben volt egy kivétel, amely csak akkor engedte futtathatóvá tenni a konténert, ha az Docker rendszerben fut, ezt a \emph{[/.dockerenv} fájl létezésére vonatkozó feltétel. \\
+A felhasznált Docker konténereket néhány esetben változtatni kellett, ez csak a \emph{Dockerfile}-ra igaz, a forráskódok az eredeti esetben is működtek nem K3S rendszeren. Mindegyik konténerben volt egy kivétel, amely csak akkor engedte futtathatóvá tenni a konténert, ha az Docker rendszerben fut, ezt a \emph{[.dockerenv} fájl létezésére vonatkozó feltétel. \\
 
 \noindent
 A PX4 szimuláció futtatószkripje (\emph{vke\_px4sim/docker-entrypoint.sh}) ugyan tartalmazza a beépített \emph{ROS\_IP} hirdetőcímet, amelyet a hálózati fejlesztés során többször átírtam, sikerült olyan végeredményre jutni, amelyben az eredeti konténer külső interfész IP-je maradhat. \\
