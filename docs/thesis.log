@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (MiKTeX 2.9.7440 64-bit) (preloaded format=xelatex 2020.5.19)  18 DEC 2020 22:28
+This is XeTeX, Version 3.14159265-2.6-0.999992 (MiKTeX 2.9.7440 64-bit) (preloaded format=xelatex 2020.5.19)  18 DEC 2020 22:36
 entering extended mode
 **./thesis.tex
 (thesis.tex
@@ -1378,8 +1378,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 57--59
 
  []
 
-File: figures/meres_iperf.png Graphic file (type bmp)
-<figures/meres_iperf.png>
+File: figures/meres_iperf_inv.png Graphic file (type bmp)
+<figures/meres_iperf_inv.png>
 [54]
 Missing character: There is no é in font cmmi10!
 Missing character: There is no é in font cmmi10!
@@ -1532,11 +1532,11 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 109.
  ) 
 Here is how much of TeX's memory you used:
  18340 strings out of 414083
- 323749 string characters out of 2898444
+ 323773 string characters out of 2898444
  782336 words of memory out of 3000000
  35651 multiletter control sequences out of 15000+200000
  538172 words of font info for 62 fonts, out of 3000000 for 9000
  1352 hyphenation exceptions out of 8191
- 47i,18n,51p,1667b,1068s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 47i,18n,51p,1666b,1068s stack positions out of 5000i,500n,10000p,200000b,50000s
 
 Output written on thesis.pdf (65 pages).
