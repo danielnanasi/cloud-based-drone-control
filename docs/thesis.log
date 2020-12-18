@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (MiKTeX 2.9.7440 64-bit) (preloaded format=xelatex 2020.5.19)  18 DEC 2020 22:54
+This is XeTeX, Version 3.14159265-2.6-0.999992 (MiKTeX 2.9.7440 64-bit) (preloaded format=xelatex 2020.5.19)  18 DEC 2020 23:10
 entering extended mode
 **./thesis.tex
 (thesis.tex
@@ -1377,9 +1377,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 57--59
 
  []
 
+[54]
 File: figures/meres_iperf_inv.png Graphic file (type bmp)
 <figures/meres_iperf_inv.png>
-[54]
+
 Underfull \hbox (badness 10000) in paragraph at lines 68--69
 
  []
