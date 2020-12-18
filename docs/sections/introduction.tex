@@ -41,14 +41,14 @@ A feladat megvalósított terméke pedig egy valamilyen automatizált felhőrend
 \subsection{Sávszélesség}
 \noindent
 Ezen feltételek mellett felírhatunk pár egyszerű összefüggést egy durva modellre, aminek blokkdiagramja a \ref{fig:dronecommunicationtocloud}. ábrán látható. Tudjuk, hogy lesz egy valamilyen még ki nem választott felhőrendszer, amely biztosan több node-ból fog állni, tehát több fizikai vagy virtuális gép fogja szolgáltatni a felhőrendszer platformját. A node-ok között feltételezzük, hogy nincs sávszélességi korlát. A felhőrendszer szolgáltat valamilyen interface-t amint elérhető az integrált szolgáltatás a drónok számára. Ezen modellen következik, hogy a hálózati interface és a tényleges integrált applikáció közötti sávszélességnek nagyobbnak kell lennie, mint a drón felé a sávszélesség összessége:
-\[
+\begin{equation}
 BWc \geq \sum_{i=1}^{n}{BWd_i}
-\]
+\end{equation}
 
 A drónok sávszélességére felírhatjuk azt a feltételt, amely kimondja, hogy bármely drón sávszélességének nagyobbnak kell lennie, mint a videófolyamhoz rendelt minimális sávszélességnek és az irányításhoz megszabott minimális irányíthatósági sávszélességnek.
-\[
+\begin{equation}
 \forall d \in D: BW_d \geq BWV_{min} + BWC_{min}
-\]
+\end{equation}
 Ahol $BWV_{min}$ a videó minimális sávszélessége, $BMC_{min}$ a kontrollerhez rendelt minimális sávszélesség, $BW_d$ az adott drón és a felhő közötti sávszélesség, $D$ pedig a drónok halmaza.
 
 \begin{figure}

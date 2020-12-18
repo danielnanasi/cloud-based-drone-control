@@ -18,7 +18,7 @@ Valamennyi $R$ drón valamilyen $\lambda$ [kérés/s] intenzitással fordul a fe
 Feltételezhetjük, hogy nagy $R$ drónszám esetén függetlenül érkeznek a kérések, így modellezhetünk Poission folyamattal a beérkező kéréseket nézve. Tehát ha egy drónnak a kérési intenzitása valamilyen feladatra $\frac{\lambda}{R}$, akkor az összes drónnak $\lambda$.
 Ezt tekinthetjük egy Markov folyamatnak, ahol az infinitezimális generátorból tudunk majd valamilyen sorhossz várhatóértékeket kiszámítani. Mivel nem vesznek el kérések, csupán torlódik a sor, ezért ez egy M/M/1 kiszolgálási modell. \cite{toki}
 Az infinitezimális generátor definíció szerint
-\[ G =
+\begin{equation} G =
 \begin{bmatrix}
 -\lambda & \lambda & 0 & 0 & 0 & 0 & ... \\
 \mu & -(\lambda+\mu) & \lambda & 0 & 0 & 0 & ... \\
@@ -27,7 +27,7 @@ Az infinitezimális generátor definíció szerint
 0 & 0 & 0 & \mu & -(\lambda+\mu) & \lambda & ... \\
 : & : & : & : & : & : & .
 \end{bmatrix}
-\]
+\end{equation}
 Ami annyit mond, hogy a várakozó eszközök sorhossza $\lambda$ intenzitással növekedik egyet, amikor érkezik egy kérés és $\mu$ intenzitással csökken egyet, amikor elvégződik egy kérés.
 
 \section{Várakozási idő várható értéke}
