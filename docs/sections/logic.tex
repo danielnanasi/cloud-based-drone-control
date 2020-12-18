@@ -24,7 +24,7 @@ Amely lehetőségek miatt kifejezetten a Python technológiát választottam azo
 \end{itemize}
 
 \noindent
-A dolgozathoz mellékelt könyvtár \emph{switchingCenter} nevű könyvtárban található a Python projekt implementáció. A könyvtárban található még egy \emph{requiments} felsorolás, mely a használt Python könyvtárakat sorolja fel azzal a verzióval, mellyel teszteltem is. Ezen kiegészítések telepítése a Pip programmal lehetséges az adott környezetben (\ref{lst:pip}. lista).
+A dolgozathoz mellékelt könyvtár \emph{switchingCenter} nevű könyvtárban található a Python projekt implementáció. A könyvtárban található még egy \emph{requiments} felsorolás, mely a használt Python könyvtárakat sorolja fel azzal a verzióval, mellyel teszteltem is. Ezen kiegészítések telepítése a Pip programmal lehetséges az adott környezetben (\ref{lst:pip}. kódrészlet).
 
 \begin{lstlisting}[caption={Python könyvtárak telepítése}, label={lst:pip}]
 pip install - r requiments.txt
@@ -37,7 +37,7 @@ A programhoz tartozó beállításokat egy globális fájlba helyeztem, melyet a
 Nyílt forráskódú, stabil verziójú Kubernetes Python kliens létezik, amelyet felhasználtam a fejlesztés során. \cite{kubpy} Mint a kliens főoldalán is látható, Kubernetes API-t széleskörűen támogatja, így az általam felhasznált Kubernetes API technológiákat is. \\
 
 \noindent
-A jelenlegi környezetben a program felhasználja a Multipass program parancsait a Bash-en keresztül, ami nem túl kifinomult mérnöki kivitelezés, azonban a Multipass-nak még nincs Python kliense, illetve későbbi rendszerek esetén könnyen átfejleszthető másra. A külső program meghívására a \emph{subprocess} modult használtam, mely segítségével kértem le a master VM-ről a K3S tokent és a master IP-jét. Utána a kapott információkból fel tudtam építeni a Kubernetes authentikációt, megadva a Multipass által generált privát kulcsot is (\ref{lst:kubclient}. lista).
+A jelenlegi környezetben a program felhasználja a Multipass program parancsait a Bash-en keresztül, ami nem túl kifinomult mérnöki kivitelezés, azonban a Multipass-nak még nincs Python kliense, illetve későbbi rendszerek esetén könnyen átfejleszthető másra. A külső program meghívására a \emph{subprocess} modult használtam, mely segítségével kértem le a master VM-ről a K3S tokent és a master IP-jét. Utána a kapott információkból fel tudtam építeni a Kubernetes authentikációt, megadva a Multipass által generált privát kulcsot is (\ref{lst:kubclient}. kódrészlet).
 
 \begin{lstlisting}[caption={Kubernetes kliens felépítése}, label={lst:kubclient}]
 aToken= subprocess.check_output(["multipass", "exec", self.config_parser.get('master'), "--", "kubectl describe secret $SECRET_NAME | grep -E '^token' | cut -f2 -d':' | tr -d " ")"]).decode('utf-8')
@@ -56,7 +56,7 @@ self.kApi = client.CoreV1Api(aApiClient)
 A \emph{Docker SDK for Python} segítségemre volt, hogy a Drónokat elérjem és parancsokat adhassak ki a konténeren belül. Az SDK nagyon egyszerű lehetőséget nyújtott kapcsolódni a környezethez, kifejezetten ha a szoftver is ugyanabban a fut. \\
 
 \noindent
-Definiáltam egy Drone osztályt, amely példányosításával egy drónhoz kapcsolódik a program, melyet tárol és fenntartja a kapcsolatot. Az inicializálás a drón száma alapján történik, hasonlóan a korábbiakhoz, az azonosítóból kiszámoljuk a portokat, mely kezdőportokat a konfigfájlból olvasunk ki (\ref{lst:droneconnect}. lista). A konténert a konvencionális nevezéktanon keresztül ismerjük fel (drone-1, drone-2, ...), mely konténer lekérése után bármilyen Docker parancsot végre tudunk hajtani a \emph{self.drone} elnevezésű kliens segítségével.
+Definiáltam egy Drone osztályt, amely példányosításával egy drónhoz kapcsolódik a program, melyet tárol és fenntartja a kapcsolatot. Az inicializálás a drón száma alapján történik, hasonlóan a korábbiakhoz, az azonosítóból kiszámoljuk a portokat, mely kezdőportokat a konfigfájlból olvasunk ki (\ref{lst:droneconnect}. kódrészlet). A konténert a konvencionális nevezéktanon keresztül ismerjük fel (drone-1, drone-2, ...), mely konténer lekérése után bármilyen Docker parancsot végre tudunk hajtani a \emph{self.drone} elnevezésű kliens segítségével.
 
 \begin{lstlisting}[caption={Drón konténeréhez csatlakozás}, label={lst:droneconnect}]
 class Drone():
@@ -71,7 +71,7 @@ class Drone():
 \end{lstlisting}
 
 \subsection{Naplózás}
-Szoftveremben nagyon fontos a naplózás, melyet a \emph{logger} modullal valósítottam meg. A QoS miatt minden egyes tevékenységet, amit a program elvégez nyers időbélyeg formátumban írom ki, hogy méréseket lehessen végezni a tevékenységek között (\ref{lst:logconf}. lista).
+Szoftveremben nagyon fontos a naplózás, melyet a \emph{logger} modullal valósítottam meg. A QoS miatt minden egyes tevékenységet, amit a program elvégez nyers időbélyeg formátumban írom ki, hogy méréseket lehessen végezni a tevékenységek között (\ref{lst:logconf}. kódrészlet).
 
 \begin{lstlisting}[caption={Naplózás beállítása}, label={lst:logconf}]
 logging.basicConfig(filename='switchCenter.log', level=logging.INFO, format='%(asctime)s %(levelname)-8s %(message)s')
@@ -113,7 +113,7 @@ Kiderült, hogy a legoptimálisabb QoS megoldása az lehet, ha minden worker Nod
 A DaemonSet biztosítja, hogy az összes (vagy néhány) Node futtassa a Pod másolatát. Amint  Node-ok hozzáadódnak a klaszterhez, a Podok automatikusan létrejönnek az új Node-okon. Amint a Node-okat eltávolítják, ezeket a Podokat a Kubernetes Garbage-Collectora gyűjti össze. A DaemonSet törlése megtisztítja az általa létrehozott Podokat. Egyszerű esetben minden démontípushoz egy, minden csomópontot lefedő DaemonSet-et használnak. A bonyolultabb beállítás több DaemonSet-et is használhat egyetlen démontípushoz, de különböző jelzőkkel és / vagy különböző memória- és CPU-kérelmekkel a különböző hardvertípusokhoz. \cite{daemonset} \\
 
 \noindent
-A Kubernetes Service API helyett használom a megvalósítandó ötletben a DaemonSet-et a következőképpen (\ref{lst:daemonset}. lista). A konténer indítás és a változók ugyanazok maradtak, mint a Service-es megvalósításban, az \emph{affinity} résszel egészítettem ki a yaml-t. Itt \emph{hostname} alapján szűröm ki a Node-okat, azokon a Node-okon fog elindulni a Roscore, melyek nem tartalmazzák a master nevet.
+A Kubernetes Service API helyett használom a megvalósítandó ötletben a DaemonSet-et a következőképpen (\ref{lst:daemonset}. kódrészlet). A konténer indítás és a változók ugyanazok maradtak, mint a Service-es megvalósításban, az \emph{affinity} résszel egészítettem ki a yaml-t. Itt \emph{hostname} alapján szűröm ki a Node-okat, azokon a Node-okon fog elindulni a Roscore, melyek nem tartalmazzák a master nevet.
 
 \begin{lstlisting}[caption={DaemonSet megvalósítás, Roscore minden worker-en}, label={lst:daemonset}]
 apiVersion: apps/v1
@@ -154,7 +154,7 @@ spec:
 \end{lstlisting}
 
 \section{Mérési adatok kinyerése}
-A rendszer automatikus működéséhez szükséges megtudnunk az aktuális sávszélességet és válaszidőt a drón és a node között. Mivel a szoftver a drón közelében fut, ezért a jelenlegi szimulált rendszerhez implementálom, azonban ezek a függvények változtathatóak lesznek. A program a konténerből tud kiadni alap Linuxos parancsokat, így a sávszélességet iperf programmal (\ref{lst:bw}. lista), a válaszidőt ping programmal (\ref{lst:ping}. lista)  nyertem ki. Ha nem sikerülne elvégezni a program futását, akkor visszatér egy magas értékkel, melyet lemér mégegyszer a váltás előtt. Ping esetén eldönthetjük, a függvény paraméterében, hogy hány ICMP packet átlagát szeretnénk venni.
+A rendszer automatikus működéséhez szükséges megtudnunk az aktuális sávszélességet és válaszidőt a drón és a node között. Mivel a szoftver a drón közelében fut, ezért a jelenlegi szimulált rendszerhez implementálom, azonban ezek a függvények változtathatóak lesznek. A program a konténerből tud kiadni alap Linuxos parancsokat, így a sávszélességet iperf programmal (\ref{lst:bw}. kódrészlet), a válaszidőt ping programmal (\ref{lst:ping}. kódrészlet)  nyertem ki. Ha nem sikerülne elvégezni a program futását, akkor visszatér egy magas értékkel, melyet lemér mégegyszer a váltás előtt. Ping esetén eldönthetjük, a függvény paraméterében, hogy hány ICMP packet átlagát szeretnénk venni.
 
 \begin{lstlisting}[caption={Sávszélesség megállapítása a konténer és a node között}, label={lst:bw}]
 def getBW(self, node_ip):

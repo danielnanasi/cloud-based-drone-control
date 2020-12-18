@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (MiKTeX 2.9.7440 64-bit) (preloaded format=xelatex 2020.5.19)  18 DEC 2020 22:38
+This is XeTeX, Version 3.14159265-2.6-0.999992 (MiKTeX 2.9.7440 64-bit) (preloaded format=xelatex 2020.5.19)  18 DEC 2020 22:54
 entering extended mode
 **./thesis.tex
 (thesis.tex
@@ -1052,14 +1052,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 47--59
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 47--59
-\TU/lmr/m/n/10.95 sa Bash-ben egy-egy parancs ([][]6.1[][]. számú lista), melye
-k paramétereit ter-
+\TU/lmr/m/n/10.95 sa Bash-ben egy-egy parancs ([][]6.1[][]. számú kódrészlet), 
+melyek paramétere-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 47--59
-\TU/lmr/m/n/10.95 mészetesen egy config fájlból olvasok be, amiről még később s
-zó lesz.
+Underfull \hbox (badness 4805) in paragraph at lines 47--59
+\TU/lmr/m/n/10.95 it természetesen egy config fájlból olvasok be, amiről még ké
+sőbb szó lesz.
  []
 
 
@@ -1068,39 +1068,50 @@ Underfull \hbox (badness 10000) in paragraph at lines 47--59
  []
 
 [32]
-Underfull \hbox (badness 1939) in paragraph at lines 60--79
+Underfull \hbox (badness 10000) in paragraph at lines 60--79
+\TU/lmr/m/n/10.95 Frissítés után a master VM-en inicializálható a K3S master mó
+d-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 60--79
+\TU/lmr/m/n/10.95 ban. A parancs eleje azt mutatja, hogy a master nevű VM-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 60--79
+\TU/lmr/m/n/10.95 en hajtjük végre a ”–” utáni parancsokat ([][]6.2[][]. kódrés
+zlet).
+ []
+
+
+Underfull \hbox (badness 1348) in paragraph at lines 60--79
 \TU/lmr/m/n/10.95 Ha ez sikeres, akkor a worker node-okat is inicializálhatjuk,
- amihez két dolog-
+ amihez két dologra
  []
 
 
-Underfull \hbox (badness 1092) in paragraph at lines 60--79
-\TU/lmr/m/n/10.95 ra lesz szükség, a master külső IP-jére, amin keresztül a más
-ik VM tudja elér-
+Underfull \hbox (badness 1132) in paragraph at lines 60--79
+\TU/lmr/m/n/10.95 olvassuk ki, a grep programmal rákeresve a master névre, majd
+ az IP cím for-
  []
 
 
-Underfull \hbox (badness 1701) in paragraph at lines 60--79
-\TU/lmr/m/n/10.95 ni, illetve a K3S egyedi tokenre. A master külső IP-jét a mul
-tipass egyik pa-
+Underfull \hbox (badness 2521) in paragraph at lines 60--79
+\TU/lmr/m/n/10.95 mátumára reguláris kifejezéssel. A tokenhez szimplán kiíratun
+k egy fájlt a cat
  []
 
 
-Underfull \hbox (badness 2359) in paragraph at lines 60--79
-\TU/lmr/m/n/10.95 cím formátumára reguláris kifejezéssel. A tokenhez szimplán k
-iíratunk egy fájlt
+Underfull \hbox (badness 3758) in paragraph at lines 60--79
+\TU/lmr/m/n/10.95 programmal. Ezekkel pedig a master-hez hasonló módon a K3S do
+kumentáci-
  []
 
 
-Underfull \hbox (badness 3407) in paragraph at lines 60--79
-\TU/lmr/m/n/10.95 a cat programmal. Ezekkel pedig a master-hez hasonló módon a 
-K3S doku-
- []
-
-
-Underfull \hbox (badness 1521) in paragraph at lines 60--79
-\TU/lmr/m/n/10.95 mentációban megadott curl programhívással inicializáljuk a sl
-ave-eket. ([][]6.3[][]. lista)
+Underfull \hbox (badness 3098) in paragraph at lines 60--79
+\TU/lmr/m/n/10.95 óban megadott curl programhívással inicializáljuk a slave-eke
+t. ([][]6.3[][]. kódrészlet)
  []
 
 
@@ -1114,21 +1125,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 91--92
  []
 
 
-Underfull \hbox (badness 2189) in paragraph at lines 95--109
- []\TU/lmr/bx/n/10.95 B)[] \TU/lmr/m/n/10.95 Ezután hagytam a felhőbe integrálá
-st, a master node-ra telepítettem Doc-
- []
-
-
-Underfull \hbox (badness 2020) in paragraph at lines 95--109
-\TU/lmr/m/n/10.95 kert és Docker-Compose-t, majd a deploy-oltam a hivatalos old
-alról a registry-
- []
-
-
-Underfull \hbox (badness 1983) in paragraph at lines 95--109
-\TU/lmr/m/n/10.95 t ([][]6.5[][]. lista). A konténerek push-olása pedig szintén
- a master node-ról történt
+Underfull \hbox (badness 1527) in paragraph at lines 95--109
+\TU/lmr/m/n/10.95 részlet). Ez a megoldás működött, azonban nem túl szép és opt
+imális, mivel a
  []
 
 
@@ -1150,47 +1149,47 @@ amely ugyan
  []
 
 
-Underfull \hbox (badness 5592) in paragraph at lines 111--120
+Underfull \hbox (badness 3872) in paragraph at lines 111--120
 \TU/lmr/m/n/10.95 egy konténert biztosít ingyen, egy kis trükkel, mi szerint ug
-yanazt a kon-
+yanazt a konté-
  []
 
 
-Underfull \hbox (badness 5667) in paragraph at lines 111--120
-\TU/lmr/m/n/10.95 ténert töltöm fel 3 különböző taggel, ezt is meg lehet oldani
- ([][]6.7[][]. lista).
+Underfull \hbox (badness 2680) in paragraph at lines 111--120
+\TU/lmr/m/n/10.95 nert töltöm fel 3 különböző taggel, ezt is meg lehet oldani (
+[][]6.7[][]. kódrészlet).
  []
 
 File: figures/registry.png Graphic file (type bmp)
 <figures/registry.png>
 
-Underfull \hbox (badness 3623) in paragraph at lines 128--136
+Underfull \hbox (badness 1137) in paragraph at lines 128--136
 \TU/lmr/m/n/10.95 A Docker Hub privát repository-hoz authentikálni kell az API-
-t, ahhoz hogy
+t, ahhoz hogy el-
  []
 
 
-Underfull \hbox (badness 4859) in paragraph at lines 128--136
-\TU/lmr/m/n/10.95 elérje az adott K8S deployment. Ehhez egy configurációs fájlb
-a kiszerveztem
+Underfull \hbox (badness 3323) in paragraph at lines 128--136
+\TU/lmr/m/n/10.95 érje az adott K8S deployment. Ehhez egy configurációs fájlba 
+kiszerveztem a
  []
 
 
-Underfull \hbox (badness 4353) in paragraph at lines 128--136
-\TU/lmr/m/n/10.95 a hitelesítő adatokat. A szolgáltatást létrehozó deploy szkri
-ptbe pedig beleír-
+Underfull \hbox (badness 3701) in paragraph at lines 128--136
+\TU/lmr/m/n/10.95 hitelesítő adatokat. A szolgáltatást létrehozó deploy szkript
+be pedig beleírtam,
  []
 
 
-Underfull \hbox (badness 3769) in paragraph at lines 128--136
-\TU/lmr/m/n/10.95 tam, hogy használja fel ezt a fájlt és authentikáljon egy \TU
-/lmr/m/it/10.95 regcred \TU/lmr/m/n/10.95 titkon ke-
+Underfull \hbox (badness 4403) in paragraph at lines 128--136
+\TU/lmr/m/n/10.95 hogy használja fel ezt a fájlt és authentikáljon egy \TU/lmr/
+m/it/10.95 regcred \TU/lmr/m/n/10.95 titkon keresztül
  []
 
 
-Underfull \hbox (badness 4429) in paragraph at lines 128--136
-\TU/lmr/m/n/10.95 resztül ([][]6.8[][]. lista). Ezt meg kell adni az API haszná
-latakor is ([][]6.9[][]. lista).
+Underfull \hbox (badness 2343) in paragraph at lines 128--136
+\TU/lmr/m/n/10.95 ([][]6.8[][]. kódrészlet). Ezt meg kell adni az API használat
+akor is ([][]6.9[][]. kódrészlet).
  []
 
 
@@ -1526,13 +1525,13 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 109.
 Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 109.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 109.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 5D4ECE599E2788612C0A03A9D1076EB3;15274.
+(rerunfilecheck)             Checksum: EC0335AA608FB13A9CADD76EA2074E0C;15307.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 109.
  ) 
 Here is how much of TeX's memory you used:
  18340 strings out of 414083
  323773 string characters out of 2898444
- 782336 words of memory out of 3000000
+ 782380 words of memory out of 3000000
  35651 multiletter control sequences out of 15000+200000
  538172 words of font info for 62 fonts, out of 3000000 for 9000
  1352 hyphenation exceptions out of 8191
