@@ -1,4 +1,5 @@
 \chapter{Távoli Robotvezérlés Optimalizálása}
+\label{cha:alg}
 
 Ebben a fejezetben a távoli robotvezérléshez használt algoritmust ismertetem. Az algoritmus célja, hogy a drónok vezérléséhez biztosítsa a QoS feltételeit, amit jelen esetben két paraméterben határozunk meg: sávszélesség és válaszidő. Ennek a két paraméternek a kontrollálásával biztosítható a videó folyam minősége a drón és a Kubernetes Node-ok között. A Kubernetes klaszter worker node-jai (rendelkezésre álló szerverek) erőforrás készletének függvényében a videófeldolgozás és a drón irányítása áthelyezhető (váltható, migrálható) az optimális teljesítmény érdekében. Az algoritmus rendszeresen méri az elérhető erőforrásokat, proaktívan vált a szolgáltatás zökkenőmentes fenntartása érdekében. \\
 
@@ -30,4 +31,7 @@ while(!ALARM):
 	sleep(T)
 \end{lstlisting}
 
-Az algoritmusban használt migrationTrigger boolean változó-t igazra áll, hogyha a az algoritmus váltana egy jobb node-ra, az ALARM változó pedig igazra áll, ha baj van és le kell állítani biztonságosan a drónt. A minLat változóba tárolom a késleltetés minimumát, az actLat-ba pedig az aktuális node késleltetését. Hasonlóan az actBW az aktuális sávszélesség, a bestNode pedig az a node amelyikre vált az algoritmus.
+Az algoritmusban használt migrationTrigger boolean változó-t igazra áll, hogyha a az algoritmus váltana egy jobb node-ra, az ALARM változó pedig igazra áll, ha baj van és le kell állítani biztonságosan a drónt. A minLat változóba tárolom a késleltetés minimumát, az actLat-ba pedig az aktuális node késleltetését. Hasonlóan az actBW az aktuális sávszélesség, a bestNode pedig az a node amelyikre vált az algoritmus. \\
+
+\noindent
+Az algoritmust a Python alapú kapcsolóközpontba implementáltam, amely az ALARM módot a program befejeztével visszatérési értékként jelzi. Tehát a programot olyan intergrált környezetben kell használni, amely kezeli az ALARM állapotot és jelez valamit a drónnak, például a biztonságos leállást.

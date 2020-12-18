@@ -5,7 +5,7 @@
 \select@language {magyar} \contentsline {figure}{\numberline {1.4.}{\ignorespaces Amazon házhozszállítás problémája drónnal \cite {drone-delivery}\relax }}{11}{figure.caption.7}%
 \select@language {magyar} \contentsline {figure}{\numberline {1.5.}{\ignorespaces Lady Gaga 300 drónnal a háttérben a 2017-es Super Bowl döntőjének félideje alatti koncerten \cite {super-bowl-pic}\relax }}{12}{figure.caption.8}%
 \select@language {magyar} \addvspace {10\p@ }
-\select@language {magyar} \contentsline {figure}{\numberline {2.1.}{\ignorespaces Docker Swarm architektúra \cite {docker-swarm}\relax }}{16}{figure.caption.15}%
+\select@language {magyar} \contentsline {figure}{\numberline {2.1.}{\ignorespaces Docker Swarm architektúra \cite {docker-swarm}\relax }}{17}{figure.caption.15}%
 \select@language {magyar} \contentsline {figure}{\numberline {2.2.}{\ignorespaces Kubernetes architektúrája \cite {kube-arch}\relax }}{18}{figure.caption.16}%
 \select@language {magyar} \addvspace {10\p@ }
 \select@language {magyar} \contentsline {figure}{\numberline {3.1.}{\ignorespaces Yuneec Mantis Q \cite {mantisq}\relax }}{20}{figure.caption.26}%
@@ -28,5 +28,6 @@
 \select@language {magyar} \addvspace {10\p@ }
 \select@language {magyar} \addvspace {10\p@ }
 \select@language {magyar} \addvspace {10\p@ }
-\select@language {magyar} \contentsline {figure}{\numberline {10.1.}{\ignorespaces Válaszidő a drónok számának függvényében\relax }}{54}{figure.caption.44}%
+\select@language {magyar} \contentsline {figure}{\numberline {10.1.}{\ignorespaces Válaszidő a drónok számának függvényében\relax }}{55}{figure.caption.44}%
 \select@language {magyar} \contentsline {figure}{\numberline {10.2.}{\ignorespaces Sávszélesség a drónok számának függvényében\relax }}{55}{figure.caption.45}%
+\select@language {magyar} \contentsline {figure}{\numberline {10.3.}{\ignorespaces Kiszolgálási válaszidő a drónflotta méretének függvényében\relax }}{56}{figure.caption.46}%

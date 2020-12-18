@@ -34,10 +34,12 @@ A docker konténereknek 3 féle hálózati interface-ük lehet,
 \end{itemize}
 \paragraphl{Port forward}
 Docker konténerek létrehozásánál megadhatjuk a port átirányítást, így azonos alkalmazások sem akadnak össze.
+\begin{minipage}{\linewidth}
 \begin{lstlisting}[caption={Példa két WordPress szolgáltatás párhuzamos indítására a 80 és 81-es portokon}]
 $ docker run --name wp1 wordpress
 $ docker run --name wp2 -p 80:81 wordpress
 \end{lstlisting}
+\end{minipage}
 \paragraphl{Volume csatolás}
 Alapvetően nehézkes hozzáférni a konténer belső tárhelyéhez, azonban gazda OS alatt tudunk csatolni a szolgáltatáshoz tartozó könyvtárat a host OS fájlrendszeréhez.
 \begin{lstlisting}[caption={Példa volume csatolásához}]
@@ -46,6 +48,7 @@ $ docker run -v /usr/local/mywordpress:/wordpress wordpress
 \paragraphl{Példa docker konténer robotoperációsrendszerhez}
 A robotoperációs rendszerekről később lesz szó, azonban megadok egy példát ilusztrálva, hogyan alakítható egyszerá szolgáltatás docker konténerré, csupán egy Dockerfile nevű fájlra van szükség az applikáció főkönyvtárában (\ref{lst:dockerexample}. számú lista).
 
+\begin{minipage}{\linewidth}
 \begin{lstlisting}[caption={Példa alap robotoperációsrendszer konténerizációjához}, label={lst:dockerexample}]
 FROM ros:melodic-ros-base
 
@@ -60,6 +63,7 @@ RUN /bin/bash -c '. /opt/ros/kinetic/setup.bash; source devel/setup.bash'
 
 CMD ["roslaunch", "bebop_gazebo bebop_moving_helipad.launch"]
 \end{lstlisting}
+\end{minipage}
 A \emph{FROM} parancsal a szülő konténert adom meg, amit DockerHub-ról automatikusan letölt, a \emph{RUN} parancsokkal környezeti programokat telepítek, \emph{COPY} az applikációhoz tartozó fájlokat másolja a konténerbe, \emph{ENV} paranccsal környezeti változót állítok, \emph{WORKDIR} parancs a munkakönyvtár beállítása és a \emph{CMD} utasítás a konténerizáltan futtatandó applikáció megadása.
 
 \section{Docker Compose}

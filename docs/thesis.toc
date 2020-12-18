@@ -26,19 +26,19 @@
 \select@language {magyar} \contentsline {paragraph}{Példa docker konténer robotoperációsrendszerhez}{15}{section*.14}%
 \select@language {magyar} \contentsline {section}{\numberline {2.2}Docker Compose}{16}{section.2.2}%
 \select@language {magyar} \contentsline {section}{\numberline {2.3}Docker Swarm}{16}{section.2.3}%
-\select@language {magyar} \contentsline {section}{\numberline {2.4}Mesos}{17}{section.2.4}%
+\select@language {magyar} \contentsline {section}{\numberline {2.4}Mesos}{16}{section.2.4}%
 \select@language {magyar} \contentsline {section}{\numberline {2.5}Kubernetes}{17}{section.2.5}%
 \select@language {magyar} \contentsline {subsection}{\numberline {2.5.1}Architektúra}{17}{subsection.2.5.1}%
 \select@language {magyar} \contentsline {subsection}{\numberline {2.5.2}Komponensek}{17}{subsection.2.5.2}%
 \select@language {magyar} \contentsline {paragraph}{API server}{17}{section*.17}%
 \select@language {magyar} \contentsline {paragraph}{etcd}{17}{section*.18}%
-\select@language {magyar} \contentsline {paragraph}{Scheduler}{17}{section*.19}%
-\select@language {magyar} \contentsline {paragraph}{Controller}{17}{section*.20}%
+\select@language {magyar} \contentsline {paragraph}{Scheduler}{18}{section*.19}%
+\select@language {magyar} \contentsline {paragraph}{Controller}{18}{section*.20}%
 \select@language {magyar} \contentsline {paragraph}{Container runtime}{18}{section*.21}%
 \select@language {magyar} \contentsline {paragraph}{Kubelet}{18}{section*.22}%
 \select@language {magyar} \contentsline {paragraph}{Kube control}{18}{section*.23}%
 \select@language {magyar} \contentsline {section}{\numberline {2.6}Keretrendszer meghatározása}{18}{section.2.6}%
-\select@language {magyar} \contentsline {paragraph}{Indoklás}{19}{section*.25}%
+\select@language {magyar} \contentsline {paragraph}{Indoklás}{18}{section*.25}%
 \select@language {magyar} \contentsline {chapter}{\numberline {3}Robotvezérlés környezete}{20}{chapter.3}%
 \select@language {magyar} \contentsline {section}{\numberline {3.1}Robotirányítás}{20}{section.3.1}%
 \select@language {magyar} \contentsline {section}{\numberline {3.2}Robot operációs rendszer - ROS}{20}{section.3.2}%
@@ -76,8 +76,8 @@
 \select@language {magyar} \contentsline {subsection}{\numberline {7.3.2}Ingress, szolgálgatások szétválasztása}{39}{subsection.7.3.2}%
 \select@language {magyar} \contentsline {subsection}{\numberline {7.3.3}ROS Port forwarding}{39}{subsection.7.3.3}%
 \select@language {magyar} \contentsline {subsection}{\numberline {7.3.4}LoadBalancer}{40}{subsection.7.3.4}%
-\select@language {magyar} \contentsline {section}{\numberline {7.4}Teljes klaszter létrehozása N drónnal}{41}{section.7.4}%
-\select@language {magyar} \contentsline {subsection}{\numberline {7.4.1}Kauzalitási probléma}{41}{subsection.7.4.1}%
+\select@language {magyar} \contentsline {section}{\numberline {7.4}Teljes klaszter létrehozása N drónnal}{42}{section.7.4}%
+\select@language {magyar} \contentsline {subsection}{\numberline {7.4.1}Kauzalitási probléma}{42}{subsection.7.4.1}%
 \select@language {magyar} \contentsline {section}{\numberline {7.5}Deploy szkriptek}{42}{section.7.5}%
 \select@language {magyar} \contentsline {chapter}{\numberline {8}Drónkapcsoló állomás Kubernetes felhőben}{45}{chapter.8}%
 \select@language {magyar} \contentsline {section}{\numberline {8.1}Felhasznált technológia}{45}{section.8.1}%
@@ -93,10 +93,11 @@
 \select@language {magyar} \contentsline {section}{\numberline {8.4}Mérési adatok kinyerése}{49}{section.8.4}%
 \select@language {magyar} \contentsline {chapter}{\numberline {9}Távoli Robotvezérlés Optimalizálása}{51}{chapter.9}%
 \select@language {magyar} \contentsline {chapter}{\numberline {10}Mérések}{53}{chapter.10}%
-\select@language {magyar} \contentsline {section}{\numberline {10.1}Node váltás ideje}{53}{section.10.1}%
-\select@language {magyar} \contentsline {section}{\numberline {10.2}Terheltségi válaszidő viszonya}{54}{section.10.2}%
-\select@language {magyar} \contentsline {section}{\numberline {10.3}Késleltetés hozadéka 5G közeghozzáférés esetén}{55}{section.10.3}%
-\select@language {magyar} \contentsline {chapter}{Összegzés}{55}{section.10.3}%
-\select@language {magyar} \contentsline {chapter}{\'Abr\'ak jegyz\'eke}{57}{chapter*.47}%
-\select@language {magyar} \contentsline {chapter}{Listák jegyzéke}{58}{chapter*.48}%
-\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\'ek}{58}{chapter*.48}%
+\select@language {magyar} \contentsline {section}{\numberline {10.1}Node váltás ideje meghibásodott Node esetén}{53}{section.10.1}%
+\select@language {magyar} \contentsline {section}{\numberline {10.2}Válaszidő különbség esetén a jobb Node kiválasztása}{54}{section.10.2}%
+\select@language {magyar} \contentsline {section}{\numberline {10.3}Terheltségi válaszidő viszonya}{54}{section.10.3}%
+\select@language {magyar} \contentsline {section}{\numberline {10.4}Késleltetés hozadéka 5G közeghozzáférés esetén}{57}{section.10.4}%
+\select@language {magyar} \contentsline {chapter}{Összegzés}{57}{section.10.4}%
+\select@language {magyar} \contentsline {chapter}{\'Abr\'ak jegyz\'eke}{59}{chapter*.48}%
+\select@language {magyar} \contentsline {chapter}{Listák jegyzéke}{60}{chapter*.49}%
+\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\'ek}{60}{chapter*.49}%

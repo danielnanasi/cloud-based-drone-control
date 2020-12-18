@@ -46,22 +46,27 @@ Egy több node-os klasztert valósítok meg virtualizáció fölött. Virtuális
 
 \noindent
 Tehát írtam egy Bash scriptet, aminek segítségével létrehozok három VM-et és inicializálom rajtuk a K3S klasztert. Multipass VM-ek létrehozása Bash-ben egy-egy parancs (\ref{lst:mlaunch}. számú lista), melyek paramétereit természetesen egy config fájlból olvasok be, amiről még később szó lesz.
+\begin{minipage}{\linewidth}
 \begin{lstlisting}[caption={Multipass VM-ek létrehozása},label={lst:mlaunch}]
 multipass launch --name master --cpus 2 --mem 2G --disk 2G
 for w in "worker-1 worker-2"; do
 	multipass launch --name $slave --cpus 2 --mem 2G --disk 30G
 done
 \end{lstlisting} 
+\end{minipage}
 \noindent
 Létrehozás után a szkript kiadatja az Apt csomagkezelő program \emph{update és upgrade} parancsait, hogy a legfrissebb Ubuntu 20.04 kompatibilis csomagok legyenek a VM-eken. \\
 
 \noindent
 Frissítés után a master VM-en inicializálható a K3S master módban. A parancs eleje azt mutatja, hogy a master nevű VM-en hajtjük végre a "--" utáni parancsokat (\ref{lst:minit}. lista).
+\begin{minipage}{\linewidth}
 \begin{lstlisting}[caption={K3S Master inicializálása},label={lst:minit}]
 multipass exec master -- /bin/bash -c "curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" sh -"
 \end{lstlisting}
+\end{minipage}
 \noindent
 Ha ez sikeres, akkor a worker node-okat is inicializálhatjuk, amihez két dologra lesz szükség, a master külső IP-jére, amin keresztül a másik VM tudja elérni, illetve a K3S egyedi tokenre. A master külső IP-jét a multipass egyik parancsából olvassuk ki, a grep programmal rákeresve a master névre, majd az IP cím formátumára reguláris kifejezéssel. A tokenhez szimplán kiíratunk egy fájlt a cat programmal. Ezekkel pedig a master-hez hasonló módon a K3S dokumentációban megadott curl programhívással inicializáljuk a slave-eket. (\ref{lst:initk3s}. lista)
+\begin{minipage}{\linewidth}
 \begin{lstlisting}[caption={K3S Slave-ek inicializálása},label={lst:initk3s}]
 K3S_TOKEN=$(multipass exec $master sudo cat /var/lib/rancher/k3s/server/node-token)
 MASTER_IP=$(multipass list | grep $master | grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b")
@@ -70,6 +75,7 @@ for slave in $slaves; do
 	multipass exec $slave -- /bin/bash -c "curl -sfL https://get.k3s.io | K3S_TOKEN=${K3S_TOKEN} K3S_URL=https://${MASTER_IP}:6443 sh -"
 done
 \end{lstlisting}
+\end{minipage}
 
 \noindent
 Sikerességet ellenőrizve a szkiptben még kiíratom a master-en a csatlakozott node-okat.
@@ -87,24 +93,30 @@ Elsőnek úgy gondoltam, hogy a legegyszerűbb megoldás az ha a K3S vagy egy Do
 \noindent
 \paragraph{B)}
 Ezután hagytam a felhőbe integrálást, a master node-ra telepítettem Dockert és Docker-Compose-t, majd a deploy-oltam a hivatalos oldalról a registry-t (\ref{lst:registryB}. lista). A konténerek push-olása pedig szintén a master node-ról történt (\ref{lst:localreg} lista). Ez a megoldás működött, azonban nem túl szép és optimális, mivel a master-en sokszor tárolódik egy konténer image (forrásként, Docker image-ként, Docker registry-ben, Kubernetes letöltött image-ként és példányosított konténerként).
+\begin{minipage}{\linewidth}
 \begin{lstlisting}[caption={Docker registry inicializálás a master docker környezetében},label={lst:registryB}]
 multipass exec ${master} -- sudo docker run -d -p 5000:5000 --restart=always --name registry registry:2
 \end{lstlisting}
+\end{minipage}
+\begin{minipage}{\linewidth}
 \begin{lstlisting}[caption={Build és push lokál konténer registry-be},label={lst:localreg}]
 for container in "commander px4sim aruco"; do
 	multipass exec ${master} -- sudo docker build ${drone_control_dir}/vke_${container}/. -t localhost:5000/${container}
 	multipass exec ${master} -- sudo docker push localhost:5000/${container}
 done
 \end{lstlisting}
+\end{minipage}
 
 \paragraph{C)}
 Így inkább talán a legegyszerűbb megoldást választottam, igénybe vettem a hivatalos Docker Hub privát repository szolgáltatását, amely ugyan egy konténert biztosít ingyen, egy kis trükkel, mi szerint ugyanazt a konténert töltöm fel 3 különböző taggel, ezt is meg lehet oldani (\ref{lst:registryC}. lista).
+\begin{minipage}{\linewidth}
 \begin{lstlisting}[caption={Docker Hub build és push},label={lst:registryC}]
 for container in "commander px4sim aruco"; do
 	docker build ${drone_control_dir}/vke_${container}/. -t nanasidnl/drone_control:${container}
 	docker push nanasidnl/drone_control:${container}
 done
 \end{lstlisting}
+\end{minipage}
 
  \begin{figure}
  	\centering
@@ -115,15 +127,19 @@ done
 
 \noindent
 A Docker Hub privát repository-hoz authentikálni kell az API-t, ahhoz hogy elérje az adott K8S deployment. Ehhez egy configurációs fájlba kiszerveztem a hitelesítő adatokat. A szolgáltatást létrehozó deploy szkriptbe pedig beleírtam, hogy használja fel ezt a fájlt és authentikáljon egy \emph{regcred} titkon keresztül (\ref{lst:dhk3s}. lista). Ezt meg kell adni az API használatakor is (\ref{lst:dhsec}. lista).
+\begin{minipage}{\linewidth}
 \begin{lstlisting}[caption={Docker Hub authentikáció K3S-ről},label={lst:dhk3s}]
 source ../config/docker-credentials.sh
 multipass exec ${master} -- kubectl create secret docker-registry regcred --docker-server=${docker_server} --docker-username=${docker_username} --docker-password=${docker_password} --docker-email=${docker_email}
 \end{lstlisting}
+\end{minipage}
 
+\begin{minipage}{\linewidth}
 \begin{lstlisting}[caption={K8S API secret definiálása a konténerekhez},label={lst:dhsec}]
 imagePullSecrets:
 - name: regcred
 \end{lstlisting}
+\end{minipage}
 
 
 \chapter{Drónirányítás mint szolgáltatás a Kubernetes felhőben}
@@ -135,6 +151,7 @@ Elsőként a legegyszerűbb összeállításban szerettem volna megbizonyosodni 
 
 \noindent
 A Pod a legkisebb telepíthető számítási egység, amely létrehozható és kezelhető a Kubernetesben. Egy Pod létrehozása esetén példányosodik az előre definiált konténer vagy konténer csoport, azonban a futás megkezdése után semmilyen felügyeleti szolgáltatásban nem részesül, nem indul újra leállás esetén, nem alkalmazódik rá semmilyen skálázás. Egyszerűen ha csak Pod szinten futtatunk alkalmazásokat, akkor ugyanott járunk mintha Docker Swarm környezetben dolgoznánk. \\
+\begin{minipage}{\linewidth}
 \begin{lstlisting}[caption={Példa egy Pod-ra a négyből},label={lst:1pod4}]
 apiVersion: v1
 kind: Pod
@@ -155,6 +172,7 @@ spec:
 	imagePullSecrets:
 	-	name: regcred
 \end{lstlisting}
+\end{minipage}
 
 \noindent
 Jelen négy Podos megvalósításban a belső hálózati problémák nem merültek fel, hiszen a Pod neve hostname-ként is funkcionál, így egymás között könnyedén el tudták érni egymást az alkalmazások. Ez egy működő verzió volt, azonban túl egyszerű. A drón szimulációt nem a felhőben képzeljük el, hiszen a fizikai drón sem a felhőben fog futni.
@@ -163,6 +181,7 @@ Jelen négy Podos megvalósításban a belső hálózati problémák nem merült
 
 Ahhoz, hogy a Kubernetes szolgáltatásait érdemben igénybe tudjuk venni valamilyen magasabb szintű API-t kell használnunk. Ezért megnézzük a Deploymentet és a Service-t. Utóbbi arra szolgál, hogy a szolgáltatásunk megfelelő külső interface-el rendelkezhessen, bármely mögöttes konténerkonstrukcióval, amely integritását a Deployment biztosítja. Mindegyik Pod megkapja a saját IP-címét, azonban egy Deployment során az egy pillanatban futó Podok halmaza eltérhet az adott alkalmazást egy időpillanattal később futtató Podok halmazától. A nem natív alkalmazások esetében a Kubernetes lehetőséget kínál hálózati port vagy LoadBalancer elhelyezésére az alkalmazás és a háttéralkalmazások között. \cite{kservice} \\
 
+\begin{minipage}{\linewidth}
 \begin{lstlisting}[caption={Példa 4 konténeres deployment megoldásra},label={lst:4deploy}]
 apiVersion: apps/v1
 kind: Deployment
@@ -193,10 +212,12 @@ spec:
 	imagePullSecrets:
 	-	name: regcred
 \end{lstlisting}
+\end{minipage}
 
 \noindent
 Elsőnek a 4 podos verzióból készítettem egy Deploymentet (\ref{lst:4deploy}. lista), amely már egy Pod-ként definiálható, azonban érvényesülni fognak rá a Kubernetes integritás szabályai. A Roscore konténert éri el az összes, de Pod-on belüli kommunikáció a legkönnyebb, hiszen egy Pod egy lokális hálózatnak szármoztatható le, így a konténerek \emph{localhost}-ra címezve tudnak kommunikálni egymással, mintha virtuális környezetben lennének. Külső interfész 2 van, a Gazebo szimuláció és az irányító dashboard. \\
 
+\begin{minipage}{\linewidth}
 \begin{lstlisting}[caption={Példa 4 konténeres megoldás service kivezetésére},label={lst:4service}]
 apiVersion: apps/v1
 kind: Service
@@ -211,6 +232,7 @@ spec:
 		targetPort: 10001
 		name: gazebo
 \end{lstlisting}
+\end{minipage}
 
 \noindent
 A külső interface-ek kapcsán jön képbe a Service API, míg minden belső kommunikációt le tud kezelni a Deployment, ahhoz hogy ezeket a külső interface-eket elérjük kell definiálnunk egy Service-t a Deployment fölé (\ref{lst:4service}. lista), amely a Deployment selectorán keresztül kapcsolódik hozzá és a definiált portokhoz rendel egy külső portot. Ez a külső port valjában csak a Kubernetes rendszeren definiált flannel hálózatról elérhető. Tehát más a rendszeren futó alkalmazás el fogja tudni érni, de kívülről nem. Márpedig a fizikai drón irányításra tervezünk, így következő lépésként a befelé való kommunikáció megvalósíthatósági technológiáit fogjuk megvizsgálni.
@@ -224,6 +246,7 @@ A NodePort szolgáltatás a legprimitívebb módja a külső forgalom közvetlen
 \noindent
 Ezzel a megoldással meghatározhatjuk, hogy a drón kívülről a Master külső IP-jén érjen el minden szükséges alkalmazást, illetve a drónt irányító személy is érje el a Dashboard-ot. A probléma a NodePort-tal, hogy más porton nem tud kommunikálni, így a Roscore véletlenszerűen generált portja nem lesz elérhető kívülről.
 
+\begin{minipage}{\linewidth}
 \begin{lstlisting}[caption={Service kiegészítése NodePort-okkal},label={lst:nodeport}]
 apiVersion: v1
 kind: Service
@@ -241,6 +264,7 @@ spec:
 selector:
 	app: drone-hq
 \end{lstlisting}
+\end{minipage}
 
 \subsection{Ingress, szolgálgatások szétválasztása}
 Fontos megemlíteni az Ingress-t is, hiszen több alkalmazásban gondolkozunk, mivel lesz két konténerünk a felhőben amelyből egy példányt szeretnénk és a Roscore-t egészíti ki, ezt neveztem \emph{drone-hq}-nak, ez tartalmazza az aruco kódolvasót és az irányítót. A másik pedig a Roscore, amiből szeretnénk backup futó szolgáltatást. Ha hosszútávú szolgáltatást szeretnénk alakítani vagy továbbfejleszteni, esetleg publikus felhőben, akkor mindenképpen érdemes az Ingress-t használni, mivel domain-eket, subdomain-eket és útvonalakat rendelhetünk a különböző szolgáltatásunk felé (\ref{fig:ingress}. ábra). Így ha publikus felhőben gondolkoznánk, akkor a roscore backup-okat ki lehetne vezetni különböző elérési címekre, illetve változtathatnánk a címek mögöttes elérését, ha szükséges.
@@ -272,6 +296,7 @@ echo 30000-32767 > /proc/sys/net/ipv4/ip_local_reserved_ports
 \subsection{LoadBalancer}
 A valódi megoldást a LoadBalancer fogja nyújtani, ami egy standard megoldás arra, hogy egy teljes szolgáltatást kiirányítsunk a klaszterből, a teljes port intervallumon, amelyet a Roscore generálhat. Ez a port az egyik Node-on lesz elérhető, amelyiken az adott Pod fut. A LoadBalancert használhatjuk NodePort-tal is, ami a mögöttes alkalmazásunknak megfelel, hiszen onnan csak egy konstans portra van szükségünk, hogy a felhasználó elérhesse az irányító felületet. Tehát a LoadBalancer segít abban, hogy az elválasztott Roscore szolgáltatás egyedi Node elérésével legyen elérhető, továbbá lehetővéteszi, hogy különböző drónok Roscore-ja ugyanazon a Node-on fussanak és legyenek elérhetőek egymás mellett. A magok elsőkénti elérése inkrementális sorrendben fog történni az alapértelmezett porttól, a további kommunikáció pedig a kisorsolt egyedi portokon (\ref{fig:loadbalancer}. ábra). \\
 
+\begin{minipage}{\linewidth}
 \begin{lstlisting}[caption={Roscore Service specifikációja inkrementális változókkal}, label={lst:kubeload}]
 spec:
 	hostname: roscore-$(DRONE_IDENTIFIER)
@@ -288,6 +313,7 @@ spec:
 		args: ["roscore", "-p", "$(MAVLINK_PORT)"]
 	hostNetwork: true
 \end{lstlisting}
+\end{minipage}
 
 \noindent
 A K8S megvalósításhoz a szolgáltatás yaml fájlt kell módosítanunk az adott Service-hez (\ref{lst:kubeload}. lista). Automatikusan deployoló szkriptekkel dolgoztam, így a yaml fájlokban megtalálható \emph{\$(VARIABLE)} formátúmú változókat a klaszterhez való hozzáadás előtt adom meg. A \emph{DRONE\_IDENTIFIER} a drón azonosítója, egytől indulunk, ez alapján számoljuk ki a pontos portokat. A \emph{ROS\_IP} a konténer belső változója, amely a ROS Node-ok számára hirdetendő kapcsolattartó IP címet adja meg, a fájlban látható módon kivezettem, hogy a Kubernetes status.podIP változója legyen, tehát a Pod külső IP címe. A \emph{ROS\_MASTER\_URI} pedig az a HTTP cím melyen kapcsolódni tud a ROS Node a core-hoz. A konténert nem hagyományos módon indítjuk, hanem a kiválasztott \emph{MAVLINK\_PORT} hirdető porton, melyet deploy során fog megkapni. \\
@@ -300,7 +326,7 @@ A K8S megvalósításhoz a szolgáltatás yaml fájlt kell módosítanunk az ado
 \end{figure}
 
 \noindent
-Ennél a pontnál érzékelődik a K3S hiányossága, ugyanis a K8S-hez képest nem tartalmazza a Traefik modult, ami a LoadBalancer-hez szükséges. Így a K3S-t installáló szkriptet kiegészítettem a Traefik pod-ként való hozzáadásával a klaszterhez (\ref{lst:traefik}. lista).
+Ennél a pontnál vettem észre először a K3S hiányosságát, ugyanis a K8S alapból tartalmazza a Traefik modult, amely egy Ingress Controller-rel egybeépített LoadBalancer megvalósítás. A LoadBalancer használatához pedig szükséges hozzáadnunk utólag ezt a modult klaszterhez. Így a K3S-t installáló szkriptet kiegészítettem a Traefik pod-ként való hozzáadásával a klaszterhez (\ref{lst:traefik}. lista).
 
 \begin{lstlisting}[caption={Traefik hozzáadása a klaszterhez}, label={lst:traefik}]
 multipass exec $master -- sudo kubectl apply -f /var/lib/rancher/k3s/server/manifests/traefik.yaml
@@ -332,6 +358,7 @@ Az előző felsorolásból kimaradt egy nulladik szkript, amely arra szolgál, h
 \noindent
 A megoldásom két sablonfájlt tartalmaz a forrás \emph{kubernetes} könyvtárában, \emph{kube-roscore.yml} és \emph{kube-drone-hq.yml}. Mindkét fájl tartalmaz környezeti változókat, melyek értékét az adott drón azonosítószámában találhatunk ki. Ugyan a környezeti változókat tudná kezelni a Kubernetes API, a Multipass rendszeren keresztül viszont ha létrehozzuk az adott Service-t, akkor a master környezeti változóit használná fel, amit a Multipass rendszerén keresztül nem tudunk beállítani. Így ezekből a yaml fájlokból létrehoz a szkript annyit amennyi drón szerepel a konfigurációban. Ezután a Linuxos sed program segítségével cseréljük ki a környezeti változókat Bash változó értékekre. Ahhoz, hogy a gazdagép fájlrendszeréből fel tudja használni a virtuális master a yaml fájlt, a Multipass segítségével mount-olom a könyvtárat a végrehajtás előtt (példa: \ref{lst:script}. lista). A példában az látszik, hogy a mount parancs után információkat gyűjtünk, a konfigurációból szármozik a Roscore node neve, ami kap egy címkét, majd ez alapján megkeressük a Multipass listázásával a külső IP-jét, hasonlóan a master-nek. Ez után minden drónra elvégezvén (for cikusban), kiszámítjuk az adott drón Mavlink csatlakozási portját, lemásoljuk a sablonfájlt és a már említett környezeti változókat kicseréljük benne, végül a \emph{kubectl apply} paranccsal elindítjuk a klaszteren. \\
 
+\begin{minipage}{\linewidth}
 \begin{lstlisting}[caption={Roscore információk összegyűjtése és deploy},label={lst:script}]
 multipass mount ${work_dir} ${master}
 multipass exec $master -- kubectl label nodes ${ROSCORE_NODE} dedicated=roscore
@@ -345,10 +372,12 @@ for i in $(seq 1 ${NUMBER_OF_DRONES}); do
 	multipass exec ${master} -- sudo kubectl apply -f ${service_dir}/kube-roscore-$i.yml
 done
 \end{lstlisting}
+\end{minipage}
 
 \noindent
 A Roscore deploy szkriptjéhez nagyon hasonló a drónokat indító szkript és a Drone-HQ-t indíti szkript. A drónok indításánál Docker megoldást alkalmazok a külső környezetben, ahol hasonlóan szármoznak le az adott információk, a szimuláció külső portja is hasonlóan inkrementális a Mavlink porthoz (\ref{lst:dronedeploy}. lista). A Roscore címét a master-en keresztül kapjuk meg, a \emph{kubectl get pods - wide} parancs standard kimenetéből kiolvasva grep programmal, először az elnevezett Service nevére szűrve, utána az IP formátumra. A drón indítása Docker paranccsal történik, ahol megadjuk a környezeti változókat, melyeket alapján el fogja érni az adott Roscore-t, illetve a dashboard-ot átirányítjuk a 10000-res portról inkrementálisan, hogy akármennyi drónt lehessen irányítani.
 
+\begin{minipage}{\linewidth}
 \begin{lstlisting}[caption={Drónok indítása külső Docker környezetben}, label={lst:dronedeploy}]
 for i in $(seq 1 ${NUMBER_OF_DRONES}); do
 	ROSCORE_IP=$(multipass exec $master -- kubectl get pods -o wide | grep roscore-$i | tail -n 1 | grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b")
@@ -358,6 +387,7 @@ for i in $(seq 1 ${NUMBER_OF_DRONES}); do
 	docker run --name drone-$i -e ROS_IP=${ROSCORE_IP} -e ROS_MASTER_URI=http://${ROSCORE_IP}:${MAVLINK_PORT} -p ${SIMULATION_PORT}:10000 -d nanasidnl/drone_control:px4sim
 done
 \end{lstlisting}
+\end{minipage}
 
 \noindent
 Egy teljesen felépített két drónos rendszer a \ref{fig:full2drone}. ábrán látszik. Az egy fizikai gépes környezetben a három Multipass VM-en a K3S rendszer látható, mellette ugyanabban a környezetben a Docker, amin keresztül a két szimuláció fut. A K3S klaszteren belül a három Node-on öt Pod-ot láthatunk, a Traefik alkalmazást, ami a Roscore LoadBalancer-e miatt szükséges, illetve a két-két drón kiszolgáló Pod-ot. A szimuláció konténerei a Multipass külső IP címein a hozzájuk tartozó porton érik el a Roscore-t. Az irányító lehet az adott környezetben, de akár a hálózaton más fizikai környezetben is, csak el kell érnie az alkalmazásokat az adott portokon.
