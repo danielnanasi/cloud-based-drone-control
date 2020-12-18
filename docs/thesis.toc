@@ -96,8 +96,8 @@
 \select@language {magyar} \contentsline {section}{\numberline {10.1}Node váltás ideje meghibásodott Node esetén}{53}{section.10.1}%
 \select@language {magyar} \contentsline {section}{\numberline {10.2}Válaszidő különbség esetén a jobb Node kiválasztása}{54}{section.10.2}%
 \select@language {magyar} \contentsline {section}{\numberline {10.3}Terheltségi válaszidő viszonya}{54}{section.10.3}%
-\select@language {magyar} \contentsline {section}{\numberline {10.4}Késleltetés hozadéka 5G közeghozzáférés esetén}{57}{section.10.4}%
-\select@language {magyar} \contentsline {chapter}{Összegzés}{57}{section.10.4}%
-\select@language {magyar} \contentsline {chapter}{\'Abr\'ak jegyz\'eke}{59}{chapter*.48}%
-\select@language {magyar} \contentsline {chapter}{Listák jegyzéke}{60}{chapter*.49}%
-\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\'ek}{60}{chapter*.49}%
+\select@language {magyar} \contentsline {section}{\numberline {10.4}Késleltetés hozadéka 5G közeghozzáférés esetén}{58}{section.10.4}%
+\select@language {magyar} \contentsline {chapter}{Összegzés}{58}{section.10.4}%
+\select@language {magyar} \contentsline {chapter}{\'Abr\'ak jegyz\'eke}{60}{chapter*.48}%
+\select@language {magyar} \contentsline {chapter}{Listák jegyzéke}{61}{chapter*.49}%
+\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\'ek}{61}{chapter*.49}%

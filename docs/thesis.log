@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (MiKTeX 2.9.7440 64-bit) (preloaded format=xelatex 2020.5.19)  18 DEC 2020 19:23
+This is XeTeX, Version 3.14159265-2.6-0.999992 (MiKTeX 2.9.7440 64-bit) (preloaded format=xelatex 2020.5.19)  18 DEC 2020 20:29
 entering extended mode
 **./thesis.tex
 (thesis.tex
@@ -1378,34 +1378,34 @@ Underfull \hbox (badness 10000) in paragraph at lines 57--59
 
  []
 
-File: figures/meres_iperf.png Graphic file (type bmp)
-<figures/meres_iperf.png>
-[54] [55]
+File: figures/meres_iperf_inv.png Graphic file (type bmp)
+<figures/meres_iperf_inv.png>
+[54]
 Underfull \hbox (badness 10000) in paragraph at lines 68--69
 
  []
 
 File: figures/meres_ros.png Graphic file (type bmp)
 <figures/meres_ros.png>
-[56]
+[55] [56] [57]
 Underfull \hbox (badness 10000) in paragraph at lines 81--82
 
  []
 
-) (sections/summary.tex [57]) [58
+) (sections/summary.tex [58]) [59
 
 ] (thesis.lof)
 \tf@lof=\write5
 \openout5 = `thesis.lof'.
 
- [59
+ [60
 
 ] (thesis.lol)
 \tf@lol=\write6
 \openout6 = `thesis.lol'.
 
  (thesis.bbl
-[60
+[61
 
 ]
 Underfull \hbox (badness 3323) in paragraph at lines 97--100
@@ -1474,7 +1474,7 @@ Underfull \hbox (badness 2012) in paragraph at lines 163--167
  [] [] [] [][][][][][][][][][] [] [][] [] [][][][] []
  []
 
-[61
+[62
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 185--189
@@ -1517,7 +1517,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 234--238
 \openout7 = `thesis.thm'.
 
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 109.
- [62]
+ [63]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 109.
  (thesis.aux (include/titlepage.aux) (include/declaration.aux)
 (content/abstract.aux))
@@ -1529,11 +1529,11 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 109.
  ) 
 Here is how much of TeX's memory you used:
  18340 strings out of 414083
- 323701 string characters out of 2898444
- 782324 words of memory out of 3000000
+ 323725 string characters out of 2898444
+ 782336 words of memory out of 3000000
  35651 multiletter control sequences out of 15000+200000
  538172 words of font info for 62 fonts, out of 3000000 for 9000
  1352 hyphenation exceptions out of 8191
  47i,18n,51p,1620b,1068s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on thesis.pdf (64 pages).
+Output written on thesis.pdf (65 pages).
