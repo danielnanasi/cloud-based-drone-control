@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (MiKTeX 2.9.7440 64-bit) (preloaded format=xelatex 2020.5.19)  19 DEC 2020 20:06
+This is XeTeX, Version 3.14159265-2.6-0.999992 (MiKTeX 2.9.7440 64-bit) (preloaded format=xelatex 2020.5.19)  19 DEC 2020 21:14
 entering extended mode
 **./thesis.tex
 (thesis.tex
@@ -1400,11 +1400,15 @@ Underfull \hbox (badness 10000) in paragraph at lines 81--82
 ]
 \openout2 = `content/acknowledgement.aux'.
 
- (content/acknowledgement.tex) [60
+ (content/acknowledgement.tex
+Underfull \hbox (badness 10000) in paragraph at lines 5--6
+
+ []
+
+) [60
 
 
-]
-(thesis.lof)
+] (thesis.lof)
 \tf@lof=\write5
 \openout5 = `thesis.lof'.
 
