@@ -6,14 +6,14 @@
 \select@language {magyar} \contentsline {lstlisting}{\numberline {3.1}10 optikai adatfolyamos drón szimulálása Gazebo-val}{22}{lstlisting.3.1}%
 \select@language {magyar} \contentsline {lstlisting}{\numberline {3.2}Lokális PX4 szimuláció ROS-on keresztül Mavlink-el összekötve}{23}{lstlisting.3.2}%
 \select@language {magyar} \contentsline {lstlisting}{\numberline {4.1}Azonos konténerek indítása négy különböző feladattal és az X szerveren való kommunikációt megvalósítva}{26}{lstlisting.4.1}%
-\select@language {magyar} \contentsline {lstlisting}{\numberline {6.1}Multipass VM-ek létrehozása}{32}{lstlisting.6.1}%
+\select@language {magyar} \contentsline {lstlisting}{\numberline {6.1}Multipass VM-ek létrehozása}{33}{lstlisting.6.1}%
 \select@language {magyar} \contentsline {lstlisting}{\numberline {6.2}K3S Master inicializálása}{33}{lstlisting.6.2}%
 \select@language {magyar} \contentsline {lstlisting}{\numberline {6.3}K3S Slave-ek inicializálása}{33}{lstlisting.6.3}%
 \select@language {magyar} \contentsline {lstlisting}{\numberline {6.4}Node-ok lekérdezése}{33}{lstlisting.6.4}%
 \select@language {magyar} \contentsline {lstlisting}{\numberline {6.5}Docker registry inicializálás a master docker környezetében}{34}{lstlisting.6.5}%
 \select@language {magyar} \contentsline {lstlisting}{\numberline {6.6}Build és push lokál konténer registry-be}{34}{lstlisting.6.6}%
 \select@language {magyar} \contentsline {lstlisting}{\numberline {6.7}Docker Hub build és push}{34}{lstlisting.6.7}%
-\select@language {magyar} \contentsline {lstlisting}{\numberline {6.8}Docker Hub authentikáció K3S-ről}{34}{lstlisting.6.8}%
+\select@language {magyar} \contentsline {lstlisting}{\numberline {6.8}Docker Hub authentikáció K3S-ről}{35}{lstlisting.6.8}%
 \select@language {magyar} \contentsline {lstlisting}{\numberline {6.9}K8S API secret definiálása a konténerekhez}{35}{lstlisting.6.9}%
 \select@language {magyar} \contentsline {lstlisting}{\numberline {7.1}Példa egy Pod-ra a négyből}{36}{lstlisting.7.1}%
 \select@language {magyar} \contentsline {lstlisting}{\numberline {7.2}Példa 4 konténeres deployment megoldásra}{37}{lstlisting.7.2}%

@@ -10,7 +10,7 @@ Olyan technológiában kell megkezdeni a fejlesztést, amely lehetőséget bizto
 \noindent
 Mivel egy QoS megvalósításáról beszélünk, amelynek paraméterei változhatnak a szükségletek függvényében, ezért az implementáció részeként csak a logikai működést szükséges megvalósítani, az egyes kritériumok változtathatóak. A bevezetőben szó esett különböző jövőbeli automatikus drónfelhasználásnak, melyben volt példa élő szórakoztatóipari fellépésre és mezőgazdasági munkára is. Ezen iparágakban teljesen más QoS feltételeket szabnak meg. Míg egy élő fellépésben nagyon hamar belerondíthat a show-ba pár késleltetésből félreszinkronizált drón, addig a mezőgazdaságban inkább hosszú idejű stabilitásnak kellhet megfelelni. Ezért az algoritmus megalkotásánál paraméterekben fogunk dolgozni, melyeket a felhasználás definiál.
 
-\subsection{Python}
+\subsection{Vezérlést megvalósító programozási környezet}
 A szakmai előítéleteim alapján már sejtettem, hogy a Python lesz az a nyelv, amelynek a legtöbb támogatása van a natív felhőtechnológiákhoz. A Python egy értelmezett, magas szintű és általános célú programozási nyelv. A Python tervezési filozófiája hangsúlyozza a kód olvashatóságát a jelentős szóköz jelentős felhasználásával. Nyelvi konstrukcióinak és objektum-orientált megközelítésének célja, hogy segítsen a programozóknak világos, logikus kódot írni kis és nagy projektekhez. A Python dinamikusan be van írva és automatikus garbage-collector-ral működik. Támogatja a több programozási paradigmát, beleértve a strukturált (különösen az eljárási), az objektum-orientált és a funkcionális programozást. A Python-t átfogó szabványos könyvtárának köszönhetően gyakran "csomagokkal együtt" használt nyelvként írják le. \cite{pwiki} \\
 
 \noindent
@@ -106,7 +106,7 @@ Nézzünk meg egy másik megközelítést, amikor meg szeretnénk spórolni $t_a
 \subsection{Széleskörű rendelkezésre állás}
 A legtöbb időt jelentő $t_d$ deploy időt, ami méréseim szerint 2 és 5 másodperc között van, akkor iktathatjuk ki, hogyha nem csak az aktív Node-on áll rendelkezésre az adott drónnak a Roscore, hanem legalább egy backup Node-on. Ezzel a verzióval ugyan átlagosan több erőforrást foglalunk, azonban optimalizálhatjuk a váltási időt, ami javít a QoS-en.
 
-\section{Megvalósítás: DaemonSet}
+\section{Vezérlési podok telepítése}
 Kiderült, hogy a legoptimálisabb QoS megoldása az lehet, ha minden worker Node-on rendelkezésre áll a Roscore minden drón számára. Ezt a DaemonSet Kubernetes API-val lehet megvalósítani. \\
 
 \noindent

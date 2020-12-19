@@ -1,4 +1,4 @@
-\chapter{Kialakított Kubernetes alapú felhő}
+\chapter{A vezérlést futtató felhő infrastruktúra}
 \label{cha:kubernetes}
 
 Ebben a fejezetben rátérünk a felhőrendszer tényleges megvalósítására. A \ref{cha:cloud}. fejezetben megnéztük milyen lehetséges mai technológiák közül választhatunk, realizálhattuk, hogy a Kubernetes tűnik a legjobb választásnak ilyen célra, most pedig ezen a vonalon haladunk tovább. Megnézzük Kubernetesen belül milyen lehetőségek vannak, mik a probléma alapfeltételei és hogyan lehet integrálni a \ref{cha:fizikai}. fejezetben bemutatott konténerkollaborációt egy ilyen Kubernetes felhőbe.
@@ -40,7 +40,7 @@ A PX4 szimuláció futtatószkripje (\emph{vke\_px4sim/docker-entrypoint.sh}) ug
 \noindent
 Az előkészített Roscore konténert a végleges verzióban nem használom, hiszen egyszerűbb volt az eredeti \emph{alpineros/alpine-ros:noetic-ros-core} publikus image-t megadni, amit a K8S API-ban tudtam testreszabni indított portszámmal és környezeti változókkal.
 
-\section{Kubernetes virtualiztált telepítése Multipass VM-eken}
+\section{Kubernetes virtualiztált telepítése}
 
 Egy több node-os klasztert valósítok meg virtualizáció fölött. Virtuális gépek létrehozására rengeteg program létezik, én a Multipass-t választottam. A Multipass egy letisztult VM menedzser Linux-ra, Windows-ra és MacOS-re, amellyel egy parancs indítani és törölni különálló VM-eket bármely CloudInit-et tartalmazó image-ről. Azért választottam ezt, mert könnyedén szkriptelhető a Klaszter törlése és felhúzása, mivel a fejlesztés során sokszor szeretném az alapbeállításról indítani a klasztert. \\
 
@@ -83,7 +83,7 @@ Sikerességet ellenőrizve a szkiptben még kiíratom a master-en a csatlakozott
 multipass exec $master kubectl get nodes
 \end{lstlisting}
 
-\section{Konténer registry, lokális és központi}
+\section{Konténer képfájlok tárolása}
 Docker-Compose esetén a konténer kollaborációs megvalósításhoz elég volt definiálni a könyvtárt, mely forrása és konfigurációja alapján meg kell építeni az image-et és a lokális Docker környezet eltárolta ezen image-eket, amit fel is tudott használni az adott környezetben. Ez természetesnek tűnt, azonban a Kubernetes alapvetően nem tartalmaz ilyen fejlesztéseket, csakis lefordított képfájlokat tud publikus vagy privát registry-ből letölteni. A Docker Registry egy olyan verziókezelő, amely felépített konténer képfájlokat tárol és állít rendelkezésre aktívan használó rendszereknek, mint például a Kubernetes vagy Docker Swarm. Három megoldást próbáltam ki, hogy az egyedi lemezképeket használhassam a felhőmben (\ref{fig:registry}. ábra).\\
 
 \noindent
@@ -352,7 +352,7 @@ Ezen feltételekből következik a kialakított sorrendem, hogy hogyan inicializ
 \end{enumerate}
 A lépések végrehajtása után feláll a teljes rendszer és a drónok irányíthatóak a master külső IP-jén keresztül.
 
-\section{Deploy szkriptek}
+\section{Telepítési szkriptek}
 Az előző felsorolásból kimaradt egy nulladik szkript, amely arra szolgál, hogy a legfrissebb verziójú konténereket felépíti és feltölti a DockerHub-ra, privát repository-ba. A szkriptek egy közös konfigfájlt használnak \emph{config}), amely-ben a klaszter paraméterei, kezdő portszámok és a drónok száma szerepel. Ezt a konfigfájlt használja Bash és Python program is, ezért a Bash felkonfigurálására létrehoztam egy kiegészítő szkriptet (configUp.sh), amely lemenedzseli a mapparendszerből következő változókat, hogy mi hol van, erre csak a Bash szkripteknek van szüksége. Utána minden deploy szkript ezt a külső konfigurációt hívja meg és konzisztens változókat fognak használni. \\
 
 \noindent

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (MiKTeX 2.9.7440 64-bit) (preloaded format=xelatex 2020.5.19)  19 DEC 2020 18:28
+This is XeTeX, Version 3.14159265-2.6-0.999992 (MiKTeX 2.9.7440 64-bit) (preloaded format=xelatex 2020.5.19)  19 DEC 2020 20:06
 entering extended mode
 **./thesis.tex
 (thesis.tex
@@ -1125,7 +1125,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 91--92
 
  []
 
-
+[33]
 Underfull \hbox (badness 1527) in paragraph at lines 95--109
 \TU/lmr/m/n/10.95 részlet). Ez a megoldás működött, azonban nem túl szép és opt
 imális, mivel a
@@ -1137,7 +1137,7 @@ Underfull \hbox (badness 1308) in paragraph at lines 95--109
 osított konténerként).
  []
 
-[33]
+
 Underfull \hbox (badness 7740) in paragraph at lines 111--120
  []\TU/lmr/bx/n/10.95 C)[] \TU/lmr/m/n/10.95 Így inkább talán a legegyszerűbb m
 egoldást választottam, igénybe vet-
@@ -1193,12 +1193,12 @@ Underfull \hbox (badness 2343) in paragraph at lines 128--136
 akor is ([][]6.9[][]. kódrészlet).
  []
 
-
+[34]
 Overfull \hbox (21.9pt too wide) in paragraph at lines 137--143
 []$[]$ 
  []
 
-[34] [35]
+[35]
 7. fejezet.
 
 Underfull \hbox (badness 10000) in paragraph at lines 150--151
@@ -1533,21 +1533,14 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 109.
 (content/abstract.aux) (content/acknowledgement.aux))
 Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 109.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 109.
-
-
-Package rerunfilecheck Warning: File `thesis.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `thesis.out':
-(rerunfilecheck)             Before: 30B2A3BCA3ED48FA14BB8A3D6CBA0A73;15463
-(rerunfilecheck)             After:  350374C3BEC3E6DE5135B510A3462375;15463.
+Package rerunfilecheck Info: File `thesis.out' has not changed.
+(rerunfilecheck)             Checksum: 7F68115D0EA33A1F5CD321B52B321041;15723.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 109.
  ) 
 Here is how much of TeX's memory you used:
  18351 strings out of 414083
  324054 string characters out of 2898444
- 783290 words of memory out of 3000000
+ 783553 words of memory out of 3000000
  35655 multiletter control sequences out of 15000+200000
  538172 words of font info for 62 fonts, out of 3000000 for 9000
  1352 hyphenation exceptions out of 8191

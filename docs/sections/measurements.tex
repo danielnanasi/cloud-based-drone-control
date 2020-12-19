@@ -11,7 +11,7 @@ Pár fontos dologra vagyunk kíváncsiak:
 	\item Flotta irányítása esetén a válaszidő és a flotta méretének kapcsolata
 \end{itemize}
 
-\section{Node váltás ideje meghibásodott Node esetén}
+\section{Vezérlési központ váltás}
 A drónkapcsoló állomás hiba esetén átvált egy backup node-ra, ahol ugyanaz a munka folytatódik, amit a drón megkezdett. A kapcsolóállomásba implementált \emph{timestamp} alapú naplózórendszer segített abban, hogy pontos idők kapjak a reakcióról és a helyreállásról. A mérés menete egy drón normál üzemben működése közben:
 \begin{enumerate}
 	\item Hibát idézünk elő, kikapcsoljuk azt a Node-ot amelyen fut a Roscore és rögzítjük az időt (\ref{lst:close}. kódrészlet) ($t_0$)
@@ -34,7 +34,7 @@ $t_2-t_1$ helyreállási időre minimálisan 0.8, maximálisan 2.18, átlagosan 
 \noindent
 Ez azt jelenti, hogy a jelentős késleltetést az ellenőrzések periódusából adódó késleltetés adja, amelynek periódusa alatt egyenesen oszlik el a várható keletkező hiba. Így annak beállítását a felhasználó mérlegelheti, hogy mennyire kritikus a drón munkája és mennyire lehet terhelni a hálózatot. Észrevétel után a kapcsolási idő már csak pár másodperc. Ha például $5s$-os hibajavítást szeretnénk, akkor $5s$-ra kell állítani az ellenőrzési periódusidőt. Fontos megjegyezni, hogy ezen kiesési idő alatt a drónnak kell valamilyen belső mechanizmussal rendelkeznie, amely tovább viszi a feladatot vagy hagyja biztonságosan lebegni a következő utasításig, amennyiben nem érkezik válasz egy bizonyos időkereten belül. A piacon található középkategóriás drónok rendelkeznek ilyen viselkedéssel, ipari használatban pedig fontos, hogy ilyen kritériummal ruházzanak be drónra.
 
-\section{Válaszidő különbség esetén a jobb Node kiválasztása}
+\section{Alacsonyabb késleltetés biztosítása}
 A drónkapcsoló állomás nem csak akkor vált át másik Node-ra ha az aktuálisan felhasznált worker Node kiesik, hanem akkor is ha egy bizonyos $p$ paraméterrel alacsonyabb a válaszidő az adott Node felől, a legalacsonyabb elérhető válaszidőhöz képest. Ennek váltási algoritmusa részletesebben a \ref{cha:alg}. fejezetben részleteztem. A mérést hasonlóan végeztem, mint az előzőt, azonban mással implikáltam a változást, nem megszűntettem működés közben a Node-ot, hanem a Node belső interfészéhez hozzáadtam egy 0.5s-os késleltetést, hogy kívülről elérve a virtuális rendszerben ennyi késleltetés adódjon hozzá mindenféle kommunikációhoz (\ref{lst:tc}. kódrészlet). Ennek rögzítettem az idejét és vártam az algoritmus ellenőrző mechanizmusát és a Node váltás bekövetkeztét.
 
 \begin{lstlisting}[caption={Késleltetés hozzáadása a worker Node külső interfészéhez alapértelmezett Linux programmal}, label={lst:tc}]
