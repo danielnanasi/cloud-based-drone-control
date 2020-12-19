@@ -3,11 +3,11 @@
 Ebben a fejezetben az elvégzett mérésekről lesz szó, illetve azokból levont konklúziókról. Megnézzük, hogy a dolgozatban elkészített szoftverrendszer milyen hatékonysággal működik, milyen feltételekkel és minek milyen hatása van a QoS paraméterek elmozdulására. Kitekintünk arra, hogy egy 5G-s közeghozzáférési technológia esetén milyen változás jelenne meg a kommunikációban, elgondolkodunk rajta, hogy ez milyen előnyöket jelenthet. A méréseket az elkészített virtuális Multipass alapú K3S rendszeren végeztem, a mérési architektúra a korábbi \ref{fig:full2drone}. ábrán látható. A méréseket úgy végeztem, ahogyan a kapcsolóállomásba is implementáltam a valós idejű méréseket, annyi különbséggel, hogy nagyobb adatot átlagoltam a pontosság érdekében. \\
 
 \noindent
-Két fontos dologra vagyunk kíváncsiak:
+Pár fontos dologra vagyunk kíváncsiak:
 \begin{itemize}
-	\item A kapcsolóközpont viselkedése, meghibásodott Node esetén
-	\item A kapcsolóközpont viselkedése nagy késleltetés esetén
-	\item A drónok számának növekedése esetén hogyan alakul a válaszidő és a sávszélesség
+	\item A kapcsolóközpont viselkedése, meghibásodott Node esetén,
+	\item A kapcsolóközpont viselkedése nagy késleltetés esetén,
+	\item A drónok számának növekedése esetén hogyan alakul a válaszidő és a sávszélesség,
 	\item Flotta irányítása esetén a válaszidő és a flotta méretének kapcsolata
 \end{itemize}
 
@@ -65,7 +65,7 @@ A válaszidőt 25 ICMP ping visszaérkezési idők átlagaként számoltam ki, �
 \end{figure}
 
 \noindent
-A sávszélességet \emph{iperf3} programmal néztem, szintén egy drón konténer és a hozzá tartozó Roscore között. A sávszélesség csökkenése is észrevehető, ugyan nincs mögötte az a linearitás, mint a válaszidő növekedésében, egy drónhoz képest megfeleződött a rendelkezésre álló kiszolgáltatott sávszélesség a klaszter felől. Az \emph{iperf3} program a rendelkezésre álló szabad sávszélességet mutatja meg, melyet teljes terhelés alatt mér meg egy rövid időablakban. Alaphelyzetben, egyetlen drón kapcsolatba lépése nélkül a két konténer között $f_{0}=2430 MB/s$-ot mértem a hálózat terhelésével. Ez azt jelenti, hogy drón kommunikáció nélkül ennyivel terhelhető a hálózat a két konténer között, amelyet a hardver és a virtualizáció határoz meg. Ez $f_0$ kezdeti értékre és kiszámított $x$ függvény pontjaira illeszthető görbe a GeoAlgebra függvényillesztő segítségével \begin{equation} x(n) = 625 \cdot ln(7.28n) [MB/s] \end{equation} eredmény jött ki, ahol $n$ a rendszerben lévő drónok száma. Egy felhasználási ábrát rajzoltattam ki, amely azt mutatja, hogy a kommunikáció nélküli elérhető sávszélességhez képest mennyi sávszélességet használnak a drónok (\ref{fig:meresiperf}. ábra), tehát: \begin{equation}x_n = | f_n - f_0 |\end{equation}  \\
+A sávszélességet \emph{iperf3} programmal néztem, szintén egy drón konténer és a hozzá tartozó Roscore között. A sávszélesség csökkenése is észrevehető, ugyan nincs mögötte az a linearitás, mint a válaszidő növekedésében, egy drónhoz képest megfeleződött a rendelkezésre álló kiszolgáltatott sávszélesség a klaszter felől. Az \emph{iperf3} program a rendelkezésre álló szabad sávszélességet mutatja meg, melyet teljes terhelés alatt mér meg egy rövid időablakban. Alaphelyzetben, egyetlen drón kapcsolatba lépése nélkül a két konténer között $f_{0}=2430 MB/s$-ot mértem a hálózat terhelésével. Ez azt jelenti, hogy drón kommunikáció nélkül ennyivel terhelhető a hálózat a két konténer között, amelyet a hardver és a virtualizáció határoz meg. Ez $f_0$ kezdeti értékre és kiszámított $x$ függvény pontjaira illeszthető görbe a GeoAlgebra függvényillesztő segítségével \begin{equation} x(n) = 625 \cdot ln(7.28n) [MB/s] \end{equation} eredmény jött ki, ahol $n$ a rendszerben lévő drónok száma. Egy grafikonon ábrázoltam, hogy a kommunikáció nélküli elérhető sávszélességhez képest mennyi sávszélességet használnak a drónok (\ref{fig:meresiperf}. ábra), tehát: \begin{equation}x_n = | f_n - f_0 |\end{equation}  \\
 
 \begin{figure}
 	\centering
