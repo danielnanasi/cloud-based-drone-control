@@ -1,5 +1,5 @@
-\select@language {magyar} \contentsline {chapter}{Kivonat}{5}{chapter*.2}%
-\select@language {english} \contentsline {chapter}{Abstract}{6}{chapter*.3}%
+\select@language {magyar} \contentsline {chapter}{Kivonat}{2}{chapter*.1}%
+\select@language {english} \contentsline {chapter}{Abstract}{3}{chapter*.2}%
 \select@language {magyar} \contentsline {chapter}{\numberline {1}Bevezetés}{7}{chapter.1}%
 \select@language {magyar} \contentsline {section}{\numberline {1.1}Előzmények}{7}{section.1.1}%
 \select@language {magyar} \contentsline {section}{\numberline {1.2}A feladat célja}{7}{section.1.2}%
